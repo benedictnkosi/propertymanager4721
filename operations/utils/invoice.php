@@ -2,6 +2,7 @@
 
 function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $amountPaid)
 {
+    
     $parameters = [
         'from' => 'Renuga Guest House',
         'to' => $guestName . " " . $customerPhone,
@@ -48,7 +49,7 @@ Renuga Guest House\r\n
     
     try {
         $ch = curl_init();
-        $fp = fopen($resID . ".pdf", "w");
+        $fp = fopen(__DIR__ . '/../../../invoices/' . $resID . ".pdf", "w");
         
         // set url
         curl_setopt($ch, CURLOPT_URL, "https://invoice-generator.com");
