@@ -155,7 +155,7 @@ order by `check_in`";
 
             echo '<div class="res-details">
 
-						<h4 class="guest-name"><a target="_blank" href="http://renuga.co.za/propertymanager/quotation.html?res_id=' . $results["id"] . '">' . $guestName . ' - ' . $results["id"] . '</a></h4>
+						<h4 class="guest-name"><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 
 
 

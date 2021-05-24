@@ -177,7 +177,7 @@ function sendEmailUpdate($to, $guestName, $resaId, $paid, $outstanding)
             "total_paid" => "R" . number_format($paid, 2),
             "outstanding_amount" => "R" . number_format($outstanding, 2),
             "resa_id" => $resaId,
-            "pdf_download_path" => "http://renuga.co.za/propertymanager/operations/reservations/" . $resaId . ".pdf",
+            "pdf_download_path" => "http://renuga.co.za/invoices/" . $resaId . ".pdf",
         );
 
         $body = generate_email_body("Receipt", $Parameters);

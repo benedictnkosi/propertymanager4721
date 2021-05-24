@@ -54,7 +54,7 @@ order by `check_in`";
                     <a href = "mailto: ' . $jsonObj->email . '">' . $jsonObj->email . '</a></p>';
             
             echo '<div class="res-details">
-						<h4 class="guest-name"><a target="_blank" href="/propertymanager/operations/reservations/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
+						<h4 class="guest-name"><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 						    
 <p>' . $results["post_title"] . '</p>
 						<p name="res-dates">' . $checkInDate->format('M') . '  ' . $checkInDate->format('d') . ' - ' . $checkOutDate->format('d') . ', ' . $checkOutDate->format('Y') . '</p>

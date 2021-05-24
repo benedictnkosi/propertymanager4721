@@ -213,7 +213,7 @@ function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout,
             "customer_phone" => $customerPhone,
             "resa_price" => "R" . number_format($price, 2),
             "resa_nights" => $resaNights,
-            "pdf_download_path" => "http://renuga.co.za/propertymanager/operations/reservations/" . $resID . ".pdf",
+            "pdf_download_path" => "http://renuga.co.za/invoices/" . $resID . ".pdf",
             "template" => '{"quantity_header":"Nights"}'
         );
 
