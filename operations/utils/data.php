@@ -6,8 +6,7 @@
 
 function querydatabase($sql) {
 
-	$conn = new mysqli ( "localhost", "root", "", "renugtaj_wp163" );
-
+    $conn = new mysqli ( "localhost", "renugtaj_reader", "Q8X+7Y.j3EgS", "renugtaj_wp163" );
     // Check connection
 
     if ($conn->connect_error) {
@@ -43,8 +42,7 @@ function querydatabase($sql) {
 
 function insertrecord($sql) {
 
-    $conn = new mysqli ( "localhost", "root", "", "renugtaj_wp163" );
-
+    $conn = new mysqli ( "localhost", "renugtaj_reader", "Q8X+7Y.j3EgS", "renugtaj_wp163" );
     // Check connection
 
     
@@ -81,8 +79,7 @@ function insertrecord($sql) {
 
 function updaterecord($sql) {
 
-	$conn = new mysqli ( "localhost", "root", "", "renugtaj_wp163" );
-
+    $conn = new mysqli ( "localhost", "renugtaj_reader", "Q8X+7Y.j3EgS", "renugtaj_wp163" );
     // Check connection
 
     $sql = str_replace("^^**^*","&",$sql);
@@ -115,8 +112,7 @@ function updaterecord($sql) {
 
 function deleterecord($sql) {
 
-	$conn = new mysqli ( "localhost", "root", "", "renugtaj_wp163" );
-
+    $conn = new mysqli ( "localhost", "renugtaj_reader", "Q8X+7Y.j3EgS", "renugtaj_wp163" );
     // Check connection
 
     if ($conn->connect_error) {
