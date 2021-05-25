@@ -129,12 +129,30 @@ and accom_id = " . $roomArray['ID'];
                 foreach ($reservations_array as &$accomodation_array) {
                     $letter = substr($accomodation_array["name"], $x, 1);
                     
+                    $isCheckInday = false;
+                    $islastNightDay = false;
+                    
                     if ($tempDate >= new DateTime($accomodation_array["check_in"]) && $tempDate < new DateTime($accomodation_array["check_out"])) {
                         if (strcasecmp($accomodation_array["status"], "confirmed") == 0) {
                             $isDatebooked = true;
                             $checkin = $accomodation_array["check_in"];
                             $checkout = $accomodation_array["check_out"];
                             $guestName = $accomodation_array["name"];
+                            
+                            
+                            $dateCheckIn = new DateTime($accomodation_array["check_in"]);
+                            $strtempDate = $tempDate->format('d') . $tempDate->format('m') . $tempDate->format('Y') ;
+                            $strCheckindate = $dateCheckIn->format('d') . $dateCheckIn->format('m') . $dateCheckIn->format('Y') ;
+                            
+                            
+                           
+                            
+                            if (strcmp($strtempDate, $strCheckindate) == 0) {
+                                $isCheckInday = true;
+                               // echo "Check in <br>";
+                            }
+                           // echo "<br>";
+                            
                             break;
                         
                         } else if (strcasecmp($accomodation_array["status"], "pending") == 0) {
@@ -146,15 +164,24 @@ and accom_id = " . $roomArray['ID'];
                 
                 //echo "letter is " . $letter . "#####";
 
+                
+                
                 foreach ($blocks_array as &$block_array) {
                     if ($tempDate >= new DateTime($block_array["from_date"]) && $tempDate < new DateTime($block_array["to_date"])) {
                         $isDateBlocked = true;
+                        
+                        
                         break;
                     }
                 }
 
                 if ($isDatebooked) {
-                    echo '<td class="booked" title="' . $guestName .'">'.$letter.'</td>';
+                    if($isCheckInday == true){
+                        echo '<td class="booked checkin" title="' . $guestName .'"><img src="images/checkin.png" alt="checkin"></td>';
+                    }else{
+                        echo '<td class="booked" title="' . $guestName .'"></td>';
+                    }
+                    
                 } else if ($isDateBlocked) {
                     echo '<td class="blocked"></td>';
                 } else if ($isDateBookedButOpen) {
