@@ -3,6 +3,20 @@
 function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $amountPaid)
 {
     
+    
+    $header = "INVOICE";
+    if (strcmp($amountPaid, "0") !== 0) {
+        $header = "RECEIPT";
+    }
+    
+    $makePayment = "";
+    if (strcmp($amountPaid, "0") == 0) {
+        $makePayment = "\r\n\r\nPlease make a payment for the deposit to secure your room. Your room is still bookable on our websites.\r\n
+50% Deposit is required to secure the booking.\r\n
+We take Card payment (3%), Cash and EFT. We, unfortunately, can not check you in with an outstanding balance.\r\n
+Please email proof of payment to info@renuga.co.za";
+    }
+    
     $parameters = [
         'from' => 'Renuga Guest House',
         'to' => $guestName . " " . $customerPhone,
@@ -14,18 +28,27 @@ function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $ch
         'items[0][unit_cost]' => $price,
         
         
-        'notes' => "Thank you for choosing to stay with us! \r\n
+        'notes' => "Your Booking is Confirmed! \r\n
+
+".$makePayment."
 \r\n
-Please make a payment for the deposit to secure your room. Your room is still bookable on our websites.\r\n
-50% Deposit is required to secure the booking.\r\n
-We take Card payment (3%), Cash and EFT. We, unfortunately, can not check you in with an outstanding balance.\r\n
-Please email proof of payment to info@renuga.co.za\r\n
-\r\n
-Banking Details\r\n
+Banking Details:\r\n
 Bank: FNB\r\n
 Name: Renuga Guesthouse\r\n
 Acc: 62788863241\r\n
 branch: 250 655\r\n
+\r\n
+\r\n
+Guest House Address: \r\n
+187 kitchener Avenue\r\n
+kensington\r\n
+Johannesburg 2094\r\n
+\r\n
+Contact details:\r\n
+Cell: +27 79 634 7610\r\n
+Alt Cell: +27 83  791 7430\r\n
+Email: info@renuga.co.za\r\n
+\r\n
 \r\n
 See you soon!\r\n
 \r\n
@@ -44,7 +67,8 @@ Renuga Guest House\r\n
 ",
         
         "currency" => "ZAR",
-        "amount_paid" => $amountPaid
+        "amount_paid" => $amountPaid,
+        "header"=>$header
     ];
     
     try {
