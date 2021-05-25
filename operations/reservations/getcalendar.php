@@ -103,7 +103,9 @@ and accom_id = " . $roomArray['ID'];
                 while ($resultBlock = $resultBlocks->fetch_assoc()) {
                     $blocks = array(
                         'from_date' => $resultBlock["from_date"],
-                        'to_date' => $resultBlock["to_date"]
+                        'to_date' => $resultBlock["to_date"],
+                        'comment' => $resultBlock["comment"]
+                        
                     );
                     array_push($blocks_array, $blocks);
                 }
@@ -121,6 +123,7 @@ and accom_id = " . $roomArray['ID'];
                 $checkout = "";
                 $resID = "";
                 $roomName = "";
+                $blockNote = "";
 
                 $isDateBlocked = false;
                 $isDateBookedButOpen = false;
@@ -169,7 +172,7 @@ and accom_id = " . $roomArray['ID'];
                 foreach ($blocks_array as &$block_array) {
                     if ($tempDate >= new DateTime($block_array["from_date"]) && $tempDate < new DateTime($block_array["to_date"])) {
                         $isDateBlocked = true;
-                        
+                        $blockNote = $block_array["comment"];
                         
                         break;
                     }
@@ -183,7 +186,7 @@ and accom_id = " . $roomArray['ID'];
                     }
                     
                 } else if ($isDateBlocked) {
-                    echo '<td class="blocked"></td>';
+                    echo '<td class="blocked" title="' . $blockNote .'"></td>';
                 } else if ($isDateBookedButOpen) {
                     echo '<td class="pending"></td>';
                 } else {
