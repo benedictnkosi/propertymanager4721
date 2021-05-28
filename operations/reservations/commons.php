@@ -44,8 +44,7 @@ and (`status` = "confirmed" or (`status` = "pending" and paid NOT IN ("0.00")) o
 and ( (DATE(check_out) > DATE("' . $checkinDate . '") and DATE(check_in) <= DATE("' . $checkinDate . '"))
 or (DATE(check_in) < DATE("' . $checkOut . '") and DATE(check_in) > DATE("' . $checkinDate . '")))
  and admin_comment not like "%Not available%"
-and wpky_hb_resa.id <> $resIDToExclude
-';
+and wpky_hb_resa.id <> ' . $resIDToExclude;
     
    // echo $sql;
     $result = querydatabase($sql);

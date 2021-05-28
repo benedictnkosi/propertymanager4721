@@ -133,23 +133,28 @@ function updateInvoice($checkin_date, $checkout_date, $accom_id, $total_due, $re
 
     $sqlUpdateInvoice = "UPDATE `renugtaj_wp163`.`wpky_hb_resa` SET `check_in` = '" . $_POST["checkin_date"] . "', `check_out` = '" . $_POST["checkout_date"] . "', `accom_id` = " . $_POST["accom_id"] . ", `price` = " . $_POST["total_due"] . ", `admin_comment` = '" . $_POST["res_notes"] . "', `updated_on` = '" . $now->format('Y-m-d H:i:s') . "', `accom_price` = " . $_POST["total_due"] . "  WHERE `id` = " . $_POST["action"] . ";";
 
+    
+    
     $resultCreateRes = insertrecord($sqlUpdateInvoice);
     if (strcasecmp($resultCreateRes, "New record created successfully") == 0) {
-
-        $sqlInvoiceID = "select wpky_hb_resa.id , post_title from wpky_hb_resa, wpky_posts
+        
+        
+        $sqlInvoiceID = "select wpky_hb_resa.id , post_title, customer_id from wpky_hb_resa, wpky_posts
 where  wpky_posts.ID = `wpky_hb_resa`.accom_id
+and  wpky_hb_resa.id = ".$resID."
  order by updated_on desc limit 1";
 
         $result = querydatabase($sqlInvoiceID);
         $newInvoiceID = "";
         $rooName = "";
-
+        $customer_id = "";
+        
         $rsType = gettype($result);
-
+        
         if (strcasecmp($rsType, "string") == 0) {
             $temparray1 = array(
                 'result_code' => 1,
-                'result_desciption' => "Failed to create invoice"
+                'result_desciption' => "Failed to update invoice"
             );
             echo json_encode($temparray1);
             exit();
@@ -158,8 +163,20 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
             while ($results = $result->fetch_assoc()) {
                 $newInvoiceID = $results["id"];
                 $rooName = $results["post_title"];
+                $customer_id = $results["customer_id"];
             }
+            
+            if(!updateCustomer($customer_id, $_POST["userName"], $_POST["userNumber"], $_POST["userEmail"])){
+                $temparray1 = array(
+                    'result_code' => 1,
+                    'result_desciption' => "Failed to update customer details"
+                );
+                echo json_encode($temparray1);
+                exit();
+            }
+            
         }
+        
         if (! sendEmail($_POST["userEmail"], $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
             $temparray1 = array(
                 'result_code' => 1,
@@ -167,7 +184,7 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
             );
             echo json_encode($temparray1);
         } else {
-
+            
             unBlockRoomByResId($newInvoiceID);
             $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
 
@@ -190,6 +207,24 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
         echo json_encode($temparray1);
     }
 }
+
+
+function updateCustomer($customerID, $customerName, $email, $phone)
+{
+    $sqlUpdateCustomer = "Update  `renugtaj_wp163`.`wpky_hb_customers`
+ SET `email` = '" . $email . "', info =  '{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"$email\",\"phone\":\"" . $phone . "\"}'
+where id = " . $customerID . ";";
+    
+    //echo $sqlUpdateCustomer;
+    $resultCustomer = updaterecord($sqlUpdateCustomer);
+    
+    if (strcasecmp($resultCustomer, "Record updated successfully") == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName)
 {
