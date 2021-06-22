@@ -18,7 +18,7 @@ Please email proof of payment to info@renuga.co.za";
     }
     
     $parameters = [
-        'from' => 'Renuga Guest House',
+        'from' => 'Renuga Guest House - VAT 4010297762',
         'to' => $guestName . " " . $customerPhone,
         'logo' => "http://renuga.co.za/wp-content/uploads/2020/07/icon.png",
         'number' => $resID,
@@ -26,8 +26,9 @@ Please email proof of payment to info@renuga.co.za";
         'items[0][quantity]' => $resaNights,
         'items[0][description]' => "Arrival dates: " . $checkin . " \r\n  Departure date: " . $checkout,
         'items[0][unit_cost]' => $price,
-        
-        
+        'tax_title' => "VAT",
+        'fields[tax]' => "%",
+        'tax' => 15,
         'notes' => "Your Booking is Confirmed! \r\n
 
 ".$makePayment."
