@@ -26,9 +26,9 @@ Please email proof of payment to info@renuga.co.za";
         'items[0][quantity]' => $resaNights,
         'items[0][description]' => "Arrival dates: " . $checkin . " \r\n  Departure date: " . $checkout,
         'items[0][unit_cost]' => $price,
-        'tax_title' => "VAT",
-        'fields[tax]' => "%",
-        'tax' => 15,
+        //'tax_title' => "VAT",
+        //'fields[tax]' => "%",
+        //'tax' => 15,
         'notes' => "Your Booking is Confirmed! \r\n
 
 ".$makePayment."
