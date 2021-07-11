@@ -49,7 +49,7 @@ function createInvoice()
 
         $sqlCreateinvoice = "INSERT INTO `wpky_hb_resa` (`check_in`, `check_out`, `accom_id`, `accom_num`, `adults`, `children`, `price`, `deposit`, `paid`, `payment_gateway`, `currency`, `customer_id`, `status`, `options`, `additional_info`, `payment_type`, `payment_info`, `admin_comment`, `lang`, `coupon`, `payment_token`, `payment_status`, `payment_status_reason`, `amount_to_pay`, `received_on`, `updated_on`, `uid`, `origin`, `synchro_id`, `booking_form_num`, `accom_price`, `discount`, `previous_price`, `fees`, `coupon_value`, `origin_url`)
 VALUES
-('" . $_POST["checkin_date"] . "', '" . $_POST["checkout_date"] . "', " . $_POST["accom_id"] . ", 1, 1, 0, '" . $_POST["total_due"] . "', '" . $depositDue . "', '0', '', 'ZAR', " . $customer_id . ", '" . $status . "', '[]', '[]', '', '', '', 'en_US', '', '', '', '', '0', '" . $now->format('Y-m-d H:i:s') . "', '" . $now->format('Y-m-d H:i:s') . "', '" . uniqid() . "@http://renuga.co.za', 'website', '', 0, '" . $_POST["total_due"] . "', '', '0.00', '', '0.00', '')";
+('" . $_POST["checkin_date"] . "', '" . $_POST["checkout_date"] . "', " . $_POST["accom_id"] . ", 1, 1, 0, '" . $_POST["total_due"] . "', '" . $depositDue . "', '0', '', 'ZAR', " . $customer_id . ", '" . $status . "', '[]', '[]', '', '', '', 'en_US', '', '', '', '', '0', '" . $now->format('Y-m-d H:i:s') . "', '" . $now->format('Y-m-d H:i:s') . "', '" . uniqid() . "@http://aluvegh.co.za', 'website', '', 0, '" . $_POST["total_due"] . "', '', '0.00', '', '0.00', '')";
 
         $resultCreateRes = insertrecord($sqlCreateinvoice);
         if (strcasecmp($resultCreateRes, "New record created successfully") == 0) {
@@ -114,7 +114,7 @@ function updateInvoice()
         exit();
     }
 
-    $sqlUpdateInvoice = "UPDATE `renugtaj_wp163`.`wpky_hb_resa` SET `check_in` = '" . $_POST["checkin_date"] . "', `check_out` = '" . $_POST["checkout_date"] . "', `accom_id` = " . $_POST["accom_id"] . ", `price` = " . $_POST["total_due"] . ", `admin_comment` = '" . $_POST["res_notes"] . "', `updated_on` = '" . $now->format('Y-m-d H:i:s') . "', `accom_price` = " . $_POST["total_due"] . "  WHERE `id` = " . $_POST["action"] . ";";
+    $sqlUpdateInvoice = "UPDATE `wpky_hb_resa` SET `check_in` = '" . $_POST["checkin_date"] . "', `check_out` = '" . $_POST["checkout_date"] . "', `accom_id` = " . $_POST["accom_id"] . ", `price` = " . $_POST["total_due"] . ", `admin_comment` = '" . $_POST["res_notes"] . "', `updated_on` = '" . $now->format('Y-m-d H:i:s') . "', `accom_price` = " . $_POST["total_due"] . "  WHERE `id` = " . $_POST["action"] . ";";
     
 
     $resultCreateRes = insertrecord($sqlUpdateInvoice);
@@ -188,7 +188,7 @@ function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout,
             "customer_phone" => $customerPhone,
             "resa_price" => "R" . number_format($price, 2),
             "resa_nights" => $resaNights,
-            "pdf_download_path" => "http://renuga.co.za/propertymanager/operations/reservations/" . $resID . ".pdf",
+            "pdf_download_path" => "http://aluvegh.co.za/propertymanager/operations/reservations/" . $resID . ".pdf",
             "template" => '{"quantity_header":"Nights"}'
         );
 
@@ -199,15 +199,15 @@ function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout,
         // echo $body;
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@renuga.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@renuga.co.za" . "\r\n";
+        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
+        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
 
         $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         } else {
-            if (mail($to, "Renuga Guest House Invoice ", $body, $headers)) {
+            if (mail($to, "Aluve Guesthouse Invoice ", $body, $headers)) {
                 return true;
             } else {
                 return false;
@@ -220,7 +220,7 @@ function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout,
 
 function createCustomer($customerName, $email, $phone)
 {
-    $sqlCreateCustomer = "INSERT INTO `renugtaj_wp163`.`wpky_hb_customers`
+    $sqlCreateCustomer = "INSERT INTO `wpky_hb_customers`
 (
 `email`,
 `info`,
@@ -262,9 +262,9 @@ VALUES
 function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName)
 {
     $parameters = [
-        'from' => 'Renuga Guest House',
+        'from' => 'Aluve Guesthouse',
         'to' => $guestName . " " . $customerPhone,
-        'logo' => "http://renuga.co.za/wp-content/uploads/2020/07/icon.png",
+        'logo' => "http://aluvegh.co.za/wp-content/uploads/2020/07/icon.png",
         'number' => $resID,
         'items[0][name]' => $rooName,
         'items[0][quantity]' => $resaNights,
@@ -276,11 +276,11 @@ function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $ch
 Please make a payment for the deposit to secure your room. Your room is still bookable on our websites.\r\n
 50% Deposit is required to secure the booking.\r\n
 We take Card payment (3%), Cash and EFT. We, unfortunately, can not check you in with an outstanding balance.\r\n
-Please email proof of payment to info@renuga.co.za\r\n
+Please email proof of payment to info@aluvegh.co.za\r\n
 \r\n
 Banking Details\r\n
 Bank: FNB\r\n
-Name: Renuga Guesthouse\r\n
+Name: Aluve Guesthouse\r\n
 Acc: 62788863241\r\n
 branch: 250 655\r\n
 \r\n
@@ -297,7 +297,7 @@ The guest can cancel free of charge until 7 days before arrival. The guest will 
 
 We look forward to hosting you\r\n
 
-Renuga Guest House\r\n
+Aluve Guesthouse\r\n
 ",
 
         "currency" => "ZAR",

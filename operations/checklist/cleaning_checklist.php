@@ -18,7 +18,7 @@ function submitCleaningChecklist()
     $return_array = array();
     $now = new DateTime();
 
-    $sql = "INSERT INTO `renugtaj_wp163`.`completed_checklist`
+    $sql = "INSERT INTO `completed_checklist`
 (
 `accom_id`,
 `checklist`,
@@ -69,10 +69,10 @@ function getCleanningCheckList($accom_id)
 {
     $return_array = array();
 
-    $sql = "SELECT ID, post_title, post_content FROM renugtaj_wp163.wpky_posts where post_type = 'hb_accommodation'
+    $sql = "SELECT ID, post_title, post_content FROM wpky_posts where post_type = 'hb_accommodation'
         and ID = " . $accom_id . ";";
 
-    $completedCleaningSql = "SELECT checklist, notes FROM renugtaj_wp163.completed_checklist where accom_id = " . $accom_id . " and timestamp = '" . $_GET["cleaning_date"] . "'";
+    $completedCleaningSql = "SELECT checklist, notes FROM rcompleted_checklist where accom_id = " . $accom_id . " and timestamp = '" . $_GET["cleaning_date"] . "'";
     // echo $completedCleaningSql;
     $cleaningChecklistItems = array();
     $cleaningNotes = "";

@@ -16,7 +16,7 @@ if (isset($_GET["accom_id"])) {
 function getRoomPriceByID($accomId)
 {
 
-    $sql = "SELECT pricing FROM renugtaj_wp163.wpky_hotel_booking_plans 
+    $sql = "SELECT pricing FROM wpky_hotel_booking_plans 
 where room_id = (select meta_value from wpky_postmeta
 where post_id = " . $accomId . "
 and meta_key = 'accom_linked_page');";

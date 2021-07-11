@@ -1,6 +1,7 @@
 <?php
 require_once (__DIR__ . '/../utils/data.php');
 
+;
 getCalendar();
 
 function getCalendar()
@@ -33,8 +34,12 @@ function getCalendar()
         
     }
     echo '</tr>';
+    echo "in here";
 
     foreach ($rooms_array as &$roomArray) {
+        
+        
+        
 
         echo '<tr><th class="headcol">' . $roomArray["room_short_name"] . '</th>';
 
@@ -50,14 +55,16 @@ and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) o
         and admin_comment not like '%Not available%'
         order by `check_in`";
 
+
+
         $sql_upcoming_blocks = "SELECT accom_id, from_date, to_date, comment
-FROM renugtaj_wp163.wpky_hb_accom_blocked
+FROM wpky_hb_accom_blocked
 where DATE(from_date) <= DATE(NOW()) + INTERVAL 30 DAY
 and DATE(to_date) > DATE(NOW())
 and accom_id = " . $roomArray['ID'];
 
         $resultReservations = querydatabase($sql_upcoming_reservations);
-        // echo $sql_upcoming_reservations;
+         echo $sql_upcoming_reservations;
         $rsType = gettype($resultReservations);
 
         $resultBlocks = querydatabase($sql_upcoming_blocks);
@@ -204,11 +211,12 @@ function getRoomIDs($status)
     $rooms_array = array();
 
     $sql = "SELECT ID, post_title, room_short_name
-FROM renugtaj_wp163.wpky_posts, room_short_names
+FROM wpky_posts, room_short_names
 where room_short_names.accom_id = wpky_posts.ID
  and post_type = 'hb_accommodation'
         and post_status = '" . $status . "';";
 
+echo $sql;
     $result = querydatabase($sql);
 
     $rsType = gettype($result);

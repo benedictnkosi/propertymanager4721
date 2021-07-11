@@ -145,7 +145,7 @@ and wpky_hb_resa.id = " . $_GET["getquotation"];
 
                 
 
-					<h1>Renuga Guesthouse Quotation</h1>
+					<h1>Aluve Guesthouse Quotation</h1>
 
                 
 

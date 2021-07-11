@@ -14,7 +14,7 @@ if(isset($_GET["phone_number"])){
 
 
 function getCustomerByNumber(){
-    $sql = "SELECT info, email FROM renugtaj_wp163.wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
+    $sql = "SELECT info, email FROM wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
     $temparray1 = Array();
     $result = querydatabase($sql);
     

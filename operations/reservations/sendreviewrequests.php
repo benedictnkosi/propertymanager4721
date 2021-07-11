@@ -63,15 +63,15 @@ function sendEmail($to, $guestName)
          //echo $body;
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@renuga.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@renuga.co.za" . "\r\n";
+        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
+        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
 
         $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         } else {
-            if (mail($to, "Renuga Guest House Review", $body, $headers)) {
+            if (mail($to, "Aluve Guesthouse Review", $body, $headers)) {
                 return true;
             } else {
                 return false;

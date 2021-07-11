@@ -34,7 +34,7 @@ function blockRoom($accom_id, $checkin_date, $checkout_date, $block_notes, $resI
    // echo "test";
     
     $sqlBlockRoom = "INSERT INTO `wpky_hb_accom_blocked` (`id`, `accom_id`, `accom_all_ids`, `accom_num`, `accom_all_num`, `from_date`, `to_date`, `linked_resa_id`, `comment` , `uid`, `is_prepa_time`) 
-VALUES (NULL, '" . $accom_id . "', '0', '1', '0', '" . $checkin_date . "', '" . $checkout_date . "', ".$resID." , '" . $block_notes . "', 'D2020-08-07T16:56:15U5f2d587afe9621@http://renuga.co.za', '0');";
+VALUES (NULL, '" . $accom_id . "', '0', '1', '0', '" . $checkin_date . "', '" . $checkout_date . "', ".$resID." , '" . $block_notes . "', 'D2020-08-07T16:56:15U5f2d587afe9621@http://aluvegh.co.za', '0');";
 
     //echo $sqlBlockRoom;
     $resultBlock = insertrecord($sqlBlockRoom);

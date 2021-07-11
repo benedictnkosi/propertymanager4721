@@ -84,7 +84,7 @@ function createReservation()
 
 VALUES
 
-('" . $_POST["checkin_date"] . "', '" . $_POST["checkout_date"] . "', " . $_POST["accom_id"] . ", 1, 1, 0, '0', '0', '0', '', 'ZAR', $customer_id, '".$status."', '[]', '[]', '', '', '', 'en_US', '', '', '', '', '0', '" . $now->format('Y-m-d H:i:s') . "', '" . $now->format('Y-m-d H:i:s') . "', '" . uniqid() . "@http://renuga.co.za', 'website', '', 0, '-1.00', '', '0.00', '', '0.00', '')";
+('" . $_POST["checkin_date"] . "', '" . $_POST["checkout_date"] . "', " . $_POST["accom_id"] . ", 1, 1, 0, '0', '0', '0', '', 'ZAR', $customer_id, '".$status."', '[]', '[]', '', '', '', 'en_US', '', '', '', '', '0', '" . $now->format('Y-m-d H:i:s') . "', '" . $now->format('Y-m-d H:i:s') . "', '" . uniqid() . "@http://aluvegh.co.za', 'website', '', 0, '-1.00', '', '0.00', '', '0.00', '')";
 
 
 
@@ -130,7 +130,7 @@ function createCustomer($customerName, $email, $phone)
 
 {
 
-    $sqlCreateCustomer = "INSERT INTO `renugtaj_wp163`.`wpky_hb_customers`
+    $sqlCreateCustomer = "INSERT INTO `wpky_hb_customers`
 
 (
 
