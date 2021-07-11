@@ -292,7 +292,9 @@ No loud music\r\n
 No parties\r\n
 No smoking inside the house\r\n
 No kids under the age of 12\r\n
+Check-in time is from 14h00Please make arrangements for an early check-in\r\n
 Check-in cut-off is at 22:00. Please make arrangements for a later check-in\r\n
+Check-out time is at 10:00. Please make arrangements for a later check-out\r\n
 The guest can cancel free of charge until 7 days before arrival. The guest will be charged the total price of the reservation if they cancel in the 7 days before arrival. If the guest doesnt show up they will be charged the total price of the reservation.\r\n
 
 We look forward to hosting you\r\n
