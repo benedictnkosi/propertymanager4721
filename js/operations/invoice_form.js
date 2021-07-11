@@ -87,13 +87,6 @@ $(document).ready(function() {
 
 
 	});
-
-
-
-
-
-
-
 });
 
 
@@ -127,8 +120,6 @@ function calculateTotal() {
 	$("#total_due").text(numberOfNights * pricePerNight);
 
 	$("#input_total_due").val(numberOfNights * pricePerNight);
-
-
 
 }
 
