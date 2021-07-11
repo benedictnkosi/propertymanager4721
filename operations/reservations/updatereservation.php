@@ -177,7 +177,7 @@ function sendEmailUpdate($to, $guestName, $resaId, $paid, $outstanding)
             "total_paid" => "R" . number_format($paid, 2),
             "outstanding_amount" => "R" . number_format($outstanding, 2),
             "resa_id" => $resaId,
-            "pdf_download_path" => "http://renuga.co.za/invoices/" . $resaId . ".pdf",
+            "pdf_download_path" => "http://aluvegh.co.za/invoices/" . $resaId . ".pdf",
         );
 
         $body = generate_email_body("Receipt", $Parameters);
@@ -187,15 +187,15 @@ function sendEmailUpdate($to, $guestName, $resaId, $paid, $outstanding)
         // echo $body;
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@renuga.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@renuga.co.za" . "\r\n";
+        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
+        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
 
         $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         } else {
-            if (mail($to, "Renuga Guest House Receipt", $body, $headers)) {
+            if (mail($to, "Aluve Guesthouse Receipt", $body, $headers)) {
                 return true;
             } else {
                 return false;

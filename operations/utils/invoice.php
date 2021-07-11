@@ -14,13 +14,13 @@ function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $ch
         $makePayment = "\r\n\r\nPlease make a payment for the deposit to secure your room. Your room is still bookable on our websites.\r\n
 50% Deposit is required to secure the booking.\r\n
 We take Card payment (3%), Cash and EFT. We, unfortunately, can not check you in with an outstanding balance.\r\n
-Please email proof of payment to info@renuga.co.za";
+Please email proof of payment to info@aluvegh.co.za";
     }
     
     $parameters = [
-        'from' => 'Renuga Guest House - VAT 4010297762',
+        'from' => 'Aluve Guesthouse - VAT 4010297762',
         'to' => $guestName . " " . $customerPhone,
-        'logo' => "http://renuga.co.za/wp-content/uploads/2020/07/icon.png",
+        'logo' => "http://aluvegh.co.za/wp-content/uploads/2020/07/icon.png",
         'number' => $resID,
         'items[0][name]' => $rooName,
         'items[0][quantity]' => $resaNights,
@@ -35,7 +35,7 @@ Please email proof of payment to info@renuga.co.za";
 \r\n
 Banking Details:\r\n
 Bank: FNB\r\n
-Name: Renuga Guesthouse\r\n
+Name: Aluve Guesthouse\r\n
 Acc: 62788863241\r\n
 branch: 250 655\r\n
 \r\n
@@ -48,7 +48,7 @@ Johannesburg 2094\r\n
 Contact details:\r\n
 Cell: +27 79 634 7610\r\n
 Alt Cell: +27 83  791 7430\r\n
-Email: info@renuga.co.za\r\n
+Email: info@aluvegh.co.za\r\n
 \r\n
 \r\n
 See you soon!\r\n
@@ -64,7 +64,7 @@ The guest can cancel free of charge until 7 days before arrival. The guest will 
         
 We look forward to hosting you\r\n
         
-Renuga Guest House\r\n
+Aluve Guesthouse\r\n
 ",
         
         "currency" => "ZAR",

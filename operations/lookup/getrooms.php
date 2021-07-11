@@ -23,7 +23,7 @@ function getrooms($status)
 {
     $return_array = array();
 
-    $sql = "SELECT ID, post_title, post_status FROM renugtaj_wp163.wpky_posts where post_type = 'hb_accommodation'
+    $sql = "SELECT ID, post_title, post_status FROM wpky_posts where post_type = 'hb_accommodation'
         and post_status = '" . $status . "';";
 
     $result = querydatabase($sql);
@@ -58,7 +58,7 @@ function getRoomsHtml($status)
 {
     $return_array = array();
 
-    $sql = "SELECT ID, post_title, post_status FROM renugtaj_wp163.wpky_posts where post_type = 'hb_accommodation'
+    $sql = "SELECT ID, post_title, post_status FROM wpky_posts where post_type = 'hb_accommodation'
         and post_status = '" . $status . "';";
 
     $result = querydatabase($sql);
