@@ -12,12 +12,12 @@ function getReservations(period) {
 	$("#reservations-list").load("operations/reservations/getreservations.php?period=" + period, function() {
 		$(".changeBookingStatus").click(function(event) {
 			changeBookingStatus(event);
-
-			$(".edit_invoice").click(function(event) {
+		});
+		
+		$(".edit_invoice").click(function(event) {
 				updateInvoice(event);
 			});
-
-		});
+			
 	});
 }
 
@@ -25,24 +25,21 @@ function getReservations(period) {
 function getStayOvers(period) {
 	$("#stayOver-list").load("operations/reservations/getreservations.php?period=" + period, function() {
 		$(".changeBookingStatus").click(function(event) {
-			$(".edit_invoice").click(function(event) {
+			
+		});
+		
+		$(".edit_invoice").click(function(event) {
 				updateInvoice(event);
 			});
-		});
 	});
 }
 
 
 function getCheckouts(period) {
 	$("#checkouts-list").load("operations/reservations/getreservations.php?period=" + period, function() {
-
 		$(".edit_invoice").click(function(event) {
 			updateInvoice(event);
 		});
-
-
-
-
 	});
 }
 
