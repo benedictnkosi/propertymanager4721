@@ -24,5 +24,9 @@ printf('
 
 $output = ob_get_contents();
 
+echo $tmp;
+
+echo $output;
+
 ?>
 
