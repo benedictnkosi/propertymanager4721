@@ -89,6 +89,13 @@ function getOverallOccupancy(period, elementId) {
 	});
 }
 
+function getOccupancyPerRoomForMonth() {
+	var myDate = new Date();
+	var dayOfmonth = myDate.getDate();
+	getOccupancyPerRoom(dayOfmonth)
+
+}
+
 
 function getOccupancyPerRoom(period) {
 	$("#occupancy-div").load("operations/stats/getoccupancy.php?days=" + period + "&type=room", function() {

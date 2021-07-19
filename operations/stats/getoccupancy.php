@@ -36,6 +36,7 @@ function getOccupancyPerRoom($days)
         echo json_encode($temparray1);
         exit();
     }
+    
     $sql = "SELECT accom_id, post_title, (sum(
 	DATEDIFF(IF(check_out<=DATE(NOW()), check_out, DATE(NOW())),
 	IF(check_in<=DATE(NOW()) - INTERVAL " . $days . " DAY, DATE(NOW()) - INTERVAL " . $days . " DAY, check_in)))/" . $days . ")*100
