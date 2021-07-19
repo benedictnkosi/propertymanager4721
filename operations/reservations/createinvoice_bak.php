@@ -264,7 +264,7 @@ function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $ch
     $parameters = [
         'from' => 'Aluve Guesthouse',
         'to' => $guestName . " " . $customerPhone,
-        'logo' => "http://aluvegh.co.za/wp-content/uploads/2020/07/icon.png",
+        'logo' => "https://aluvegh.co.za/wp-content/uploads/2021/07/aluve-icon.png",
         'number' => $resID,
         'items[0][name]' => $rooName,
         'items[0][quantity]' => $resaNights,
@@ -287,11 +287,11 @@ branch: 250 655\r\n
 See you soon!\r\n
 \r\n
 ",
-        'terms' => "No noise after 6pm\r\n
+        'terms' => "No noise\r\n
 No loud music\r\n
 No parties\r\n
 No smoking inside the house\r\n
-No kids under the age of 12\r\n
+No kids under the age of 3\r\n
 Check-in time is from 14h00Please make arrangements for an early check-in\r\n
 Check-in cut-off is at 22:00. Please make arrangements for a later check-in\r\n
 Check-out time is at 10:00. Please make arrangements for a later check-out\r\n
