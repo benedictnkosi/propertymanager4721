@@ -2,7 +2,7 @@
 
 function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $amountPaid)
 {
-    
+    echo "ammount paid " .$amountPaid;
     
     $header = "INVOICE";
     if (strcmp($amountPaid, "0") !== 0) {
@@ -20,7 +20,7 @@ Please email proof of payment to info@aluvegh.co.za";
     $parameters = [
         'from' => 'Aluve Guesthouse - VAT 4010297762',
         'to' => $guestName . " " . $customerPhone,
-        'logo' => "http://aluvegh.co.za/wp-content/uploads/2020/07/icon.png",
+        'logo' => "http://aluvegh.co.za/wp-content/uploads/2021/07/aluve-icon.png",
         'number' => $resID,
         'items[0][name]' => $rooName,
         'items[0][quantity]' => $resaNights,

@@ -87,7 +87,14 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
                     $rooName = $results["post_title"];
                 }
             }
-            if (! sendEmail($_POST["userEmail"], $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName)) {
+            
+            $paid = "0";
+            if (isset($_POST["paid"]) && !empty($_POST["paid"]) ) {
+                $paid = $_POST["paid"];
+            }
+                
+            
+            if (! sendEmail($_POST["userEmail"], $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
                 $temparray1 = array(
                     'result_code' => 1,
                     'result_desciption' => "Failed to email invoice"
@@ -229,11 +236,11 @@ where id = " . $customerID . ";";
 }
 
 
-function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName)
+function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)
 {
     try {
 
-        if (! createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, 0)) {
+        if (! createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)) {
             return false;
         }
 
