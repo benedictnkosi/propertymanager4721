@@ -66,15 +66,12 @@ function sendSMS($customerPhone, $guestName)
             echo $messageBody;
             return true;
         }else{
-            return true;
-            //$result = send_message( json_encode($messages));
-            //if ($result['http_status'] != 201) {
-            
-            //   return false;
-            //}else{
-            
-            //    return true;
-            // }
+            $result = send_message( json_encode($messages));
+            if ($result['http_status'] != 201) {
+                return false;
+            }else{
+                return true;
+            }
         }
     } catch (Exception $e) {
         return false;

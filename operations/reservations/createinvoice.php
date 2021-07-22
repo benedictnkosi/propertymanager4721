@@ -251,7 +251,6 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         
         $messageBody = "Hi " . $guestName . ", Your " . $header . " is ready. Please make payment to confirm reservation. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
         
-     
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
@@ -264,15 +263,13 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         }else{
-           return true;
-            //$result = send_message( json_encode($messages));
-            //if ($result['http_status'] != 201) {
-               
-             //   return false;
-            //}else{
            
-            //    return true;
-           // }
+            $result = send_message( json_encode($messages));
+            if ($result['http_status'] != 201) {
+                return false;
+            }else{
+                return true;
+            }
         }
 
     } catch (Exception $e) {
