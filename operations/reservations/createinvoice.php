@@ -254,7 +254,7 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
      
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
-            $formatedCustomerNumber = '+27' . $customerPhone;
+            $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
         }
         
         $messages = array(
