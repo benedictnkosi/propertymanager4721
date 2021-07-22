@@ -1,6 +1,7 @@
 <?php
 
 require_once (__DIR__ . '/../utils/data.php');
+require_once (__DIR__ . '/../stats/getstays.php');
 
 getInvoicesHtml();
 
@@ -8,7 +9,7 @@ function getInvoicesHtml()
 {
     $return_array = array();
     
-    $sql = "SELECT wpky_hb_resa.id, accom_id, post_title, status, price, paid, admin_comment, origin, check_in, check_out, info, origin_url, received_on
+    $sql = "SELECT wpky_hb_resa.id, accom_id, post_title, status, price, paid, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 `wpky_hb_resa`.`customer_id` = `wpky_hb_customers`.`id`
 and wpky_posts.ID = `wpky_hb_resa`.accom_id
@@ -48,13 +49,13 @@ order by `check_in`";
             
             $checkInDate = new DateTime($results["check_in"]);
             $checkOutDate = new DateTime($results["check_out"]);
-            
+            $stays = getNumberOfStays($results["customer_id"]);
             $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>
                 
                     </p>';
             
             echo '<div class="res-details">
-						<h4 class="guest-name"><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
+						<h4 class="guest-name"><div class="stays-div">'.$stays.'</div><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 						    
 <p>' . $results["post_title"] . '</p>
 						<p name="res-dates">' . $checkInDate->format('M') . '  ' . $checkInDate->format('d') . ' - ' . $checkOutDate->format('d') . ', ' . $checkOutDate->format('Y') . '</p>
