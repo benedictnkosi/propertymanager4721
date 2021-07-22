@@ -257,7 +257,7 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         }
         
         $messages = array(
-            array("from"=>COMPANY_PHONE_NUMBER,"to"=>$formatedCustomerNumber, "body"=>$messageBody)
+            array("from"=>"+27796347610","to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
