@@ -265,6 +265,8 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
             return true;
         }else{
             echo 'sending msg.....';
+            echo json_encode($messages);
+            echo 'sending msg.....';
             $result = send_message( json_encode($messages));
             if ($result['http_status'] != 201) {
                 echo 'failed ';
