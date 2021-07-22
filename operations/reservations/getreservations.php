@@ -134,9 +134,9 @@ order by `check_in`";
 
                 $guestName = $jsonObj->first_name;
 
-                $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>,
+                $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>
 
-                    <a href = "mailto: ' . $jsonObj->email . '">' . $jsonObj->email . '</a></p>';
+                    </p>';
             }
 
             $blockClassName = "";
@@ -198,7 +198,7 @@ order by `check_in`";
 
             
             echo '<span class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
-<span class="glyphicon glyphicon-edit edit_invoice clickable '.$checkInPeriod.'" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-email="' . $jsonObj->email . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
+<span class="glyphicon glyphicon-edit edit_invoice clickable '.$checkInPeriod.'" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
     
 
 

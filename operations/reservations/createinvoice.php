@@ -1,7 +1,5 @@
 <?php
 require_once (__DIR__ . '/../utils/data.php');
-require_once (__DIR__ . '/../utils/email_template.php');
-require_once (__DIR__ . "/../utils/mail.php");
 require_once (__DIR__ . '/commons.php');
 require_once (__DIR__ . '/../utils/invoice.php');
 require_once (__DIR__ . '/blockroom.php');
@@ -34,7 +32,7 @@ function createInvoice()
         exit();
     }
 
-    $customer_id = createCustomer($_POST["userName"], $_POST["userEmail"], $_POST["userNumber"]);
+    $customer_id = createCustomer($_POST["userName"], $_POST["userNumber"]);
 
     if (strcasecmp($customer_id, "failed to create customer") == 0) {
         $temparray1 = array(
@@ -94,10 +92,10 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
             }
                 
             
-            if (! sendEmail($_POST["userEmail"], $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
+            if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
                 $temparray1 = array(
                     'result_code' => 1,
-                    'result_desciption' => "Failed to email invoice"
+                    'result_desciption' => "Failed to send SMS"
                 );
                 echo json_encode($temparray1);
             } else {
@@ -176,7 +174,7 @@ and  wpky_hb_resa.id = ".$resID."
                 $customer_id = $results["customer_id"];
             }
             
-            if(!updateCustomer($customer_id, $_POST["userName"], $_POST["userNumber"], $_POST["userEmail"])){
+            if(!updateCustomer($customer_id, $_POST["userName"], $_POST["userNumber"])){
                 $temparray1 = array(
                     'result_code' => 1,
                     'result_desciption' => "Failed to update customer details"
@@ -187,10 +185,10 @@ and  wpky_hb_resa.id = ".$resID."
             
         }
         
-        if (! sendEmail($_POST["userEmail"], $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
+        if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
             $temparray1 = array(
                 'result_code' => 1,
-                'result_desciption' => "Failed to email invoice"
+                'result_desciption' => "Failed to send SMS"
             );
             echo json_encode($temparray1);
         } else {
@@ -219,10 +217,10 @@ and  wpky_hb_resa.id = ".$resID."
 }
 
 
-function updateCustomer($customerID, $customerName, $email, $phone)
+function updateCustomer($customerID, $customerName, $phone)
 {
     $sqlUpdateCustomer = "Update  `wpky_hb_customers`
- SET `email` = '" . $email . "', info =  '{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"$email\",\"phone\":\"" . $phone . "\"}'
+ SET `email` = 'noemail@gmail.com', info =  '{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"noemail@gmail.com\",\"phone\":\"" . $phone . "\"}'
 where id = " . $customerID . ";";
     
     //echo $sqlUpdateCustomer;
@@ -236,59 +234,48 @@ where id = " . $customerID . ";";
 }
 
 
-function sendEmail($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)
+function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)
 {
     try {
 
-        if (! createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)) {
+        if (! createInvoicePDF($guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)) {
             return false;
         }
-
-        $invoiceDate = new DateTime();
-
-        $Parameters = array(
-            "customer_name" => $guestName,
-            "resa_check_in" => $checkin,
-            "resa_check_out" => $checkout,
-            "resa_accommodation" => $rooName,
-            "resa_total" => "R" . number_format($total, 2),
-            "resa_id" => $resID,
-            "ivoice_date" => $invoiceDate->format('Y-m-d'),
-            "customer_email" => $to,
-            "customer_phone" => $customerPhone,
-            "resa_price" => "R" . number_format($price, 2),
-            "resa_nights" => $resaNights,
-            "pdf_download_path" => "http://aluvegh.co.za/invoices/" . $resID . ".pdf",
-            "template" => '{"quantity_header":"Nights"}'
+        
+        $header = "invoice";
+        if (strcmp($paid, "0") !== 0) {
+            $header = "receipt";
+        }
+        
+        $messageBody = "Hi " . $guestName . ", Your " . $header . " is ready. Please make payment to confirm reservation. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+        
+     
+        $formatedCustomerNumber = $customerPhone;
+        if (strpos($customerPhone, '+27') == false) {
+            $formatedCustomerNumber = '+27' . $customerPhone;
+        }
+        
+        $messages = array(
+            array("from"=>COMPANY_PHONE_NUMBER,"to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );
-
-        $body = generate_email_body("invoice", $Parameters);
-
-        $body = wordwrap($body, 70);
-
-        // echo $body;
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
-
-        $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
-        } else {
-            if (mail($to, "Aluve Guesthouse Invoice ", $body, $headers)) {
-                return true;
-            } else {
+        }else{
+            $result = send_message( json_encode($messages));
+            if ($result['http_status'] != 201) {
                 return false;
+            }else{
+                return true;
             }
         }
+
     } catch (Exception $e) {
         return false;
     }
 }
 
-function createCustomer($customerName, $email, $phone)
+function createCustomer($customerName, $phone)
 {
     $sqlCreateCustomer = "INSERT INTO `wpky_hb_customers`
 (
@@ -297,8 +284,8 @@ function createCustomer($customerName, $email, $phone)
 `payment_id`)
 VALUES
 (
-'" . $email . "',
-'{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"$email\",\"phone\":\"" . $phone . "\"}',
+'noemail@gmail.com',
+'{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"noemail@gmail.com\",\"phone\":\"" . $phone . "\"}',
 '');";
 
     $sqlCheckCustomerExists = "select id from wpky_hb_customers where info LIKE '%" . $phone . "%'";

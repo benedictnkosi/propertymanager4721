@@ -79,10 +79,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	$("#new-res-form").validate({
 		rules: {
-			userEmail: {
-				required: true,
-				email: true
-			},
 			userNumber: {
 				required: true,
 				minlength: 10,
@@ -418,10 +414,7 @@ body.loading .overlay{
 										<input name="userName" type="text" id="userName"
 											   placeholder="Name" class="textbox" required>
 									</div>
-									<div>
-										<input name="userEmail" id="userEmail" type="text"
-											   id="userEmail" placeholder="E-mail" class="textbox" required>
-									</div>
+								
 									<div>
 
 										<select name="accom_id" id="rooms_select" required>

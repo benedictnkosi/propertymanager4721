@@ -1,8 +1,10 @@
 <?php
 
-function createInvoicePDF($to, $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $amountPaid)
+require_once (__DIR__ . '/../app/application.php');
+
+function createInvoicePDF($guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $amountPaid)
 {
-    echo "ammount paid " .$amountPaid;
+   
     
     $header = "INVOICE";
     if (strcmp($amountPaid, "0") !== 0) {

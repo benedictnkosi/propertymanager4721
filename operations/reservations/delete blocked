@@ -1,7 +1,0 @@
-SELECT  wpky_hb_accom_blocked.id, wpky_hb_accom_blocked.accom_id,  post_title, from_date, to_date, comment
-FROM `wpky_hb_accom_blocked`, wpky_posts WHERE
- wpky_posts.ID = `wpky_hb_accom_blocked`.accom_id
-and DATE(from_date) >= '2021-01-01'
-
-delete from wpky_hb_accom_blocked
-where DATE(from_date) >= '2021-01-01'

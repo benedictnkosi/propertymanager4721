@@ -1,12 +1,11 @@
 <?php
 require_once (__DIR__ . '/../utils/data.php');
-require_once (__DIR__ . '/../utils/email_template.php');
-require_once (__DIR__ . "/../utils/mail.php");
 require_once (__DIR__ . '/commons.php');
 require_once (__DIR__ . '/blockroom.php');
 require_once (__DIR__ . '/../lookup/getrespaid.php');
 require_once (__DIR__ . '/../utils/invoice.php');
 require_once (__DIR__ . '/../lookup/getroomprice.php');
+require_once (__DIR__ . '/../app/application.php');
 
 
 if (isset($_POST["field"])) {
@@ -80,6 +79,7 @@ and wpky_hb_resa.id = " . $reservationId;
 
                 $rsType = gettype($result);
 
+                
                 if (strcasecmp($rsType, "string") == 0) {
                     exit();
                 } else {
@@ -88,7 +88,7 @@ and wpky_hb_resa.id = " . $reservationId;
                         
                         $guestName = $jsonObj->first_name . ' ' . $jsonObj->last_name;
                         $customerPhone = $jsonObj->phone;
-                        $to =  $jsonObj->email; 
+                       
                         
                         $checkin_date = strtotime($results["check_in"]);
                         $checkout_date = strtotime($results["check_out"]);
@@ -99,9 +99,11 @@ and wpky_hb_resa.id = " . $reservationId;
                         
                         
                         
-                        createInvoicePDF($to, $guestName, $customerPhone, $reservationId, $results["check_in"], $results["check_out"], $pricePerrNight['price'], $pricePerrNight['price'], $resaNights, $results["post_title"], $newValue);
+                        createInvoicePDF($guestName, $customerPhone, $reservationId, $results["check_in"], $results["check_out"], $pricePerrNight['price'], $pricePerrNight['price'], $resaNights, $results["post_title"], $newValue);
                     }
                 }
+                
+                
             } else {
                 $temparray1 = array(
                     'result_code' => 1,
@@ -135,6 +137,7 @@ and wpky_hb_resa.id = " . $reservationId;
 
 function sendReceipt($reservationId, $newValue)
 {
+    
     $sqlPrice = "select price, email,info  from wpky_hb_resa,  `wpky_hb_customers`
 where `wpky_hb_resa`.`customer_id` = `wpky_hb_customers`.`id`
 and  wpky_hb_resa.id = " . $reservationId;
@@ -142,7 +145,6 @@ and  wpky_hb_resa.id = " . $reservationId;
     // echo $sqlPrice;
     $result = querydatabase($sqlPrice);
     $price = "";
-    $email = "";
     $guestName = "";
 
     $rsType = gettype($result);
@@ -157,57 +159,47 @@ and  wpky_hb_resa.id = " . $reservationId;
     } else {
 
         while ($results = $result->fetch_assoc()) {
-            $price = $results["price"];
-            $email = $results["email"];
             $jsonObj = json_decode($results["info"]);
-            $guestName = $jsonObj->first_name . ' ' . $jsonObj->last_name;
+            $price = $results["price"];
+            $customerPhone = $jsonObj->phone;
+            $guestName = $jsonObj->first_name;
         }
     }
-
+    
     $outstanding = intval($price) - intval($newValue);
-    sendEmailUpdate($email, $guestName, $reservationId, $newValue, $outstanding);
+    sendSMS($guestName, $reservationId, $newValue, $outstanding,$customerPhone);
+    
 }
 
-function sendEmailUpdate($to, $guestName, $resaId, $paid, $outstanding)
+function sendSMS( $guestName, $resaId, $paid, $outstanding,$customerPhone)
 {
     try {
 
-        $Parameters = array(
-            "customer_name" => $guestName,
-            "total_paid" => "R" . number_format($paid, 2),
-            "outstanding_amount" => "R" . number_format($outstanding, 2),
-            "resa_id" => $resaId,
-            "pdf_download_path" => "http://aluvegh.co.za/invoices/" . $resaId . ".pdf",
+        $messageBody = "Hi " . $guestName . ", Thank you for payment, Your Booking is confirmed. Balance is R" . $outstanding . ". View your reciept http://aluvegh.co.za/invoices/" . $resaId . ".pdf";
+        //echo $messageBody;
+        
+        $formatedCustomerNumber = $customerPhone;
+
+         if (strpos($formatedCustomerNumber, '+27') == false) {
+            $formatedCustomerNumber = '+27' . $customerPhone;
+        }
+        
+        $messages = array(
+            array("from"=>COMPANY_PHONE_NUMBER,"to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );
-
-        $body = generate_email_body("Receipt", $Parameters);
-
-        $body = wordwrap($body, 70);
-
-        // echo $body;
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
-
-        $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
-
+        
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
-        } else {
-            if (mail($to, "Aluve Guesthouse Receipt", $body, $headers)) {
-                return true;
-            } else {
+        }else{
+            $result = send_message( json_encode($messages));
+            if ($result['http_status'] != 201) {
                 return false;
+            }else{
+                return true;
             }
         }
     } catch (Exception $e) {
         return false;
     }
 }
-
-
-
-
-
 
