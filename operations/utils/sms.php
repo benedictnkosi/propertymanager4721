@@ -5,7 +5,6 @@ require_once (__DIR__ . '/../app/application.php');
 
 function send_message ( $post_body) {
     
-
     $ch = curl_init( );
     $headers = array(
         'Content-Type:application/json',

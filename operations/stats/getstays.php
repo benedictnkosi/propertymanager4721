@@ -11,7 +11,6 @@ function getNumberOfStays($customerID){
         while ($results = $result->fetch_assoc()) {
             $numberOfStays = $results["stays"];
         }
-        
     }
     
     return $numberOfStays;
