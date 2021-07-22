@@ -3,6 +3,8 @@
 require_once (__DIR__ . '/../app/application.php');
 
 function send_message ( $post_body) {
+    
+    echo ' in send_message...';
     $ch = curl_init( );
     $headers = array(
         'Content-Type:application/json',
@@ -18,11 +20,15 @@ function send_message ( $post_body) {
     // Wait 10 seconds while trying to connect
     curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 10 );
     $output = array();
+    
+    echo ' calling curl...';
     $output['server_response'] = curl_exec( $ch );
     $curl_info = curl_getinfo( $ch );
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($ch);
     curl_close( $ch );
+    
+    print_r($output);
     return $output;
 }
 
