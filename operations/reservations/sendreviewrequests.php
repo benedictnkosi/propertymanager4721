@@ -1,7 +1,6 @@
 <?php
 require_once (__DIR__ . '/../utils/data.php');
-require_once (__DIR__ . '/../utils/email_template.php');
-require_once (__DIR__ . "/../utils/mail.php");
+require_once (__DIR__ . '/../utils/sms.php');
 
 sendReviewRequest();
 
@@ -14,7 +13,7 @@ function sendReviewRequest()
         $count = 0;
         foreach ($checkOuts as &$checkOut) {
         
-            if(!sendSMS($checkOut["email"], $checkOut["guest_name"])){
+            if(!sendSMS($checkOut["phone"], $checkOut["guest_name"])){
                 $temparray1 = array(
                     'result_code' => 1,
                     'result_desciption' => "Failed to email request"
@@ -48,34 +47,34 @@ function sendReviewRequest()
     }
 }
 
-function sendSMS($to, $guestName)
+function sendSMS($customerPhone, $guestName)
 {
     try {
 
-        $Parameters = array(
-            "customer_name" => $guestName
+        $messageBody = "Thank You " . $guestName . ". Please take a few seconds to give us a 5-star review on Google. https://g.page/r/CVWFT5sx0AcPEAg/review. Aluve GH";        
+        
+        $formatedCustomerNumber = $customerPhone;
+        if (strpos($customerPhone, '+27') == false) {
+            $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
+        }
+        
+        $messages = array(
+            array("from"=>COMPANY_PHONE_NUMBER,"to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );
-
-        $body = generate_email_body("Review", $Parameters);
-
-        $body = wordwrap($body, 70);
-
-         //echo $body;
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . "info@aluvegh.co.za" . "\r\n";
-        $headers .= 'Reply-To: ' . "info@aluvegh.co.za" . "\r\n";
-
-        $headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
-
+        
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
+            echo $messageBody;
             return true;
-        } else {
-            if (mail($to, "Aluve Guesthouse Review", $body, $headers)) {
-                return true;
-            } else {
-                return false;
-            }
+        }else{
+            return true;
+            //$result = send_message( json_encode($messages));
+            //if ($result['http_status'] != 201) {
+            
+            //   return false;
+            //}else{
+            
+            //    return true;
+            // }
         }
     } catch (Exception $e) {
         return false;
@@ -112,9 +111,11 @@ order by `check_in`";
         while ($results = $result->fetch_assoc()) {
             $jsonObj = json_decode($results["info"]);
 
+            $jsonObj = json_decode($results["info"]);
+            
             $temparray1 = array(
                 'guest_name' => $jsonObj->first_name,
-                'email' => $jsonObj->email,
+                'phone' => $jsonObj->phone,
                 'result_code' => 0,
                 'result_desciption' => "success"
             );
