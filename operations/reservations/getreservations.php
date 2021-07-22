@@ -89,6 +89,7 @@ order by `check_in`";
     if (strcasecmp($checkInPeriod, "future") == 0) {
 
         $result = querydatabase($sql_upcoming_reservations);
+	    echo $sql_upcoming_reservations;
     } else if (strcasecmp($checkInPeriod, "stayover") == 0) {
 
         $result = querydatabase($sql_stayOver_reservations);
