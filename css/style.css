@@ -10,6 +10,15 @@
 /*-- custom override code Code --*/
 
 
+
+.stays-div {
+    display: inline;
+    border-radius: 25px;
+    background: #ff9800;
+    color: white;
+    padding: 5px;
+}
+
 .new-month {
     background-color: #0076b3;
 }

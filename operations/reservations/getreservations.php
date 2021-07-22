@@ -1,5 +1,6 @@
 <?php
 require_once (__DIR__ . '/../utils/data.php');
+require_once (__DIR__ . '/../stats/getstays.php');
 
 if (isset($_GET["period"])) {
 
@@ -21,7 +22,7 @@ function getreservationsHtml()
 {
     $return_array = array();
 
-    $sql_upcoming_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on
+    $sql_upcoming_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on,customer_id
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
@@ -41,7 +42,7 @@ and DATE(check_out) > DATE(NOW())
 
 order by `check_in`";
 
-    $sql_stayOver_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on
+    $sql_stayOver_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
@@ -61,7 +62,7 @@ and DATE(check_out) > DATE(NOW())
 
 order by `check_in`";
 
-    $sql_checkOuts_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on
+    $sql_checkOuts_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
@@ -76,6 +77,10 @@ and DATE(check_out) = DATE(NOW())
         and admin_comment not like '%Not available%'
 
 order by `check_in`";
+    
+    
+    
+    
 
     $checkInPeriod = $_GET["period"];
 
@@ -152,13 +157,10 @@ order by `check_in`";
             $checkInDate = new DateTime($results["check_in"]);
 
             $checkOutDate = new DateTime($results["check_out"]);
-
+            $stays = getNumberOfStays($results["customer_id"]);
             echo '<div class="res-details">
 
-						<h4 class="guest-name"><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
-
-
-
+						<h4 class="guest-name"><div class="stays-div">'.$stays.'</div><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 
 						<p>' . $results["post_title"] . '</p>
 
