@@ -14,7 +14,7 @@ function sendReviewRequest()
         $count = 0;
         foreach ($checkOuts as &$checkOut) {
         
-            if(!sendEmail($checkOut["email"], $checkOut["guest_name"])){
+            if(!sendSMS($checkOut["email"], $checkOut["guest_name"])){
                 $temparray1 = array(
                     'result_code' => 1,
                     'result_desciption' => "Failed to email request"
@@ -48,7 +48,7 @@ function sendReviewRequest()
     }
 }
 
-function sendEmail($to, $guestName)
+function sendSMS($to, $guestName)
 {
     try {
 

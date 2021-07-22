@@ -49,9 +49,9 @@ order by `check_in`";
             $checkInDate = new DateTime($results["check_in"]);
             $checkOutDate = new DateTime($results["check_out"]);
             
-            $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>,
+            $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>
                 
-                    <a href = "mailto: ' . $jsonObj->email . '">' . $jsonObj->email . '</a></p>';
+                    </p>';
             
             echo '<div class="res-details">
 						<h4 class="guest-name"><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
@@ -66,7 +66,7 @@ order by `check_in`";
                         <p class="far-right">' . $results["received_on"] . '</p>
 <p class="far-right"><span class="glyphicon glyphicon-trash delete_invoice clickable" aria-hidden="true" id="delete_invoice_' . $results["id"] . '"></span>
     
-<span class="glyphicon glyphicon-edit edit_invoice clickable" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-email="' . $jsonObj->email . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="'.$checkInDate->format('Y') . '-' . $checkInDate->format('m').'-' . $checkInDate->format('d').'" data-checkout="'.$checkOutDate->format('Y') . '-' . $checkOutDate->format('m').'-' . $checkOutDate->format('d'). '" data-notes="' . $results["admin_comment"] . '"></span>
+<span class="glyphicon glyphicon-edit edit_invoice clickable" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="'.$checkInDate->format('Y') . '-' . $checkInDate->format('m').'-' . $checkInDate->format('d').'" data-checkout="'.$checkOutDate->format('Y') . '-' . $checkOutDate->format('m').'-' . $checkOutDate->format('d'). '" data-notes="' . $results["admin_comment"] . '"></span>
     
    </p>
     
