@@ -3,6 +3,7 @@ require_once (__DIR__ . '/../utils/data.php');
 require_once (__DIR__ . '/commons.php');
 require_once (__DIR__ . '/../utils/invoice.php');
 require_once (__DIR__ . '/blockroom.php');
+require_once (__DIR__ . '/../utils/sms.php');
 
 if (isset($_POST["action"])) {
     if (strcasecmp($_POST["action"], "create") == 0) {
