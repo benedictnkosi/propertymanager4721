@@ -2,6 +2,8 @@
 
 require_once (__DIR__ . '/../app/application.php');
 
+echo ' in sms.php....';
+
 function send_message ( $post_body) {
     
     echo ' in send_message...';
