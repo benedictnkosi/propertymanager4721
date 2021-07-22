@@ -92,7 +92,7 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
                 $paid = $_POST["paid"];
             }
                 
-            echo 'calling the send sms ';
+         
             if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
                 $temparray1 = array(
                     'result_code' => 1,
@@ -239,12 +239,11 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
 {
     try {
 
-        echo 'inside send sms ';
+        
         if (! createInvoicePDF($guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)) {
             return false;
         }
         
-        echo 'invoice created ';
         $header = "invoice";
         if (strcmp($paid, "0") !== 0) {
             $header = "receipt";
@@ -265,15 +264,13 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         }else{
-            echo 'sending msg.....';
-            echo json_encode($messages);
-            echo 'sending msg.....';
+           
             $result = send_message( json_encode($messages));
             if ($result['http_status'] != 201) {
-                echo 'failed ';
+               
                 return false;
             }else{
-                echo 'passed';
+           
                 return true;
             }
         }
