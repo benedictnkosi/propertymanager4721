@@ -264,15 +264,15 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         }else{
-           
-            $result = send_message( json_encode($messages));
-            if ($result['http_status'] != 201) {
+           return true;
+            //$result = send_message( json_encode($messages));
+            //if ($result['http_status'] != 201) {
                
-                return false;
-            }else{
+             //   return false;
+            //}else{
            
-                return true;
-            }
+            //    return true;
+           // }
         }
 
     } catch (Exception $e) {
