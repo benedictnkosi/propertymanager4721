@@ -50,6 +50,11 @@ order by `check_in`";
             $checkInDate = new DateTime($results["check_in"]);
             $checkOutDate = new DateTime($results["check_out"]);
             $stays = getNumberOfStays($results["customer_id"]);
+            
+            if (strcasecmp($results["origin"], "website") !== 0) {
+                $stays = 0;
+            }
+            
             $contactDetails = '<p name="guest-contact"><a href="tel:' . $jsonObj->phone . '">' . $jsonObj->phone . '</a>
                 
                     </p>';
