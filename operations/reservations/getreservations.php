@@ -158,6 +158,11 @@ order by `check_in`";
 
             $checkOutDate = new DateTime($results["check_out"]);
             $stays = getNumberOfStays($results["customer_id"]);
+            
+            if (strcasecmp($results["origin"], "website") !== 0) {
+                $stays = 0;
+            }
+            
             echo '<div class="res-details">
 
 						<h4 class="guest-name"><div class="stays-div">'.$stays.'</div><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
