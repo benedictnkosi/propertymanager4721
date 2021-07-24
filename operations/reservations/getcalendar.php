@@ -43,7 +43,7 @@ function getCalendar()
 
         echo '<tr><th class="headcol">' . $roomArray["room_short_name"] . '</th>';
 
-        $sql_upcoming_reservations = "SELECT accom_id, post_title, check_in, check_out, status, info, origin, admin_comment     
+        $sql_upcoming_reservations = "SELECT wpky_hb_resa.id, accom_id, post_title, check_in, check_out, status, info, origin, admin_comment     
         FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
         `wpky_hb_resa`.`customer_id` = `wpky_hb_customers`.`id`
         and wpky_posts.ID = `wpky_hb_resa`.accom_id
@@ -99,7 +99,8 @@ and accom_id = " . $roomArray['ID'];
                         'check_in' => $resultReservation["check_in"],
                         'check_out' => $resultReservation["check_out"],
                         'status' => $resultReservation["status"],
-                        'name' => $guestName
+                        'name' => $guestName,
+                        'id' => $resultReservation["id"]
                         
                     );
                     array_push($reservations_array, $reservations);
@@ -148,7 +149,7 @@ and accom_id = " . $roomArray['ID'];
                             $checkin = $accomodation_array["check_in"];
                             $checkout = $accomodation_array["check_out"];
                             $guestName = $accomodation_array["name"];
-                            
+                            $resID = $accomodation_array["id"];
                             
                             $dateCheckIn = new DateTime($accomodation_array["check_in"]);
                             $strtempDate = $tempDate->format('d') . $tempDate->format('m') . $tempDate->format('Y') ;
@@ -187,11 +188,12 @@ and accom_id = " . $roomArray['ID'];
 
                 if ($isDatebooked) {
                     if($isCheckInday == true){
-                        echo '<td class="booked checkin" title="' . $guestName .'"><img src="images/checkin.png" alt="checkin"></td>';
+                        echo '<td  class="booked checkin" resid="' .$resID . '" title="' . $guestName .'"><img  src="images/checkin.png"  resid="' .$resID . '" alt="checkin" class="image_checkin"></td>';
                     }else{
-                        echo '<td class="booked" title="' . $guestName .'"></td>';
+                        echo '<td  class="booked" resid="' .$resID . '" title="' . $guestName .'"></td>';
                     }
-                    
+                  
+                        
                 } else if ($isDateBlocked) {
                     echo '<td class="blocked" title="' . $blockNote .'"></td>';
                 } else if ($isDateBookedButOpen) {
