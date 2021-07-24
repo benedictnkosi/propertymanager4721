@@ -190,7 +190,7 @@ order by `check_in`";
             
             echo '
 
-						<p class="far-right">' . $results["origin"] . '</p>
+						<p class="far-right"><img src="/propertymanager4721/images/' . $results["origin"] . '.png" class="origin_image"></img></p>
 
                         <p class="far-right">' . $results["received_on"] . '</p>
 
