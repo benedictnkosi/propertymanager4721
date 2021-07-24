@@ -1,23 +1,5 @@
 $(document).ready(function() {
-
-
-
-	console.log("ready!");
-
 	getRooms();
-
-
-
-	$("#formStartChat").submit(function(event) {
-
-		event.preventDefault();
-
-		window.location.href = "https://api.whatsapp.com/send?phone=+27 " + $('#whatapp_chat').val() + "&text=Hello, this is Renuga Guest House :)";
-
-	});
-
-
-
 
 
 	$("#new-res-form").submit(function(event) {
@@ -27,7 +9,6 @@ $(document).ready(function() {
 		createInvoice()
 
 	});
-
 
 
 	$("#checkin_date").datepicker({
@@ -155,7 +136,7 @@ function createInvoice() {
 	}
 
 	if (isNaN(amountPaid)) {
-		$("#invoice_error_message" ).text("Paid is not a number")
+		$("#invoice_error_message").text("Paid is not a number")
 		$("#invoice_error_message_div").removeClass("display-none");
 
 		$("#invoice_success_message_div").addClass("display-none");

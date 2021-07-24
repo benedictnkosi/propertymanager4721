@@ -160,8 +160,10 @@ order by `check_in`";
             $checkOutDate = new DateTime($results["check_out"]);
             $stays = getNumberOfStays($results["customer_id"]);
             
+            $formatedPhoneNumber = "";
             if (strcasecmp($results["origin"], "website") !== 0) {
                 $stays = 0;
+                $formatedPhoneNumber = str_replace("+27","0",$jsonObj->phone);
             }
             
             echo '<div class="res-details">
@@ -198,15 +200,15 @@ order by `check_in`";
 
             if (strcasecmp($results["origin"], "website") == 0) {
 
-                echo '<span class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
-
+                echo '<span title="Cancel booking" class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
+<a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20'.$formatedPhoneNumber.'&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                 </span>  ';
             }
 
 
             
-            echo '<span class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
-<span class="glyphicon glyphicon-edit edit_invoice clickable '.$checkInPeriod.'" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
+            echo '<span title="Open\Close Room" class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
+<span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable '.$checkInPeriod.'" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
     
 </p>   
 
