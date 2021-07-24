@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function getcalendar(period) {
 	$("#calendar-table").load("operations/reservations/getcalendar.php", function() {
-		$(".image_checkin").click(function(event) {
+		$(".booked").click(function(event) {
 			jumpToBooking(event);
 		});
 	});
@@ -16,7 +16,7 @@ function getcalendar(period) {
 
 
 function jumpToBooking(event) {
-	$reservation_id= event.target.id.replace("img_calendar_", "");
+	$reservation_id= event.target.getAttribute("resid");
 	updateView("upcoming-reservations");
 	$([document.documentElement, document.body]).animate({
         scrollTop: $("a:contains('" +$reservation_id +"')").offset().top

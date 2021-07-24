@@ -188,11 +188,12 @@ and accom_id = " . $roomArray['ID'];
 
                 if ($isDatebooked) {
                     if($isCheckInday == true){
-                        echo '<td  class="booked checkin" title="' . $guestName .'"><img id="img_calendar_' .$resID . '" src="images/checkin.png" alt="checkin" class="image_checkin"></td>';
+                        echo '<td  class="booked checkin" resid="' .$resID . '" title="' . $guestName .'"><img  src="images/checkin.png"  resid="' .$resID . '" alt="checkin" class="image_checkin"></td>';
                     }else{
-                        echo '<td  class="booked " title="' . $guestName .'"></td>';
+                        echo '<td  class="booked" resid="' .$resID . '" title="' . $guestName .'"></td>';
                     }
-                    
+                  
+                        
                 } else if ($isDateBlocked) {
                     echo '<td class="blocked" title="' . $blockNote .'"></td>';
                 } else if ($isDateBookedButOpen) {
