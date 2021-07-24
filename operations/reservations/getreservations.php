@@ -163,6 +163,7 @@ order by `check_in`";
             $formatedPhoneNumber = "";
             if (strcasecmp($results["origin"], "website") !== 0) {
                 $stays = 0;
+            }else{
                 $formatedPhoneNumber = str_replace("+27","0",$jsonObj->phone);
             }
             
