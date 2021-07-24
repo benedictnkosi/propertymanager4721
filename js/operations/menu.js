@@ -1,6 +1,9 @@
 $(document).ready(function() {
-	//updateView("cleaning");
-	updateView("calendar");
+	if (sessionStorage.getItem("current_page") === null) {
+  		updateView("calendar");
+	}else{
+		updateView(sessionStorage.getItem("current_page"));
+	}
 
 	$("#menu_create_invoice").click(function(event) {
 		localStorage.setItem("property_manager_action", "create");
@@ -20,8 +23,20 @@ function showInvoices() {
 }
 
 
-
 function updateView(selectedDiv) {
 	$(".toggleable").addClass("display-none");
 	$("#div-" + selectedDiv).removeClass("display-none");
+	sessionStorage.setItem("current_page", selectedDiv);
 }
+
+
+function toggleMenu() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+
