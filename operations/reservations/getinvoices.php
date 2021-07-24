@@ -70,10 +70,10 @@ order by `check_in`";
 										 class="textbox paid_amount" value="' . $results["paid"] . '"/></p>
 										     
                         <p class="far-right">' . $results["received_on"] . '</p>
-<p class="far-right"><span class="glyphicon glyphicon-trash delete_invoice clickable" aria-hidden="true" id="delete_invoice_' . $results["id"] . '"></span>
+<p class="far-right"><span title="Delete Invoice" class="glyphicon glyphicon-trash delete_invoice clickable" aria-hidden="true" id="delete_invoice_' . $results["id"] . '"></span>
     
-<span class="glyphicon glyphicon-edit edit_invoice clickable" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="'.$checkInDate->format('Y') . '-' . $checkInDate->format('m').'-' . $checkInDate->format('d').'" data-checkout="'.$checkOutDate->format('Y') . '-' . $checkOutDate->format('m').'-' . $checkOutDate->format('d'). '" data-notes="' . $results["admin_comment"] . '"></span>
-   <a target="_blank" href="https://api.whatsapp.com/send?phone=+27%20'.$formatedPhoneNumber.'&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<span title="Edit Invoice" class="glyphicon glyphicon-edit edit_invoice clickable" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="'.$checkInDate->format('Y') . '-' . $checkInDate->format('m').'-' . $checkInDate->format('d').'" data-checkout="'.$checkOutDate->format('Y') . '-' . $checkOutDate->format('m').'-' . $checkOutDate->format('d'). '" data-notes="' . $results["admin_comment"] . '"></span>
+   <a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20'.$formatedPhoneNumber.'&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
    </p>
     
     
