@@ -246,10 +246,16 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         
         $header = "invoice";
         if (strcmp($paid, "0") !== 0) {
-            $header = "receipt";
+            $header = "booking";
         }
         
-        $messageBody = "Hi " . $guestName . ", Your " . $header . " is ready. Please make payment to confirm reservation. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+        $messageBody = "";
+        
+        if (strcasecmp($_POST["action"], "create") == 0) {
+            $messageBody = "Hi " . $guestName . ", Your " . $header . " is ready. Please make payment to confirm reservation. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+        } else {
+            $messageBody = "Hi " . $guestName . ", Your " . $header . " was updated. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+        }
         
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
