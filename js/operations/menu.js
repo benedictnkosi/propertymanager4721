@@ -5,7 +5,7 @@ $(document).ready(function() {
 		updateView(sessionStorage.getItem("current_page"));
 	}
 
-	$("#menu_create_invoice").click(function(event) {
+	$(".create_invoice_menu").click(function(event) {
 		localStorage.setItem("property_manager_action", "create");
 		$("#submit_create_invoice").prop("value", "Create Invoice");
 		$("#header_create_invoice").html("Create New Invoice");

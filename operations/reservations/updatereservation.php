@@ -99,7 +99,7 @@ and wpky_hb_resa.id = " . $reservationId;
                         $pricePerrNight = getRoomPriceByID($results["accom_id"]);
                         
                         
-                        
+                    
                         createInvoicePDF($guestName, $customerPhone, $reservationId, $results["check_in"], $results["check_out"], $pricePerrNight['price'], $pricePerrNight['price'], $resaNights, $results["post_title"], $newValue);
                     }
                 }
