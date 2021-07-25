@@ -88,7 +88,6 @@ FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 and wpky_posts.ID = `wpky_hb_resa`.accom_id
 and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) or (`status` = 'pending' and origin NOT IN ('website')))
 and  origin ='website'
-and email NOT LIKE '%noemail%'
 and DATE(check_out) = DATE(NOW())
         and admin_comment not like '%Not available%'
 order by `check_in`";
