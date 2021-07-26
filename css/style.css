@@ -10,112 +10,111 @@
 /*-- custom override code Code --*/
 
 /* On screens that are 992px or more, set the background color to blue */
-
-
 #desktop-menu {
-    width: 70%;
-    margin-left: 14%;
+	width: 70%;
+	margin-left: 14%;
 }
 
-.menuICons{
-	display:inline !important;
+
+
+.menuICons {
+	display: inline !important;
 }
 
-.menu_icon_image{
-	width:45px;
-	height:45px;
+.menu_icon_image {
+	width: 45px;
+	height: 45px;
 }
 
 @media screen and (min-width: 992px) {
-  .menu {
-    display: block;
-  }
+	.menu {
+		display: block;
+	}
 }
 /* On screens that are 992px or less, set the background color to blue */
-
 @media screen and (max-width: 992px) {
-  .menu {
-    display: none;
-  }
+	.menu {
+		display: none;
+	}
+	.menuICons {
+		display: none !important;
+	}	
+	
 }
 
 .fixedElement {
-    background-color: #ff9800;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
+	background-color: #ff9800;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
 }
 
 /* Style the navigation menu */
 .topnav {
-  overflow: hidden;
-  background-color: #333;
+	overflow: hidden;
+	background-color: #333;
 }
 
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
-  display: none;
+	display: none;
 }
 
 /* Style navigation menu links */
 .topnav a {
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  display: block;
+	color: white;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	display: block;
 }
 
 /* Style the hamburger menu */
 .topnav a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
+	background: black;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+	background-color: #ddd;
+	color: black;
 }
 
 /* Style the active link (or home/logo) */
 .active {
-  background-color: #ff9800;
-  color: white;
+	background-color: #ff9800;
+	color: white;
 }
-
 
 .fa-whatsapp {
-    font-size: 1.8em !important;
+	font-size: 1.8em !important;
 }
 
-.origin_image{
+.origin_image {
 	width: 3em !important;
-	    min-height: 2em !important;
+	min-height: 2em !important;
 }
-
 
 .stays-div {
-    display: inline;
-    border-radius: 25px;
-    background: #ff9800;
-    color: white;
-    padding: 5px;
+	display: inline;
+	border-radius: 25px;
+	background: #ff9800;
+	color: white;
+	padding: 5px;
 }
 
 .new-month {
-    background-color: #0076b3;
+	background-color: #0076b3;
 }
-
 
 .weekend {
-    background-color: #ff9800;
+	background-color: #ff9800;
 }
-
 
 .menu a {
 	color: white;
@@ -130,7 +129,6 @@
 	}
 }
 
-
 @media only screen and (min-width:600px) {
 	.menu {
 		width: 15%;
@@ -139,7 +137,6 @@
 		padding: 20px 0px;
 	}
 }
-
 
 .glyphicon-remove {
 	color: red;
@@ -167,9 +164,9 @@
 	margin-top: 1em !important;
 }
 
-.delete_invoice, .edit_invoice,.changeBookingStatus, .view_quotation {
+.delete_invoice, .edit_invoice, .changeBookingStatus, .view_quotation {
 	font-size: 1.8em;
-	margin-right:1em;
+	margin-right: 1em;
 }
 
 .clickable {
