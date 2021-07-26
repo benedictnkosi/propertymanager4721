@@ -27,7 +27,7 @@ order by `check_in`";
     } else {
         
         while ($results = $result->fetch_assoc()) {
-            echo "accom - " . $accomId;
+            echo "accom - " . $results["accom_id"];
             
         }
         
