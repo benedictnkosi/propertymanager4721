@@ -20,7 +20,7 @@ order by `check_in`";
     $result = querydatabase($sql_checkOuts_reservations);
     $rsType = gettype($result);
     
-    
+    echo "count - " .mysqli_num_rows ( $result );
     if (strcasecmp($rsType, "string") == 0) {
         echo 'no checkouts today';
         exit();
