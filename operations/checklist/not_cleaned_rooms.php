@@ -15,6 +15,8 @@ and DATE(check_out) = DATE(NOW())
 and admin_comment not like '%Not available%'
 order by `check_in`";
     
+    echo $sql_checkOuts_reservations;
+    
     $result = querydatabase($sql_checkOuts_reservations);
     $rsType = gettype($result);
     
