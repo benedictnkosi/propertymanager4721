@@ -260,8 +260,10 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
+            $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
         
+        echo $formatedCustomerNumber;
         $messages = array(
             array("from"=>"+27796347610","to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );

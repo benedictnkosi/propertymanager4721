@@ -182,7 +182,8 @@ function sendSMS( $guestName, $resaId, $paid, $outstanding,$customerPhone)
         $formatedCustomerNumber = $customerPhone;
 
          if (strpos($formatedCustomerNumber, '+27') == false) {
-            $formatedCustomerNumber = '+27' . $customerPhone;
+             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
+            $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
         
         $messages = array(

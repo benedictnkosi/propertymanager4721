@@ -56,6 +56,7 @@ function sendSMS($customerPhone, $guestName)
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
+            $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
         
         $messages = array(
