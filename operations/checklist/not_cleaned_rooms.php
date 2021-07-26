@@ -25,6 +25,7 @@ order by `check_in`";
     } else {
         $roomsToCleanArray = array();
         while ($results = $result->fetch_assoc()) {
+            echo "accom - " . $accomId;
             $accomId = $results["accom_id"];
             if(isRoomCleaned($accomId) == false){
                 array_push($roomsToCleanArray, $results["post_title"]);
