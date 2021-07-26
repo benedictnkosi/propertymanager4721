@@ -10,37 +10,96 @@
 /*-- custom override code Code --*/
 
 /* On screens that are 992px or more, set the background color to blue */
-#desktop-menu {
-	width: 70%;
-	margin-left: 14%;
-}
-
-
-
 .menuICons {
 	display: inline !important;
-}
-
-.menu_icon_image {
-	width: 45px;
-	height: 45px;
 }
 
 @media screen and (min-width: 992px) {
 	.menu {
 		display: block;
 	}
+	.menu_icon_image {
+		width: 45px;
+		height: 45px;
+	}
+	/* Style navigation menu links */
+	.topnav a {
+		color: white;
+		padding: 10px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		display: block;
+	}
+	#desktop-menu {
+		width: 70%;
+		margin-left: 14%;
+	}
+
 }
 /* On screens that are 992px or less, set the background color to blue */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px) and (min-width: 600px)  {
 	.menu {
 		display: none;
 	}
 	.menuICons {
-		display: none !important;
-	}	
-	
+		display: none;
+	}
+	.mobileMenuIcon {
+		display: inline !important;
+	}
+	.desktopOnlyMenu{
+	display: none !important;
+	}
+	.menu_icon_image {
+		width: 25px;
+		height: 25px;
+	}
+	/* Style navigation menu links */
+	.topnav a {
+		color: white;
+		padding: 8px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		display: block;
+	}
+	#desktop-menu {
+		width: 90%;
+		margin-left: 1%;
+	}
 }
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 559px) {
+	.menu {
+		display: none;
+	}
+	.menuICons {
+		display: none;
+	}
+	.mobileMenuIcon {
+		display: inline !important;
+	}
+	.desktopOnlyMenu{
+	display: none !important;
+	}
+	.menu_icon_image {
+		width: 20px;
+		height: 20px;
+	}
+	/* Style navigation menu links */
+	.topnav a {
+		color: white;
+		padding: 6px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		display: block;
+	}
+	#desktop-menu {
+		width: 100%;
+		margin-left: 1%;
+	}
+}
+
 
 .fixedElement {
 	background-color: #ff9800;
@@ -59,15 +118,6 @@
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
 	display: none;
-}
-
-/* Style navigation menu links */
-.topnav a {
-	color: white;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
-	display: block;
 }
 
 /* Style the hamburger menu */
@@ -325,6 +375,7 @@ body {
 	color: #fff;
 	font-size: 50px;
 	margin-bottom: 50px;
+	margin-top: 1em;
 }
 
 .top-menu {
