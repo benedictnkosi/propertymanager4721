@@ -72,7 +72,7 @@ function getCleanningCheckList($accom_id)
     $sql = "SELECT ID, post_title, post_content FROM wpky_posts where post_type = 'hb_accommodation'
         and ID = " . $accom_id . ";";
 
-    $completedCleaningSql = "SELECT checklist, notes FROM rcompleted_checklist where accom_id = " . $accom_id . " and timestamp = '" . $_GET["cleaning_date"] . "'";
+    $completedCleaningSql = "SELECT checklist, notes FROM completed_checklist where accom_id = " . $accom_id . " and timestamp = '" . $_GET["cleaning_date"] . "'";
     // echo $completedCleaningSql;
     $cleaningChecklistItems = array();
     $cleaningNotes = "";
@@ -85,7 +85,7 @@ function getCleanningCheckList($accom_id)
     if (strcasecmp($_GET["checklist_history"], "yes") == 0) {
         $result = querydatabase($completedCleaningSql);
 
-	    echo $completedCleaningSql;
+	    //echo $completedCleaningSql;
         $rsType = gettype($result);
 
         if (strcasecmp($rsType, "string") !== 0){
