@@ -10,6 +10,22 @@
 /*-- custom override code Code --*/
 
 /* On screens that are 992px or more, set the background color to blue */
+
+
+#desktop-menu {
+    width: 70%;
+    margin-left: 14%;
+}
+
+.menuICons{
+	display:inline !important;
+}
+
+.menu_icon_image{
+	width:45px;
+	height:45px;
+}
+
 @media screen and (min-width: 992px) {
   .menu {
     display: block;
