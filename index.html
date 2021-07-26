@@ -131,7 +131,25 @@ body.loading .overlay {
 
 	<!-- Top Navigation Menu -->
 	<div class="topnav fixedElement">
-		<a href="#home" class="active">Aluve</a>
+		<div id="desktop-menu">
+		<a href="javascript:void(0)" onclick="updateView('calendar');" class="active menuICons" title="calendar"><img class="menu_icon_image"src="images/menu_calendar.png"></img></a>
+		<a href="javascript:void(0)"
+				onclick="updateView('upcoming-reservations');" class="active menuICons" title="Bookings"><img class="menu_icon_image" src="images/menu_bookings.png"></img></a>
+		<a href="javascript:void(0)" id="mobile_menu_create_invoice" class="create_invoice_menu active menuICons" title="New Invoice"><img class="menu_icon_image" src="images/menu_new_invoice.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('invoices-list');" class="active menuICons" title="Invoices"><img class="menu_icon_image" src="images/menu_invoices.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('check-outs');" class="active menuICons" title="Check-outs"><img class="menu_icon_image" src="images/menu_checkout.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('stay-overs');" class="active menuICons" title="Stay-overs"><img class="menu_icon_image" src="images/menu_stayover.png"></img></a>
+			
+		<a href="javascript:void(0)" onclick="updateView('whatapp-chat');" class="active menuICons" title="Whatapp-chat"><img class="menu_icon_image" src="images/menu_whatapp.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('blocked-rooms');" class="active menuICons" title="Blocked Rooms"><img class="menu_icon_image" src="images/menu_blocked.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('block-room');" class="active menuICons" title="Block Room"><img class="menu_icon_image" src="images/menu_block_room.png"></img></a>
+						<a href="javascript:void(0)" onclick="updateView('occupancy');" class="active menuICons" title="Occupancy"><img class="menu_icon_image" src="images/menu_stats.png"></img></a>
+		
+		<a href="javascript:void(0)" onclick="updateView('cleaning');" class="active menuICons" title="Cleaning"><img class="menu_icon_image" src="images/menu_cleaning.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('today-tomorrow');" class="active menuICons" title="Summary"><img class="menu_icon_image" src="images/menu_summary.png"></img></a>
+		
+		</div>
+		
 		<!-- Navigation links (hidden by default) -->
 		<div id="myLinks" onclick="toggleMenu()">
 			<a href="javascript:void(0)" onclick="updateView('cleaning');">Cleaning</a>
@@ -140,7 +158,6 @@ body.loading .overlay {
 				onclick="updateView('upcoming-reservations');">Bookings</a> <a
 				href="javascript:void(0)" id="mobile_menu_create_invoice" class="create_invoice_menu">New Invoice</a> <a
 				href="javascript:void(0)" onclick="updateView('invoices-list');">Invoices</a>
-			<a href="javascript:void(0)" onclick="updateView('invoices-list');">Invoices</a>
 			<a href="javascript:void(0)" onclick="updateView('check-outs');">Check-outs</a>
 			<a href="javascript:void(0)" onclick="updateView('stay-overs');">Stay-overs</a>
 			<a
@@ -162,58 +179,6 @@ body.loading .overlay {
 
 	<div class="main-w3">
 		<h1>Guesthouse Management</h1>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('calendar');">Calendar</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)"
-				onclick="updateView('upcoming-reservations');">Bookings</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" id="menu_create_invoice" class="create_invoice_menu">New Invoice</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('invoices-list');">Invoices</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('check-outs');">Check-outs</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('stay-overs');">Stay-overs</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('blocked-rooms');">Blocked
-				Rooms</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('block-room');">Block
-				Room</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('whatapp-chat');">Whatapp-chat</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('occupancy');">Occupancy</a>
-		</div>
-
-		<div class="menu">
-			<a href="javascript:void(0)" onclick="updateView('cleaning');">Cleaning</a>
-		</div>
-
 
 		<div class="clearfix"></div>
 		<div class="col-md-4 left-w3l">
