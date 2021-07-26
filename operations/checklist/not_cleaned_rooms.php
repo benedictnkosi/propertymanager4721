@@ -28,7 +28,10 @@ order by `check_in`";
         
         while ($results = $result->fetch_assoc()) {
             echo "accom - " . $results["accom_id"];
-            
+             $accomId = $results["accom_id"];
+            if(isRoomCleaned($accomId) == false){
+                array_push($roomsToCleanArray, $results["post_title"]);
+            }
         }
         
         if(!empty($roomsToCleanArray)){
@@ -55,8 +58,10 @@ and DATE(`timestamp`) = DATE(NOW())";
     $rsType = gettype($result);
     
     if (strcasecmp($rsType, "string") == 0) {
+        echo "room not cleaned";
         return false;
     } else {
+        echo "room cleaned";
         return true;
     }
 }
