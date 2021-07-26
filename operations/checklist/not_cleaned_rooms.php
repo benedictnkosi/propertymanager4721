@@ -34,6 +34,7 @@ order by `check_in`";
         if(!empty($roomsToCleanArray)){
             $messageBody = "Rooms not cleaned: ";
             foreach ($roomsToCleanArray as &$room) {
+                echo "-room" . $room;
                 $messageBody = $messageBody . $room . ", ";
             }
             sendEmail($messageBody);
