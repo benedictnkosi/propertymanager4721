@@ -133,33 +133,27 @@ body.loading .overlay {
 	<div class="topnav fixedElement">
 		<div id="desktop-menu">
 		<h1>Aluve</h1>
-		<a href="javascript:void(0)" onclick="updateView('calendar');" class="active menuICons" title="calendar"><img class="menu_icon_image"src="images/menu_calendar.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('calendar');" class="active menuICons mobileMenuIcon" title="calendar"><img class="menu_icon_image"src="images/menu_calendar.png"></img></a>
 		<a href="javascript:void(0)"
-				onclick="updateView('upcoming-reservations');" class="active menuICons" title="Bookings"><img class="menu_icon_image" src="images/menu_bookings.png"></img></a>
-		<a href="javascript:void(0)" id="mobile_menu_create_invoice" class="create_invoice_menu active menuICons" title="New Invoice"><img class="menu_icon_image" src="images/menu_new_invoice.png"></img></a>
-		<a href="javascript:void(0)" onclick="updateView('invoices-list');" class="active menuICons" title="Invoices"><img class="menu_icon_image" src="images/menu_invoices.png"></img></a>
-		<a href="javascript:void(0)" onclick="updateView('check-outs');" class="active menuICons" title="Check-outs"><img class="menu_icon_image" src="images/menu_checkout.png"></img></a>
-				<a href="javascript:void(0)" onclick="updateView('stay-overs');" class="active menuICons" title="Stay-overs"><img class="menu_icon_image" src="images/menu_stayover.png"></img></a>
+				onclick="updateView('upcoming-reservations');" class="active menuICons mobileMenuIcon" title="Bookings"><img class="menu_icon_image" src="images/menu_bookings.png"></img></a>
+		<a href="javascript:void(0)" id="mobile_menu_create_invoice" class="create_invoice_menu active menuICons mobileMenuIcon" title="New Invoice"><img class="menu_icon_image" src="images/menu_new_invoice.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('invoices-list');" class="active menuICons mobileMenuIcon" title="Invoices"><img class="menu_icon_image" src="images/menu_invoices.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('check-outs');" class="active menuICons mobileMenuIcon" title="Check-outs"><img class="menu_icon_image" src="images/menu_checkout.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('stay-overs');" class="active menuICons desktopOnlyMenu" title="Stay-overs"><img class="menu_icon_image" src="images/menu_stayover.png"></img></a>
 			
-		<a href="javascript:void(0)" onclick="updateView('whatapp-chat');" class="active menuICons" title="Whatapp-chat"><img class="menu_icon_image" src="images/menu_whatapp.png"></img></a>
-		<a href="javascript:void(0)" onclick="updateView('blocked-rooms');" class="active menuICons" title="Blocked Rooms"><img class="menu_icon_image" src="images/menu_blocked.png"></img></a>
-				<a href="javascript:void(0)" onclick="updateView('block-room');" class="active menuICons" title="Block Room"><img class="menu_icon_image" src="images/menu_block_room.png"></img></a>
-						<a href="javascript:void(0)" onclick="updateView('occupancy');" class="active menuICons" title="Occupancy"><img class="menu_icon_image" src="images/menu_stats.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('whatapp-chat');" class="active menuICons desktopOnlyMenu" title="Whatapp-chat"><img class="menu_icon_image" src="images/menu_whatapp.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('blocked-rooms');" class="active menuICons desktopOnlyMenu" title="Blocked Rooms"><img class="menu_icon_image" src="images/menu_blocked.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('block-room');" class="active menuICons desktopOnlyMenu" title="Block Room"><img class="menu_icon_image" src="images/menu_block_room.png"></img></a>
+						<a href="javascript:void(0)" onclick="updateView('occupancy');" class="active menuICons desktopOnlyMenu" title="Occupancy"><img class="menu_icon_image" src="images/menu_stats.png"></img></a>
 		
-		<a href="javascript:void(0)" onclick="updateView('cleaning');" class="active menuICons" title="Cleaning"><img class="menu_icon_image" src="images/menu_cleaning.png"></img></a>
-				<a href="javascript:void(0)" onclick="updateView('today-tomorrow');" class="active menuICons" title="Summary"><img class="menu_icon_image" src="images/menu_summary.png"></img></a>
+		<a href="javascript:void(0)" onclick="updateView('cleaning');" class="active menuICons desktopOnlyMenu" title="Cleaning"><img class="menu_icon_image" src="images/menu_cleaning.png"></img></a>
+				<a href="javascript:void(0)" onclick="updateView('today-tomorrow');" class="active menuICons desktopOnlyMenu" title="Summary"><img class="menu_icon_image" src="images/menu_summary.png"></img></a>
 		
 		</div>
 		
 		<!-- Navigation links (hidden by default) -->
 		<div id="myLinks" onclick="toggleMenu()">
 			<a href="javascript:void(0)" onclick="updateView('cleaning');">Cleaning</a>
-			<a href="javascript:void(0)" onclick="updateView('calendar');">Calendar</a>
-			<a href="javascript:void(0)"
-				onclick="updateView('upcoming-reservations');">Bookings</a> <a
-				href="javascript:void(0)" id="mobile_menu_create_invoice" class="create_invoice_menu">New Invoice</a> <a
-				href="javascript:void(0)" onclick="updateView('invoices-list');">Invoices</a>
-			<a href="javascript:void(0)" onclick="updateView('check-outs');">Check-outs</a>
 			<a href="javascript:void(0)" onclick="updateView('stay-overs');">Stay-overs</a>
 			<a
 				href="javascript:void(0)" onclick="updateView('whatapp-chat');">Whatapp-chat</a>
@@ -170,7 +164,7 @@ body.loading .overlay {
 			<a href="javascript:void(0)" onclick="updateView('occupancy');">Occupancy</a>
 
 			
-<a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
+		<a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
 		</div>
 		<!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
 		<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
