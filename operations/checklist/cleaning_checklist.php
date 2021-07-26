@@ -85,6 +85,7 @@ function getCleanningCheckList($accom_id)
     if (strcasecmp($_GET["checklist_history"], "yes") == 0) {
         $result = querydatabase($completedCleaningSql);
 
+	    echo $completedCleaningSql;
         $rsType = gettype($result);
 
         if (strcasecmp($rsType, "string") !== 0){
