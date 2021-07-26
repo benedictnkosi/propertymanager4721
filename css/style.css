@@ -8,7 +8,21 @@
 /*-- Reset Code --*/
 
 /*-- custom override code Code --*/
+.information-h3{
+	margin-top:2em;
+}
+.info-input-box {
+    height: auto !important;
+}
 
+
+.info-input-box {
+    display: inline !important;
+    width: 50% !important;
+    background-color: #ECECEC !important;
+    border: none !important;
+    color: black !important;
+}
 /* On screens that are 992px or more, set the background color to blue */
 .menuICons {
 	display: inline !important;

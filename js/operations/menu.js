@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	if (sessionStorage.getItem("current_page") === null) {
-  		updateView("calendar");
-	}else{
+		updateView("calendar");
+	} else {
 		updateView(sessionStorage.getItem("current_page"));
 	}
 
@@ -14,6 +14,26 @@ $(document).ready(function() {
 		$("#rooms_select").prop('disabled', false);
 		$("#checkin_date").prop('disabled', false);
 	});
+
+
+	$(".info-input-box").click(function(event) {
+		var copyText = event.target;
+		/* Select the text field */
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
+
+		/* Alert the copied text */
+		//alert("Copied the text: " + copyText.value);
+		var text = document.createTextNode("Copied");
+		copyText.parentNode.insertBefore(text, copyText.nextSibling)
+
+	});
+
+
+
 });
 
 
@@ -31,12 +51,14 @@ function updateView(selectedDiv) {
 
 
 function toggleMenu() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
+	var x = document.getElementById("myLinks");
+	if (x.style.display === "block") {
+		x.style.display = "none";
+	} else {
+		x.style.display = "block";
+	}
 }
+
+
 
 
