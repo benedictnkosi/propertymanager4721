@@ -244,15 +244,17 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
             return false;
         }
         
+         $messagePart = "Your invoice is ready. Please make payment to confirm reservation.";
         $header = "invoice";
         if (strcmp($paid, "0") !== 0) {
             $header = "booking";
+            $messagePart = "Your booking is confirmed :) Thank you for choosing us.";
         }
         
         $messageBody = "";
         
         if (strcasecmp($_POST["action"], "create") == 0) {
-            $messageBody = "Hi " . $guestName . ", Your " . $header . " is ready. Please make payment to confirm reservation. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+            $messageBody = "Hi " . $guestName . ", " . $messagePart ." Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
         } else {
             $messageBody = "Hi " . $guestName . ", Your " . $header . " was updated. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
         }
@@ -262,10 +264,9 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
             $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
-        
-        echo $formatedCustomerNumber;
+
         $messages = array(
-            array("from"=>"+27796347610","to"=>$formatedCustomerNumber, "body"=>$messageBody)
+            array("to"=>$formatedCustomerNumber, "body"=>$messageBody)
         );
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
