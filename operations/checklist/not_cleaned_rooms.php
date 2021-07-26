@@ -15,20 +15,17 @@ and DATE(check_out) = DATE(NOW())
 and admin_comment not like '%Not available%'
 order by `check_in`";
     
-    echo $sql_checkOuts_reservations;
-    
     $result = querydatabase($sql_checkOuts_reservations);
     $rsType = gettype($result);
     
-    echo "count - " .mysqli_num_rows ( $result );
+    
     if (strcasecmp($rsType, "string") == 0) {
         echo 'no checkouts today';
         exit();
     } else {
-        
+        $roomsToCleanArray = array();
         while ($results = $result->fetch_assoc()) {
-            echo "accom - " . $results["accom_id"];
-             $accomId = $results["accom_id"];
+            $accomId = $results["accom_id"];
             if(isRoomCleaned($accomId) == false){
                 array_push($roomsToCleanArray, $results["post_title"]);
             }
@@ -37,7 +34,6 @@ order by `check_in`";
         if(!empty($roomsToCleanArray)){
             $messageBody = "Rooms not cleaned: ";
             foreach ($roomsToCleanArray as &$room) {
-                echo "-room" . $room;
                 $messageBody = $messageBody . $room . ", ";
             }
             sendEmail($messageBody);
@@ -58,10 +54,8 @@ and DATE(`timestamp`) = DATE(NOW())";
     $rsType = gettype($result);
     
     if (strcasecmp($rsType, "string") == 0) {
-        echo "room not cleaned";
         return false;
     } else {
-        echo "room cleaned";
         return true;
     }
 }
@@ -95,3 +89,4 @@ function sendEmail($messageBody)
     }
 }
 
+{"mode":"full","isActive":false}
