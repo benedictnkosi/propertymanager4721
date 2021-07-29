@@ -8,6 +8,14 @@
 /*-- Reset Code --*/
 
 /*-- custom override code Code --*/
+.hidden{
+	display:none;
+}
+.image_verified{
+	width:50px;
+	height:50px;
+}
+
 .information-h3{
 	margin-top:2em;
 }

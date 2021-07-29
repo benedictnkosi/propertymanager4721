@@ -17,6 +17,7 @@ $(document).ready(function() {
 
 
 	$(".info-input-box").click(function(event) {
+		getPage();
 		var copyText = event.target;
 		/* Select the text field */
 		copyText.select();
@@ -40,6 +41,10 @@ $(document).ready(function() {
 function showInvoices() {
 	$(".dashboard-div").addClass("display-none");
 	$(".invoices-div").removeClass("display-none");
+}
+
+function getPage() {
+	
 }
 
 

@@ -22,7 +22,7 @@ function getreservationsHtml()
 {
     $return_array = array();
 
-    $sql_upcoming_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on,customer_id
+    $sql_upcoming_reservations = "SELECT wpky_hb_resa.id, wpky_hb_customers.id as customer_id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on,customer_id, id_image 
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
@@ -77,10 +77,6 @@ and DATE(check_out) = DATE(NOW())
         and admin_comment not like '%Not available%'
 
 order by `check_in`";
-    
-    
-    
-    
 
     $checkInPeriod = $_GET["period"];
 
@@ -89,7 +85,7 @@ order by `check_in`";
     if (strcasecmp($checkInPeriod, "future") == 0) {
 
         $result = querydatabase($sql_upcoming_reservations);
-	    //echo $sql_upcoming_reservations;
+        // echo $sql_upcoming_reservations;
     } else if (strcasecmp($checkInPeriod, "stayover") == 0) {
 
         $result = querydatabase($sql_stayOver_reservations);
@@ -159,17 +155,17 @@ order by `check_in`";
 
             $checkOutDate = new DateTime($results["check_out"]);
             $stays = getNumberOfStays($results["customer_id"]);
-            
+
             $formatedPhoneNumber = "";
             if (strcasecmp($results["origin"], "website") !== 0) {
                 $stays = 0;
-            }else{
-                $formatedPhoneNumber = str_replace("+27","0",$jsonObj->phone);
+            } else {
+                $formatedPhoneNumber = str_replace("+27", "0", $jsonObj->phone);
             }
-            
+
             echo '<div class="res-details">
 
-						<h4 class="guest-name"><div class="stays-div">'.$stays.'</div><a target="_blank" href="/invoices/' .$results["id"]. '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
+						<h4 class="guest-name"><div class="stays-div">' . $stays . '</div><a target="_blank" href="/invoices/' . $results["id"] . '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 
 						<p>' . $results["post_title"] . '</p>
 
@@ -188,13 +184,25 @@ order by `check_in`";
 
                     echo '<p class="flag-reg">Paid: ' . $results["paid"] . '</p>';
                 }
+
+                $customerIdImage;
+                if (strcasecmp($results["id_image"], "Not Verified") == 0) {
+                    $customerIdImage = "unverified.png";
+                } else {
+                    $customerIdImage = "verified.png";
+                }
+
+                echo '<form id="imageform" method="post"
+                    enctype="multipart/form-data">
+                    <input type="file" class="hidden uploadImageInput" accept="image/*" name="image">
+                    <img src="images/' . $customerIdImage . '" class="image_verified" />
+                    <input type="text" class="hidden" name="customer_id" value="' . $results["customer_id"] . '">
+                    </form>';
+            } else {
+                echo '<p><img src="/propertymanager4721/images/' . $results["origin"] . '.png" class="origin_image"></img></p>';
             }
 
-            
             echo '
-
-						<p class="far-right"><img src="/propertymanager4721/images/' . $results["origin"] . '.png" class="origin_image"></img></p>
-
                         <p class="far-right">' . $results["received_on"] . '</p>
 
 <p class="far-right">';
@@ -202,14 +210,12 @@ order by `check_in`";
             if (strcasecmp($results["origin"], "website") == 0) {
 
                 echo '<span title="Cancel booking" class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
-<a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20'.$formatedPhoneNumber.'&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20' . $formatedPhoneNumber . '&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                 </span>  ';
             }
 
-
-            
             echo '<span title="Open\Close Room" class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
-<span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable '.$checkInPeriod.'" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
+<span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable ' . $checkInPeriod . '" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
     
 </p>   
 
