@@ -4,7 +4,6 @@ $(document).ready(function() {
 	getStayOvers("stayover");
 	getCheckouts("checkout");
 
-
 });
 
 
@@ -13,11 +12,43 @@ function getReservations(period) {
 		$(".changeBookingStatus").click(function(event) {
 			changeBookingStatus(event);
 		});
-		
+
 		$(".edit_invoice").click(function(event) {
-				updateInvoice(event);
+			updateInvoice(event);
+		});
+
+		$('.image_verified').on('click', function(event) {
+			let current = event.target;
+			let prevSibling = current.previousElementSibling;
+			prevSibling.click();
+		});
+
+		$('.uploadImageInput').on('change', function(event) {
+			let myForm = document.getElementById('imageform');
+			let formData = new FormData(myForm);
+
+			$.ajax({
+				url: "operations/utils/updateCustomerIdImage.php",
+				type: "POST",
+				data: formData,
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function(response) {
+					var jsonObj = jQuery.parseJSON(response);
+					if (jsonObj.result_code == 0) {
+						let current = event.target;
+						let nextSibling = current.nextElementSibling;
+						nextSibling.src = "images/verified.png";;
+					}
+				},
+				ror: function(e) {
+					$("#err").html(e).fadeIn();
+				}
 			});
-			
+		});
+
+
 	});
 }
 
@@ -25,12 +56,12 @@ function getReservations(period) {
 function getStayOvers(period) {
 	$("#stayOver-list").load("operations/reservations/getreservations.php?period=" + period, function() {
 		$(".changeBookingStatus").click(function(event) {
-			
+
 		});
-		
+
 		$(".edit_invoice").click(function(event) {
-				updateInvoice(event);
-			});
+			updateInvoice(event);
+		});
 	});
 }
 

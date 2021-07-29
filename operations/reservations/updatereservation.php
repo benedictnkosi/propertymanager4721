@@ -13,6 +13,7 @@ if (isset($_POST["field"])) {
     updateReservationField($_POST["field"], $_POST["new_value"], $_POST["reservation_id"]);
 }
 
+
 function updateReservationField($fieldName, $newValue, $reservationId)
 {
     $return_array = array();
