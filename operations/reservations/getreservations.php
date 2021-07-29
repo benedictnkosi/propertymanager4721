@@ -106,7 +106,7 @@ order by `check_in`";
     $rsType = gettype($result);
 
     if (strcasecmp($rsType, "string") == 0) {
-
+		echo $rsType;
         echo '<div class="res-details">
 
 						<h4 class="guest-name">No reservations found</h4>
