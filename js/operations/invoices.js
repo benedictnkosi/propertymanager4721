@@ -103,13 +103,13 @@ function updateInvoice(event) {
 	$("#res_notes").val(article.dataset.admin_comment);
 	$("#rooms_select").val(article.dataset.accom_id);
 	
-	if(className.includes("stayover")|| className.includes("checkout")){
+	/*if(className.includes("stayover")|| className.includes("checkout")){
 		$("#rooms_select").prop('disabled', 'disabled');
 		$("#checkin_date").prop('disabled', 'disabled');
 	}else{
 		$("#rooms_select").prop('disabled', false);
 		$("#checkin_date").prop('disabled', false);
-	}
+	}*/
 	
 	getRoomPrice()
 	updateView("new-invoice");

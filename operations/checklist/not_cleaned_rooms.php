@@ -88,5 +88,3 @@ function sendEmail($messageBody)
         return false;
     }
 }
-
-{"mode":"full","isActive":false}
