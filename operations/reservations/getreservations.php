@@ -42,7 +42,7 @@ and DATE(check_out) > DATE(NOW())
 
 order by `check_in`";
 
-    $sql_stayOver_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id
+    $sql_stayOver_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id , id_image 
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
@@ -62,7 +62,7 @@ and DATE(check_out) > DATE(NOW())
 
 order by `check_in`";
 
-    $sql_checkOuts_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id
+    $sql_checkOuts_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id, id_image 
 
 FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
 
