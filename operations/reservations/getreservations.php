@@ -191,12 +191,7 @@ order by `check_in`";
                     $customerIdImage = "verified.png";
                 }
 
-                echo '<form method="post"
-                    enctype="multipart/form-data">
-                    <input type="file" class="hidden uploadImageInput" accept="image/*" name="image">
-                    <img src="images/' . $customerIdImage . '" class="image_verified" />
-                    <input type="text" class="hidden" name="customer_id" value="' . $results["customer_id"] . '">
-                    </form>';
+                echo '<img src="images/' . $customerIdImage . '" class="image_verified" id="img_upload_'.$results["id"].'"/>';
             } else {
                 echo '<p><img src="/propertymanager4721/images/' . $results["origin"] . '.png" class="origin_image"></img></p>';
             }
