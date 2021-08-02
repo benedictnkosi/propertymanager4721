@@ -24,9 +24,8 @@ function getReservations(period) {
 		});
 
 		$('.uploadImageInput').on('change', function(event) {
-			let myForm = document.getElementById('imageform');
+			var myForm = event.target.form;
 			let formData = new FormData(myForm);
-
 			$.ajax({
 				url: "operations/utils/updateCustomerIdImage.php",
 				type: "POST",

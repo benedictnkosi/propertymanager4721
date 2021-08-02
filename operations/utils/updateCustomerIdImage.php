@@ -20,8 +20,10 @@ function addCustomerIDPicture(){
     ); // valid extensions
     $path = 'uploads/'; // upload directory
     if ($_FILES['image']) {
+        
         $img = $_FILES['image']['name'];
         $tmp = $_FILES['image']['tmp_name'];
+        
         // get uploaded file's extension
         $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
         // can upload same image using rand function
@@ -33,8 +35,18 @@ function addCustomerIDPicture(){
                 updateCustomer($final_image, $_POST["customer_id"]);
             }
         } else {
-            echo 'invalid';
+            $temparray1 = array(
+                'result_code' => 1,
+                'result_desciption' => "Invalid file"
+            );
+            echo json_encode($temparray1);
         }
+    }else{
+        $temparray1 = array(
+            'result_code' => 1,
+            'result_desciption' => "File not found"
+        );
+        echo json_encode($temparray1);
     }
 }
 
