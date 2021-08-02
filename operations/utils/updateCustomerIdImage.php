@@ -21,7 +21,7 @@ function addCustomerIDPicture(){
     $path = __DIR__ . '/../../../uploads/'; // upload directory
         
     if ($_FILES['image']) {
-        
+        echo '1';
         $img = $_FILES['image']['name'];
         $tmp = $_FILES['image']['tmp_name'];
         
@@ -30,11 +30,17 @@ function addCustomerIDPicture(){
         // can upload same image using rand function
         $final_image = uniqid() . "." . $ext;
         // check's valid format
+        echo '1';
         if (in_array($ext, $valid_extensions)) {
             $path = $path . strtolower($final_image);
             if (move_uploaded_file($tmp, $path)) {
                 updateCustomer($final_image, $_POST["customer_id"]);
-            }
+            }else{
+                  $temparray1 = array(
+                'result_code' => 1,
+                'result_desciption' => "failed to move file"
+            );
+            echo json_encode($temparray1);
         } else {
             $temparray1 = array(
                 'result_code' => 1,
@@ -60,6 +66,12 @@ function updateCustomer($imageName, $customer_id){
         $temparray1 = array(
             'result_code' => 0,
             'result_desciption' => "Successfully updated customer image"
+        );
+        echo json_encode($temparray1);
+    }else{
+         $temparray1 = array(
+            'result_code' => 1,
+            'result_desciption' => "Faield to updated customer image"
         );
         echo json_encode($temparray1);
     }
