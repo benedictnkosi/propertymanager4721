@@ -191,7 +191,7 @@ order by `check_in`";
                     $customerIdImage = "verified.png";
                 }
 
-                echo '<img src="images/' . $customerIdImage . '" class="image_verified" id="img_upload_'.$results["id"].'"/>';
+                echo '<img src="images/' . $customerIdImage . '" class="image_verified" id="img_upload_'.$results["customer_id"].'"/>';
             } else {
                 echo '<p><img src="/propertymanager4721/images/' . $results["origin"] . '.png" class="origin_image"></img></p>';
             }
