@@ -10,7 +10,6 @@ function getBlockedRoomsHtml()
     $sql_blocked_rooms = "SELECT  wpky_hb_accom_blocked.id, wpky_hb_accom_blocked.accom_id,  post_title, from_date, to_date, comment
 FROM `wpky_hb_accom_blocked`, wpky_posts WHERE
  wpky_posts.ID = `wpky_hb_accom_blocked`.accom_id
-and comment not like '%Blocked automatically%'
 and DATE(from_date) >= DATE(NOW())
 and DATE(from_date) <= DATE(NOW()) + INTERVAL 180 DAY
 and DATE(to_date) > DATE(NOW())
