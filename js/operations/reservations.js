@@ -19,9 +19,9 @@ function getReservations(period) {
 
 		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
-			var resID = event.target.id.replace("img_upload_", "");
+			var customerID = event.target.id.replace("img_upload_", "");
 			$(".uploadImageInput").click();
-			$("#customer_image_id").val(resID);
+			$("#customer_image_id").val(customerID);
 		});
 		
 		$( '.uploadImageInput' ).off();
@@ -38,13 +38,10 @@ function getReservations(period) {
 				success: function(response) {
 					var jsonObj = jQuery.parseJSON(response);
 					if (jsonObj.result_code == 0) {
-						let current = event.target;
-						let nextSibling = current.nextElementSibling;
-						nextSibling.src = "images/verified.png";;
+						var customerID = $("#customer_image_id").val();
+						$("#img_upload_" + customerID).attr("src","images/verified.png");
+						
 					}
-				},
-				ror: function(e) {
-					$("#err").html(e).fadeIn();
 				}
 			});
 		});
@@ -82,13 +79,9 @@ function getStayOvers(period) {
 				success: function(response) {
 					var jsonObj = jQuery.parseJSON(response);
 					if (jsonObj.result_code == 0) {
-						let current = event.target;
-						let nextSibling = current.nextElementSibling;
-						nextSibling.src = "images/verified.png";;
+						var customerID = $("#customer_image_id").val();
+						$("#img_upload_" + customerID).attr("src","images/verified.png");
 					}
-				},
-				ror: function(e) {
-					$("#err").html(e).fadeIn();
 				}
 			});
 		});
@@ -124,13 +117,9 @@ function getCheckouts(period) {
 				success: function(response) {
 					var jsonObj = jQuery.parseJSON(response);
 					if (jsonObj.result_code == 0) {
-						let current = event.target;
-						let nextSibling = current.nextElementSibling;
-						nextSibling.src = "images/verified.png";;
+						var customerID = $("#customer_image_id").val();
+						$("#img_upload_" + customerID).attr("src","images/verified.png");
 					}
-				},
-				ror: function(e) {
-					$("#err").html(e).fadeIn();
 				}
 			});
 		});
