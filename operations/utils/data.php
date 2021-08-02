@@ -1,7 +1,4 @@
 <?php
-
-
-
 // function for database transaction
 
 function querydatabase($sql) {
