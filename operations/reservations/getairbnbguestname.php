@@ -2,6 +2,8 @@
 require_once (__DIR__ . '/../utils/data.php');
 require_once (__DIR__ . '/../app/application.php');
 
+getTodayEmails();
+
 function getTodayEmails()
 {
     $mailConn = imap_open("{".EMAIL_SERVER.":".EMAIL_SERVER_PORT."/pop3/ssl/novalidate-cert}", EMAIL_ADDRESS, EMAIL_PASSWORD);
