@@ -18,7 +18,8 @@ function addCustomerIDPicture(){
         'bmp',
         'pdf'
     ); // valid extensions
-    $path = 'uploads/'; // upload directory
+    $path = __DIR__ . '/../../../uploads/'; // upload directory
+        
     if ($_FILES['image']) {
         
         $img = $_FILES['image']['name'];
