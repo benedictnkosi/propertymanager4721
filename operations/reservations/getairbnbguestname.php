@@ -55,6 +55,12 @@ function getTodayEmails()
     }
 }
 
+function getStringByBoundary($string, $leftBoundary, $rightBoundary){
+    preg_match('~'.$leftBoundary.'([^{]*)'.$rightBoundary.'~i', $string, $match);
+    var_dump($match[1]); // string(9) "123456789"
+    return $match[1];
+}
+
 function updateGuestName($airbnbReservationID, $guestName)
 {
     $sql = 'UPDATE wpky_hb_resa set admin_comment = "Name: ' . trim($guestName) . '" WHERE `origin_url` like "%' . trim($airbnbReservationID) . '%"';
