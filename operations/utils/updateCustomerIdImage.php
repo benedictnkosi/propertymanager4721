@@ -10,6 +10,7 @@ if($_FILES['image']){
 }
 
 function addCustomerIDPicture(){
+    
     $valid_extensions = array(
         'jpeg',
         'jpg',

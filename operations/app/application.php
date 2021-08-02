@@ -7,4 +7,4 @@ define("BULK_SMS_URL", "https://api.bulksms.com/v1/messages?auto-unicode=true&lo
 define("EMAIL_ADDRESS", "info@aluvegh.co.za");
 define("INVOICES_FOLDER", "/invoices");
 define("INVOICE_RETENTION_DAYS", 180);
-?> 
+?>
