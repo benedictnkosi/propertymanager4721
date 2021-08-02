@@ -159,17 +159,18 @@ order by `check_in`";
 
             $checkOutDate = new DateTime($results["check_out"]);
             $stays = getNumberOfStays($results["customer_id"]);
-
+            $stayshtml = "";
             $formatedPhoneNumber = "";
             if (strcasecmp($results["origin"], "website") !== 0) {
-                $stays = 0;
+                $stays = "";
             } else {
+                $stayshtml = '<div class="stays-div">' . $stays . '</div>';
                 $formatedPhoneNumber = str_replace("+27", "0", $jsonObj->phone);
             }
 
             echo '<div class="res-details">
 
-						<h4 class="guest-name"><div class="stays-div">' . $stays . '</div><a target="_blank" href="/invoices/' . $results["id"] . '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
+						<h4 class="guest-name">' . $stayshtml . '<a target="_blank" href="/invoices/' . $results["id"] . '.pdf">' . $guestName . ' - ' . $results["id"] . '</a></h4>
 
 						<p>' . $results["post_title"] . '</p>
 
