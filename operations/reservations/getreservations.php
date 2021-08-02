@@ -127,8 +127,13 @@ order by `check_in`";
 
                 $guestName = str_replace("Summary: CLOSED - ", "", $results["admin_comment"]);
             } else if (strcasecmp($results["origin"], "Airbnb") == 0) {
-
                 $guestName = 'Airbnb Guest';
+
+                $pos = strpos($results["admin_comment"], "Name:");
+                if ($pos !== false) {
+                    $guestName = str_replace("Name: ", "", $results["admin_comment"]);
+                }
+                
 
                 $contactDetails = '<p><a href="' . $results["origin_url"] . '" target="_blank" >Reservation Details</a></p>';
             } else if (strcasecmp($results["origin"], "website") == 0) {
