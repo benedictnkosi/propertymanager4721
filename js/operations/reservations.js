@@ -17,12 +17,14 @@ function getReservations(period) {
 			updateInvoice(event);
 		});
 
+		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
-			let current = event.target;
-			let prevSibling = current.previousElementSibling;
-			prevSibling.click();
+			var resID = event.target.id.replace("img_upload_", "");
+			$(".uploadImageInput").click();
+			$("#customer_image_id").val(resID);
 		});
-
+		
+		$( '.uploadImageInput' ).off();
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
@@ -54,17 +56,19 @@ function getReservations(period) {
 
 function getStayOvers(period) {
 	$("#stayOver-list").load("operations/reservations/getreservations.php?period=" + period, function() {
-		
+
 		$(".edit_invoice").click(function(event) {
 			updateInvoice(event);
 		});
-		
+
+		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
-			let current = event.target;
-			let prevSibling = current.previousElementSibling;
-			prevSibling.click();
+			var resID = event.target.id.replace("img_upload_", "");
+			$(".uploadImageInput").click();
+			$("#customer_image_id").val(resID);
 		});
 
+		$( '.uploadImageInput' ).off();
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
@@ -88,7 +92,7 @@ function getStayOvers(period) {
 				}
 			});
 		});
-		
+
 	});
 }
 
@@ -98,13 +102,15 @@ function getCheckouts(period) {
 		$(".edit_invoice").click(function(event) {
 			updateInvoice(event);
 		});
-		
-		$('.image_verified').on('click', function(event) {
-			let current = event.target;
-			let prevSibling = current.previousElementSibling;
-			prevSibling.click();
-		});
 
+		$( '.image_verified' ).off();
+		$('.image_verified').on('click', function(event) {
+			var resID = event.target.id.replace("img_upload_", "");
+			$(".uploadImageInput").click();
+			$("#customer_image_id").val(resID);
+		});
+		
+		$( '.uploadImageInput' ).off();
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
@@ -128,7 +134,7 @@ function getCheckouts(period) {
 				}
 			});
 		});
-		
+
 	});
 }
 

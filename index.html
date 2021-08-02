@@ -186,7 +186,8 @@ body.loading .overlay {
 
 
 			<a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
-			<a href="javascript:void(0)" onclick="updateView('information');">Information Hub</a>
+			<a href="javascript:void(0)" onclick="updateView('information');">Information
+				Hub</a>
 
 
 		</div>
@@ -199,6 +200,12 @@ body.loading .overlay {
 	<div class="main-w3">
 		<h1>Guesthouse Management</h1>
 
+		<form method="post" enctype="multipart/form-data">
+			<input type="file" class="hidden uploadImageInput" accept="image/*"
+				name="image">  <input type="text"
+				class="hidden" name="customer_id" id="customer_image_id">
+		</form>
+		
 		<div class="clearfix"></div>
 		<div class="col-md-4 left-w3l">
 			<div class="profile-w3layouts dashboard-div toggleable"
