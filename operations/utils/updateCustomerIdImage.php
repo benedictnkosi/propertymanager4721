@@ -21,6 +21,7 @@ function addCustomerIDPicture(){
     $path = __DIR__ . '/../../../uploads/'; // upload directory
         
     if ($_FILES['image']) {
+        echo '1';
         
         $img = $_FILES['image']['name'];
         $tmp = $_FILES['image']['tmp_name'];
@@ -31,11 +32,13 @@ function addCustomerIDPicture(){
         $final_image = uniqid() . "." . $ext;
         // check's valid format
         if (in_array($ext, $valid_extensions)) {
+            echo '3';
             $path = $path . strtolower($final_image);
             if (move_uploaded_file($tmp, $path)) {
                 updateCustomer($final_image, $_POST["customer_id"]);
             }
         } else {
+            echo '4';
             $temparray1 = array(
                 'result_code' => 1,
                 'result_desciption' => "Invalid file"
@@ -43,6 +46,7 @@ function addCustomerIDPicture(){
             echo json_encode($temparray1);
         }
     }else{
+        echo '2';
         $temparray1 = array(
             'result_code' => 1,
             'result_desciption' => "File not found"
@@ -57,6 +61,7 @@ function updateCustomer($imageName, $customer_id){
     $result = updaterecord($sqlUpdateCustomer);
     
     if (strcasecmp($result, "Record updated successfully") == 0) {
+        echo '5';
         $temparray1 = array(
             'result_code' => 0,
             'result_desciption' => "Successfully updated customer image"
