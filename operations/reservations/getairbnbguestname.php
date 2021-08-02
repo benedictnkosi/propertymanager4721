@@ -70,7 +70,7 @@ function updateGuestName($airbnbReservationID, $guestName)
     if (strcasecmp($resultCreateRes, "Record updated successfully") == 0) {
         $temparray1 = array(
             'result_code' => 0,
-            'result_desciption' => "Payment successfully updated"
+            'result_desciption' => "Airbnb Guest name successfully updated"
         );
 
         echo json_encode($temparray1);
