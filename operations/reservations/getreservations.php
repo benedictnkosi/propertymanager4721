@@ -191,7 +191,7 @@ order by `check_in`";
                     $customerIdImage = "verified.png";
                 }
 
-                echo '<form id="imageform" method="post"
+                echo '<form method="post"
                     enctype="multipart/form-data">
                     <input type="file" class="hidden uploadImageInput" accept="image/*" name="image">
                     <img src="images/' . $customerIdImage . '" class="image_verified" />
