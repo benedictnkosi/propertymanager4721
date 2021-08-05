@@ -27,8 +27,7 @@ function send_message_bulk_sms ( $post_body) {
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($ch);
     
-    print_r($output['server_response']);
-    echo "status is " .$output['http_status'];
+    
     curl_close( $ch );
 
     return $output;
@@ -62,6 +61,8 @@ function send_message ( $phoneNumber, $message) {
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($curl);
     
+    print_r($output['server_response']);
+    echo "status is " .$output['http_status'];
     
     curl_close($curl);
     
