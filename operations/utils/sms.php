@@ -3,7 +3,7 @@
 require_once (__DIR__ . '/../app/application.php');
 
 
-function send_message ( $post_body) {
+function send_message_bulk_sms ( $post_body) {
     
     $ch = curl_init( );
     $headers = array(
@@ -30,5 +30,41 @@ function send_message ( $post_body) {
 
     return $output;
 }
+
+
+function send_message ( $post_body) {
+    
+    $curl = curl_init();
+    
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://rest.smsportal.com/v1/BulkMessages",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\"sendOptions\":{\"duplicateCheck\":\"none\",\"campaignName\":\"aluve\",\"testMode\":true},\"messages\":[{\"landingPageVariables\":{\"variables\":{},\"landingPageId\":\"1\"},\"content\":\"".$post_body."\",\"destination\":\"+27837917430\"}]}",
+        CURLOPT_HTTPHEADER => [
+            "Accept: application/json",
+            "Authorization: BASIC OTc1M2U4ZGYtNWUzYy00ZjY3LTlmMDUtM2I5MDBhNTRiZjkzOmdmNHdTb3gxMno3V2xVZ3FXZ0FPd3NyNWRHVit6Q3Iv",
+            "Content-Type: text/json"
+        ],
+    ]);
+    
+    curl_close($curl);
+    $output = array();
+    $output['server_response'] = curl_exec( $curl );
+    $curl_info = curl_getinfo( $curl );
+    $output['http_status'] = $curl_info[ 'http_code' ];
+    $output['error'] = curl_error($curl);
+    
+    
+    curl_close($curl);
+    
+    return $output;
+    
+}
+
 
 ?>         
