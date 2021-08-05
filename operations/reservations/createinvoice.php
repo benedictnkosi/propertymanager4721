@@ -265,15 +265,12 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
             $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
 
-        $messages = array(
-            array("to"=>$formatedCustomerNumber, "body"=>$messageBody)
-        );
-
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
+           
         }else{
            
-            $result = send_message( json_encode($messages));
+            $result = send_message( $formatedCustomerNumber, $messageBody);
             if ($result['http_status'] != 201) {
                 return false;
             }else{
