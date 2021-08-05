@@ -94,10 +94,19 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
                 
          
             if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
+                if (strcasecmp($status, "confirmed") == 0) {
+                    $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
+                    if (! strcasecmp($accomToBlockId, "none") == 0) {
+                        
+                        blockRoom($accomToBlockId, $_POST["checkin_date"], $_POST["checkout_date"], "Auto block - connected room booked", $newInvoiceID);
+                    }
+                }
+                
                 $temparray1 = array(
-                    'result_code' => 1,
-                    'result_desciption' => "Failed to send SMS"
+                    'result_code' => 0,
+                    'result_desciption' => "Invoice successfully created, but sms failed"
                 );
+                
                 echo json_encode($temparray1);
             } else {
 
@@ -187,9 +196,17 @@ and  wpky_hb_resa.id = ".$resID."
         }
         
         if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
+            unBlockRoomByResId($newInvoiceID);
+            $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
+            
+            if (! strcasecmp($accomToBlockId, "none") == 0) {
+                
+                blockRoom($accomToBlockId, $_POST["checkin_date"], $_POST["checkout_date"], "Auto block - connected room booked", $newInvoiceID);
+            }
+            
             $temparray1 = array(
-                'result_code' => 1,
-                'result_desciption' => "Failed to send SMS"
+                'result_code' => 0,
+                'result_desciption' => "Invoice successfully updated, but sms failed"
             );
             echo json_encode($temparray1);
         } else {
