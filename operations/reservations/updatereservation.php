@@ -193,7 +193,7 @@ function sendSMS( $guestName, $resaId, $paid, $outstanding,$customerPhone)
             return true;
         }else{
             $result = send_message( $formatedCustomerNumber, $messageBody);
-            if ($result['http_status'] != 201) {
+            if ($result['http_status'] != 200) {
                 return false;
             }else{
                 return true;
