@@ -26,6 +26,9 @@ function send_message_bulk_sms ( $post_body) {
     $curl_info = curl_getinfo( $ch );
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($ch);
+    
+    print_r($output['server_response']);
+    echo "status is " .$output['http_status'];
     curl_close( $ch );
 
     return $output;
