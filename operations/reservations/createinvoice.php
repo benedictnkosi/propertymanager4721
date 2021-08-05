@@ -271,7 +271,7 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
         }else{
            
             $result = send_message( $formatedCustomerNumber, $messageBody);
-            if ($result['http_status'] != 201) {
+            if ($result['http_status'] != 200) {
                 return false;
             }else{
                 return true;
