@@ -61,8 +61,8 @@ function send_message ( $phoneNumber, $message) {
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($curl);
     
-    print_r($output['server_response']);
-    echo "status is " .$output['http_status'];
+    //print_r($output['server_response']);
+   // echo "status is " .$output['http_status'];
     
     curl_close($curl);
     
