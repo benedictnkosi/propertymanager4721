@@ -187,14 +187,12 @@ function sendSMS( $guestName, $resaId, $paid, $outstanding,$customerPhone)
             $formatedCustomerNumber = str_replace("+270", "+27", $formatedCustomerNumber);
         }
         
-        $messages = array(
-            array("from"=>COMPANY_PHONE_NUMBER,"to"=>$formatedCustomerNumber, "body"=>$messageBody)
-        );
+     
         
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
         }else{
-            $result = send_message( json_encode($messages));
+            $result = send_message( $formatedCustomerNumber, $messageBody);
             if ($result['http_status'] != 201) {
                 return false;
             }else{
