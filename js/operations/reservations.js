@@ -28,6 +28,7 @@ function getReservations(period) {
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
+			$("body").addClass("loading");
 			$.ajax({
 				url: "operations/utils/updateCustomerIdImage.php",
 				type: "POST",
@@ -42,6 +43,9 @@ function getReservations(period) {
 						$("#img_upload_" + customerID).attr("src","images/verified.png");
 						
 					}
+				},
+				complete: function(response) {
+					$("body").removeClass("loading");
 				}
 			});
 		});
@@ -69,6 +73,7 @@ function getStayOvers(period) {
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
+			$("body").addClass("loading");
 			$.ajax({
 				url: "operations/utils/updateCustomerIdImage.php",
 				type: "POST",
@@ -82,6 +87,10 @@ function getStayOvers(period) {
 						var customerID = $("#customer_image_id").val();
 						$("#img_upload_" + customerID).attr("src","images/verified.png");
 					}
+				}
+				,
+				complete: function(response) {
+					$("body").removeClass("loading");
 				}
 			});
 		});
@@ -107,6 +116,7 @@ function getCheckouts(period) {
 		$('.uploadImageInput').on('change', function(event) {
 			var myForm = event.target.form;
 			let formData = new FormData(myForm);
+			$("body").addClass("loading");
 			$.ajax({
 				url: "operations/utils/updateCustomerIdImage.php",
 				type: "POST",
@@ -120,6 +130,9 @@ function getCheckouts(period) {
 						var customerID = $("#customer_image_id").val();
 						$("#img_upload_" + customerID).attr("src","images/verified.png");
 					}
+				},
+				complete: function(response) {
+					$("body").removeClass("loading");
 				}
 			});
 		});
