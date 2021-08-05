@@ -56,10 +56,13 @@ function send_message ( $phoneNumber, $message) {
     ]);
     
     $output = array();
-    $output['server_response'] = curl_exec( $curl );
+    /*$output['server_response'] = curl_exec( $curl );
     $curl_info = curl_getinfo( $curl );
     $output['http_status'] = $curl_info[ 'http_code' ];
     $output['error'] = curl_error($curl);
+    */
+    
+    $output['http_status'] = 200;
     
     //print_r($output['server_response']);
    // echo "status is " .$output['http_status'];
