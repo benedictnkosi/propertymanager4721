@@ -235,11 +235,12 @@ order by `check_in`";
 
 <p class="far-right">';
 
-            if ($hasGuestStayedInRoom == true) {
-                echo '<span title="Self-Checkin Eligible" class="glyphicon glyphicon-plane" aria-hidden="true"></span>';
-            }
+            
             
             if (strcasecmp($results["origin"], "website") == 0) {
+                if ($hasGuestStayedInRoom == true) {
+                    echo '<span title="Self-Checkin Eligible" class="glyphicon glyphicon-plane" aria-hidden="true"></span>';
+                }
 
                 echo '<span title="Cancel booking" class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
 <a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20' . $formatedPhoneNumber . '&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
