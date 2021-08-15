@@ -17,6 +17,32 @@ if (isset($_GET["period"])) {
     echo serialize($temparray1);
 }
 
+function hasGuestStayedInRoom($customerId, $accom_id){
+    $sql = "SELECT wpky_hb_resa.id, wpky_hb_customers.id as customer_id, accom_id, post_title, check_in
+
+FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
+
+`wpky_hb_resa`.`customer_id` = `wpky_hb_customers`.`id`
+
+and wpky_posts.ID = `wpky_hb_resa`.accom_id
+
+and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) or (`status` = 'pending' and origin NOT IN ('website')))
+
+and wpky_hb_customers.id = ".$customerId." 
+and accom_id = ".$accom_id." 
+and DATE(check_in) < DATE(NOW())";
+    
+    $result = querydatabase($sql);
+    $rsType = gettype($result);
+    
+    if (strcasecmp($rsType, "string") == 0) {
+       return false;
+    }else{
+        return true;
+    }
+}
+
+
 function getreservationsHtml()
 
 {
@@ -120,6 +146,8 @@ order by `check_in`";
             $guestName = "";
 
             $contactDetails = "";
+            
+            $hasGuestStayedInRoom = hasGuestStayedInRoom($results["customer_id"],$results["accom_id"]);
 
             $jsonObj = json_decode($results["info"]);
 
@@ -207,6 +235,10 @@ order by `check_in`";
 
 <p class="far-right">';
 
+            if ($hasGuestStayedInRoom == true) {
+                echo '<span title="Self-Checkin Eligible" class="glyphicon glyphicon-plane" aria-hidden="true"></span>';
+            }
+            
             if (strcasecmp($results["origin"], "website") == 0) {
 
                 echo '<span title="Cancel booking" class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
@@ -214,6 +246,8 @@ order by `check_in`";
                 </span>  ';
             }
 
+            
+            
             echo '<span title="Open\Close Room" class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
 <span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable ' . $checkInPeriod . '" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
     

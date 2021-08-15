@@ -249,9 +249,10 @@
 	margin-top: 1em !important;
 }
 
-.delete_invoice, .edit_invoice, .changeBookingStatus, .view_quotation {
+.delete_invoice, .edit_invoice, .changeBookingStatus, .view_quotation, .glyphicon, .fa-whatsapp {
 	font-size: 1.8em;
 	margin-right: 1em;
+	margin-left: 1px;
 }
 
 .clickable {
