@@ -44,21 +44,26 @@ $(document).ready(function() {
 
 		$("#userNumber").val($("#userNumber").val().replaceAll(" ", ""));
 		$("#userNumber").val($("#userNumber").val().replaceAll("+27", "0"));
-
+		$("#userName").val("");
+		$("#verified-tiny-image").addClass("display-none");
 
 
 		if ($("#userNumber").val().length == 10) {
 
 			$.get("operations/lookup/getcustomer.php?phone_number=" + $("#userNumber").val(), function(data, status) {
-
+				
 				var jsonObj = jQuery.parseJSON(data);
 
 				if (jsonObj.result_code == 0) {
 
 					$('#userName').val(jsonObj.guest_name);
 
-					$('#userEmail').val(jsonObj.guest_email);
-
+					$("#verified-tiny-image").removeClass("display-none");
+					if(jsonObj.image.localeCompare("Not Verified") == 0){
+						$('#verified-tiny-image').attr("src","images/Not-Verified-tiny.png");
+					}else{
+						$('#verified-tiny-image').attr("src","images/verify-tiny.png");
+					}
 				}
 
 			});
