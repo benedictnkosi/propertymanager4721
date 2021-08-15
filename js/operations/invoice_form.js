@@ -16,13 +16,9 @@ $(document).ready(function() {
 		onSelect: function(dateText) {
 
 			calculateNumberOfNights();
-
 		},
 
 		dateFormat: "yy-mm-d",
-
-
-
 	});
 
 
@@ -64,6 +60,8 @@ $(document).ready(function() {
 					}else{
 						$('#verified-tiny-image').attr("src","images/verify-tiny.png");
 					}
+					$('#prev-rooms-label').text("Previous Rooms: " + jsonObj.rooms);
+					
 				}
 
 			});
