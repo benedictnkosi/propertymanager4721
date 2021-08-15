@@ -8,6 +8,11 @@
 /*-- Reset Code --*/
 
 /*-- custom override code Code --*/
+
+.tiny-image{
+	width:50px !important;
+	height:50px !important;
+}
 .hidden{
 	display:none;
 }
