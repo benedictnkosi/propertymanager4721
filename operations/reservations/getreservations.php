@@ -64,7 +64,7 @@ and DATE(check_in) <= DATE(NOW()) + INTERVAL 180 DAY
 
 and DATE(check_out) > DATE(NOW())
 
-        and admin_comment not like '%Not available%'
+       // and admin_comment not like '%Not available%'
 
 order by `check_in`";
 
@@ -84,7 +84,7 @@ and DATE(check_in) > DATE(NOW()) - INTERVAL 180 DAY
 
 and DATE(check_out) > DATE(NOW())
 
-        and admin_comment not like '%Not available%'
+       // and admin_comment not like '%Not available%'
 
 order by `check_in`";
 
@@ -100,7 +100,7 @@ and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')))
 
 and DATE(check_out) = DATE(NOW())
 
-        and admin_comment not like '%Not available%'
+       // and admin_comment not like '%Not available%'
 
 order by `check_in`";
 
