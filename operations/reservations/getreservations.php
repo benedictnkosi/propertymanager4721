@@ -64,8 +64,6 @@ and DATE(check_in) <= DATE(NOW()) + INTERVAL 180 DAY
 
 and DATE(check_out) > DATE(NOW())
 
-       // and admin_comment not like '%Not available%'
-
 order by `check_in`";
 
     $sql_stayOver_reservations = "SELECT wpky_hb_resa.id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on, customer_id , id_image 
@@ -83,8 +81,6 @@ and DATE(check_in) < DATE(NOW())
 and DATE(check_in) > DATE(NOW()) - INTERVAL 180 DAY
 
 and DATE(check_out) > DATE(NOW())
-
-       // and admin_comment not like '%Not available%'
 
 order by `check_in`";
 
