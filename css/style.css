@@ -9,6 +9,10 @@
 
 /*-- custom override code Code --*/
 
+.red-td{
+	background: red;
+}
+
 .tiny-image{
 	width:50px !important;
 	height:50px !important;
