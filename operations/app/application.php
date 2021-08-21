@@ -11,4 +11,11 @@ define("EMAIL_SERVER", "mail.aluvegh.co.za");
 define("EMAIL_SERVER_PORT", "995");
 define("INVOICES_FOLDER", "/invoices");
 define("INVOICE_RETENTION_DAYS", 180);
+
+//cleaning
+define("MAX_CLEANING_DAYS", 3);
+define("MAX_PROTECTOR_CLEANING_DAYS", 30);
+define("MAX_COUCH_CLEANING_DAYS", 180);
+define("MAX_MATTRESS_CLEANING_DAYS", 180);
+define("MAX_DUVET_CLEANING_DAYS", 60);
 ?>

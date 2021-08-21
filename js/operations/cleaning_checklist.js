@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
 	getChecklistRooms();
+	
+	getChecklistReport();
 
 	$("#cleaning-checkist-form").submit(function(event) {
 		event.preventDefault();
@@ -34,14 +36,25 @@ $(document).ready(function() {
 });
 
 
+function getChecklistReport() {
+		
+	$("#cleaning-report-div").load("operations/checklist/cleaning_report.php", function() {
+
+	});
+	
+}
+
+
+
 function getChecklistRooms() {
-	$("#cleaning_rooms_select").load("operations/lookup/getrooms.php?status=publish&content-type=html", function() {
+	$("#cleaning_rooms_select").load("operations/checklist/cleaning_report.php", function() {
 		$("#cleaning_rooms_select").change(function(event) {
 			getChecklist();
 			$("#cleaning_notes").val("");
 
 		});
 	});
+
 }
 
 
