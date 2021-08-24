@@ -94,6 +94,8 @@ and wpky_posts.ID = `wpky_hb_resa`.accom_id
 
 and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')))
 
+and admin_comment not like '%Not available%'
+
 and DATE(check_out) = DATE(NOW())
 
 order by `check_in`";
