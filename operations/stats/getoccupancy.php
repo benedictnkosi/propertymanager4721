@@ -50,7 +50,7 @@ and admin_comment not like '%Not available%'
 group by accom_id
 order by occupancy;";
     
-    echo $sql;
+    //echo $sql;
 
     $result = querydatabase($sql);
 
