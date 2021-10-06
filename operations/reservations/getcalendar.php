@@ -86,7 +86,15 @@ and accom_id = " . $roomArray['ID'];
                 while ($resultReservation = $resultReservations->fetch_assoc()) {
                     $jsonObj = json_decode($resultReservation["info"]);
                     
-                    if (strcasecmp($resultReservation["origin"], "booking.com") == 0) {
+                    if (strcasecmp($resultReservation["origin"], "yourporter") == 0) {
+                        //Summary: Double Room-Njingalwazi Dlamini-07 Oct-08 Oct
+                        
+                        $index = strpos($resultReservation["admin_comment"], "-") + 1;
+                        $lastIndex = strpos($resultReservation["admin_comment"], "-", $index );
+                        
+                        $guestName = substr($resultReservation["admin_comment"],$index,$lastIndex -  $index);
+                    }
+                    else if (strcasecmp($resultReservation["origin"], "booking.com") == 0) {
                         $guestName = str_replace("Summary: CLOSED - ", "", $resultReservation["admin_comment"]);
                     } else if (strcasecmp($resultReservation["origin"], "Airbnb") == 0) {
                         $guestName = 'Airbnb Guest';

@@ -147,10 +147,17 @@ order by `check_in`";
 
             $jsonObj = json_decode($results["info"]);
 
-            if (strcasecmp($results["origin"], "booking.com") == 0) {
+            if (strcasecmp($results["origin"], "yourporter") == 0) {
+                //Summary: Double Room-Njingalwazi Dlamini-07 Oct-08 Oct
 
+                $index = strpos($results["admin_comment"], "-") + 1;
+                $lastIndex = strpos($results["admin_comment"], "-", $index );
+  
+                $guestName = substr($results["admin_comment"],$index,$lastIndex -  $index);
+            }else if (strcasecmp($results["origin"], "booking.com") == 0) {
+                
                 $guestName = str_replace("Summary: CLOSED - ", "", $results["admin_comment"]);
-            } else if (strcasecmp($results["origin"], "Airbnb") == 0) {
+            }else if (strcasecmp($results["origin"], "Airbnb") == 0) {
                 $guestName = 'Airbnb Guest';
 
                 $pos = strpos($results["admin_comment"], "Name:");
