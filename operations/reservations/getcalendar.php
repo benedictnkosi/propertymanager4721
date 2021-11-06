@@ -58,7 +58,7 @@ and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) o
 
         $sql_upcoming_blocks = "SELECT accom_id, from_date, to_date, comment
 FROM wpky_hb_accom_blocked
-where DATE(from_date) <= DATE(NOW()) + INTERVAL 30 DAY
+where DATE(from_date) <= DATE(NOW()) + INTERVAL 180 DAY
 and DATE(to_date) > DATE(NOW())
 and accom_id = " . $roomArray['ID'];
 
