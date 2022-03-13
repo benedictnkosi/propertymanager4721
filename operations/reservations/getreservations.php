@@ -58,11 +58,9 @@ and wpky_posts.ID = `wpky_hb_resa`.accom_id
 
 and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) or (`status` = 'pending' and origin NOT IN ('website')))
 
-and DATE(check_in) >= DATE(NOW())
+and DATE(check_in) >= DATE(NOW())  - INTERVAL 4 DAY
 
 and DATE(check_in) <= DATE(NOW()) + INTERVAL 180 DAY
-
-and DATE(check_out) > DATE(NOW())
 
 order by `check_in`";
 
