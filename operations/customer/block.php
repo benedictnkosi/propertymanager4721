@@ -10,6 +10,6 @@ function blockCustomer($customerId)
 {
    $return_array = array();
 
-    $sqlUpdateRes = "update wpky_hb_customers set state =  'blocked', comments = ' " . $comments .'" where id = " . $customerId;
+    $sqlUpdateRes = "update wpky_hb_customers set state =  'blocked', comments = ' " . $comments ."' where id = " . $customerId;
     echo $sqlUpdateRes;
 }
