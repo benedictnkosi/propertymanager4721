@@ -204,7 +204,7 @@ function blockGuest(event) {
 	data["comments"] = "no comments";
 	var className = $('#' + event.target.id).attr('class');
 	$("body").addClass("loading");
-	$.post("operations/customer/blockCustomer.php", data, function(response) {
+	$.post("operations/customer/block.php", data, function(response) {
 		$("body").removeClass("loading");
 		var jsonObj = jQuery.parseJSON(response);
 		if (jsonObj.result_code == 0) {
