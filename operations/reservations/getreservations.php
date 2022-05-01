@@ -254,7 +254,7 @@ order by `check_in`";
             
             echo '<span title="Open\Close Room" class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
 <span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable ' . $checkInPeriod . '" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
-<span title="Block Guest" class="glyphicon blockGuest clickable" aria-hidden="true" id="blockGuest_' . $jsonObj->customer_id . '"></span>
+<span title="Block Guest" class="glyphicon glyphicon glyphicon-ban-circle blockGuest clickable" aria-hidden="true" id="blockGuest_' . $jsonObj->customer_id . '"></span>
     
 </p>   
 
