@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	getRooms();
-
-
+	localStorage.setItem('customer_state', 'clear');
 	$("#new-res-form").submit(function(event) {
 
 		event.preventDefault();
@@ -61,6 +60,7 @@ function getCustomer() {
 					$('#userName').val(jsonObj.guest_name);
 
 					if(jsonObj.status.localeCompare("blocked") == 0){
+						localStorage.setItem('customer_state', 'blocked');
 						$("#verified-tiny-image").removeClass("display-none");
 						$('#verified-tiny-image').attr("src","images/blocked_guest.jpg");
 						$('#prev-rooms-label').text("Guest not welcomed at the guesthouse because: " + jsonObj.comments);
@@ -118,6 +118,15 @@ function calculateTotal() {
 
 
 function createInvoice() {
+	if(localStorage.getItem("customer_state").localeCompare("blocked") == 0){
+		$("#invoice_error_message").text("This guest is blocked from booking with us. Contact owner")
+
+		$("#invoice_error_message_div").removeClass("display-none");
+
+		$("#invoice_success_message_div").addClass("display-none");
+
+		return;
+	}
 
 	var checkInDate = new Date($("#checkin_date").val());
 
