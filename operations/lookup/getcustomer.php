@@ -44,7 +44,7 @@ order by check_in desc";
 }
 
 function getCustomerByNumber(){
-    $sql = "SELECT id, info, email, id_image, state, commnents FROM wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
+    $sql = "SELECT id, info, email, id_image, state, comments FROM wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
     $temparray1 = Array();
     $result = querydatabase($sql);
     
