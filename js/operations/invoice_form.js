@@ -60,8 +60,8 @@ function getCustomer() {
 				if (jsonObj.result_code == 0) {
 					$('#userName').val(jsonObj.guest_name);
 
-					if(jsonObj.status.localeCompare("Blocked") == 0){
-						$('#verified-tiny-image').attr("src","images/verify-tiny.png");
+					if(jsonObj.status.localeCompare("blocked") == 0){
+						$('#verified-tiny-image').attr("src","images/blocked_guest.jpg");
 						$('#prev-rooms-label').text("Guest not welcomed at the guesthouse because: " + jsonObj.comments);
 						return;
 					}
