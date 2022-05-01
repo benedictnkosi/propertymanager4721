@@ -207,7 +207,7 @@ function blockGuest(event) {
 			var data = {};
 			var newButtonText = "";
 			data["customer_id"] = event.target.id.replaceAll('blockGuest_', '') ;
-			data["comments"] = "no comments";
+			data["comments"] = reason;
 			var className = $('#' + event.target.id).attr('class');
 			$("body").addClass("loading");
 
