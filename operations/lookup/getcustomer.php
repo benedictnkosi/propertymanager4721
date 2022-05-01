@@ -44,7 +44,7 @@ order by check_in desc";
 }
 
 function getCustomerByNumber(){
-    $sql = "SELECT id, info, email, id_image, status, commnents FROM wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
+    $sql = "SELECT id, info, email, id_image, state, commnents FROM wpky_hb_customers where info LIKE '%".$_GET["phone_number"]."%';";
     $temparray1 = Array();
     $result = querydatabase($sql);
     
@@ -65,7 +65,7 @@ function getCustomerByNumber(){
             $guestName = "";
             $guestEmail = "";
             $previousRooms = getLastRooms($results["id"]);
-            $status = getLastRooms($results["status"]);
+            $state = getLastRooms($results["state"]);
             $comments = getLastRooms($results["comments"]);
             $jsonObj = json_decode($results["info"]);
             
@@ -77,7 +77,7 @@ function getCustomerByNumber(){
                 'guest_email' => $results["email"],
                 'image' => $results["id_image"],
                 'rooms' => $previousRooms,
-                'status' => $status,
+                'status' => $state,
                 'comments' => $comments,
                 'result_code' => 0,
                 'result_desciption' => "success"
