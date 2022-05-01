@@ -200,19 +200,27 @@ function changeBookingStatus(event) {
 function blockGuest(event) {
 	
 	if (confirm('Are you sure you want to block this customer?')) {
-		var data = {};
-		var newButtonText = "";
-		data["customer_id"] = event.target.id.replaceAll('blockGuest_', '') ;
-		data["comments"] = "no comments";
-		var className = $('#' + event.target.id).attr('class');
-		$("body").addClass("loading");
-		$.post("operations/customer/block.php", data, function(response) {
-			$("body").removeClass("loading");
-			var jsonObj = jQuery.parseJSON(response);
-			if (jsonObj.result_code == 0) {
-				console.log("Guest blocked");
-			}
+		
+		let reason = prompt("Please enter your name", "Harry Potter");
 
-		});
+		if (reason != null) {
+			var data = {};
+			var newButtonText = "";
+			data["customer_id"] = event.target.id.replaceAll('blockGuest_', '') ;
+			data["comments"] = "no comments";
+			var className = $('#' + event.target.id).attr('class');
+			$("body").addClass("loading");
+
+
+			$.post("operations/customer/block.php", data, function(response) {
+				$("body").removeClass("loading");
+				var jsonObj = jQuery.parseJSON(response);
+				if (jsonObj.result_code == 0) {
+					console.log("Guest blocked");
+				}
+			});
+		}else{
+			window.alert("Guest not blocked, Reason Required");
+		}
 	}
 }
