@@ -7,6 +7,8 @@ require_once (__DIR__ . '/../app/application.php');
 
 if (isset($_POST["customer_id"])) {
     blockCustomer($_POST["customer_id"]);
+}else{
+    echo 'shit';
 }
 
 
