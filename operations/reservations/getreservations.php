@@ -247,15 +247,18 @@ order by `check_in`";
 
                 echo '<span title="Cancel booking" class="glyphicon glyphicon-remove changeBookingStatus clickable" aria-hidden="true" id="cancelBooking_' . $results["id"] . '"></span>
 <a title="Whatsapp Guest" target="_blank" href="https://api.whatsapp.com/send?phone=+27%20' . $formatedPhoneNumber . '&text=Hello,%20this%20is%20Aluve%20Guesthouse%20:)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-                </span>  ';
+                </span>  
+		<span title="Block Guest" class="glyphicon glyphicon glyphicon-ban-circle blockGuest clickable" aria-hidden="true" id="blockGuest_' . $results["customer_id"] . '"></span>
+  
+  ';
+		    
             }
 
             
             
             echo '<span title="Open\Close Room" class="glyphicon ' . $blockClassName . ' changeBookingStatus clickable" aria-hidden="true" id="changeBookingStatus_' . $results["id"] . '"></span>
 <span title="Edit booking" class="glyphicon glyphicon-edit edit_invoice clickable ' . $checkInPeriod . '" aria-hidden="true" id="edit_invoice_' . $results["id"] . '" data-guest_name="' . $guestName . '" data-phone="' . $jsonObj->phone . '" data-accom_id="' . $results["accom_id"] . '" data-checkin="' . $checkInDate->format('Y') . '-' . $checkInDate->format('m') . '-' . $checkInDate->format('d') . '" data-checkout="' . $checkOutDate->format('Y') . '-' . $checkOutDate->format('m') . '-' . $checkOutDate->format('d') . '" data-notes="' . $results["admin_comment"] . '"></span>
-<span title="Block Guest" class="glyphicon glyphicon glyphicon-ban-circle blockGuest clickable" aria-hidden="true" id="blockGuest_' . $results["customer_id"] . '"></span>
-    
+  
 </p>   
 
 						<div class="clearfix">
