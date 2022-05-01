@@ -17,6 +17,10 @@ function getReservations(period) {
 			updateInvoice(event);
 		});
 
+		$(".blockGuest").click(function(event) {
+			blockGuest(event);
+		});
+		
 		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
 			var customerID = event.target.id.replace("img_upload_", "");
@@ -62,6 +66,10 @@ function getStayOvers(period) {
 			updateInvoice(event);
 		});
 
+		$(".blockGuest").click(function(event) {
+			blockGuest(event);
+		});
+		
 		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
 			var resID = event.target.id.replace("img_upload_", "");
@@ -105,6 +113,10 @@ function getCheckouts(period) {
 			updateInvoice(event);
 		});
 
+		$(".blockGuest").click(function(event) {
+			blockGuest(event);
+		});
+		
 		$( '.image_verified' ).off();
 		$('.image_verified').on('click', function(event) {
 			var resID = event.target.id.replace("img_upload_", "");
@@ -179,6 +191,24 @@ function changeBookingStatus(event) {
 		if (jsonObj.result_code == 0) {
 			$("#" + event.target.id).val(newButtonText);
 			getcalendar("future");
+		}
+
+	});
+}
+
+
+function blockGuest(event) {
+	var data = {};
+	var newButtonText = "";
+	data["customer_id"] = event.target.id.replaceAll('blockGuest_', '') ;
+	data["comments"] = "no comments";
+	var className = $('#' + event.target.id).attr('class');
+	$("body").addClass("loading");
+	$.post("operations/customer/blockCustomer.php", data, function(response) {
+		$("body").removeClass("loading");
+		var jsonObj = jQuery.parseJSON(response);
+		if (jsonObj.result_code == 0) {
+			console.log("Guest blocked");
 		}
 
 	});
