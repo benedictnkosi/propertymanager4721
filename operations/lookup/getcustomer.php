@@ -65,8 +65,8 @@ function getCustomerByNumber(){
             $guestName = "";
             $guestEmail = "";
             $previousRooms = getLastRooms($results["id"]);
-            $state = json_decode($results["state"]);
-            $comments = json_decode($results["comments"]);
+            $state = $results["state"];
+            $comments = $results["comments"];
             $jsonObj = json_decode($results["info"]);
             
             $guestName = $jsonObj->first_name . ' ' . $jsonObj->last_name;
