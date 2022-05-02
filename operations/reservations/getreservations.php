@@ -113,7 +113,7 @@ and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) o
 
 and DATE(check_in) < DATE(NOW())
 
-and DATE(check_in) => DATE(NOW()) - INTERVAL 90 DAY
+and DATE(check_in) > DATE(NOW()) - INTERVAL 90 DAY
 
 and DATE(check_out) < DATE(NOW())
 
