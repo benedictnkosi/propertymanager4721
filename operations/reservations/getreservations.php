@@ -132,6 +132,7 @@ order by `check_in`";
         $result = querydatabase($sql_checkOuts_reservations);
     } else if (strcasecmp($checkInPeriod, "past") == 0) {
         $result = querydatabase($sql_past_reservations);
+        echo $sql_past_reservations;
     } else {
 
         echo '<div class="res-details">
