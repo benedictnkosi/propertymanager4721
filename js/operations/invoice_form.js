@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	getRooms();
-	localStorage.setItem('customer_state', 'clear');
+	
 	$("#new-res-form").submit(function(event) {
 
 		event.preventDefault();
@@ -43,9 +43,9 @@ $(document).ready(function() {
 
 
 function getCustomer() {
-	
+	localStorage.setItem('customer_state', 'clear');
 	$("#userNumber").val($("#userNumber").val().replaceAll(" ", ""));
-		$("#userNumber").val($("#userNumber").val().replaceAll("+27", "0"));
+	$("#userNumber").val($("#userNumber").val().replaceAll("+27", "0"));
 		$("#userName").val("");
 		$("#verified-tiny-image").addClass("display-none");
 
@@ -81,7 +81,7 @@ function getCustomer() {
 			});
 
 		}
-	
+		
 }
 
 
