@@ -117,7 +117,7 @@ and DATE(check_in) > DATE(NOW()) - INTERVAL 90 DAY
 
 and DATE(check_out) < DATE(NOW())
 
-order by `check_in`";
+order by `check_in` DESC";
 
 
     $checkInPeriod = $_GET["period"];
