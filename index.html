@@ -7,764 +7,788 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Aluve Property Management</title>
-<link rel="shortcut icon" href="images/logo.jpg" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Aluve Property Management" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- css -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
-	media="all" />
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="css/calendar.css" type="text/css"
-	media="all" />
+    <title>Aluve Property Management</title>
+    <link rel="shortcut icon" href="images/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Aluve Property Management" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- css -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+          media="all" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/calendar.css" type="text/css"
+          media="all" />
 
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"
-	media="all">
-<!--// css -->
-<!-- font -->
-<link
-	href='//fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- //font -->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<script
-	src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"
+          media="all">
+    <!--// css -->
+    <!-- font -->
+    <link href='//fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link rel="stylesheet"
+          href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- //font -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.validate.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
 
-	$("#block-form").validate({
-		rules: {
-			block_notes: {
-				required: true,
-			},
-			checkin_date: {
-				required: true,
-				date: true
-			},
-			checkout_date: {
-				required: true,
-				date: true
-			},
-			block_rooms_select: {
-      		required: true
-    		}
-		}
-	});
-	
-	
-	$("#cleaning-checkist-form").validate({
-		rules: {
-		
-			cleaning_date: {
-				date: true
-			},
-			
-			block_rooms_select: {
-      		required: true
-    		}
-		}
-	});
-	
-	$("#new-res-form").validate({
-		rules: {
-			userNumber: {
-				required: true,
-				minlength: 10,
-				maxlength: 10,
-				digits: true
-			},
-			checkin_date: {
-				required: true,
-				date: true
-			},
-			checkout_date: {
-				required: true,
-				date: true
-			},
-			rooms_select: {
-				required: true
-			},
-		}
-	});
-	
-	
-	
-	
-</script>
+        $("#block-form").validate({
+            rules: {
+                block_notes: {
+                    required: true,
+                },
+                checkin_date: {
+                    required: true,
+                    date: true
+                },
+                checkout_date: {
+                    required: true,
+                    date: true
+                },
+                block_rooms_select: {
+                    required: true
+                }
+            }
+        });
 
-<style>
-.overlay {
-	display: none;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	background: rgba(255, 255, 255, 0.8) url("images/loader.gif") center
-		no-repeat;
-}
-/* Turn off scrollbar when body element has the loading class */
-body.loading {
-	overflow: hidden;
-}
-/* Make spinner image visible when body element has the loading class */
-body.loading .overlay {
-	display: block;
-}
-</style>
+
+        $("#cleaning-checkist-form").validate({
+            rules: {
+
+                cleaning_date: {
+                    date: true
+                },
+
+                block_rooms_select: {
+                    required: true
+                }
+            }
+        });
+
+        $("#new-res-form").validate({
+            rules: {
+                userNumber: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    digits: true
+                },
+                checkin_date: {
+                    required: true,
+                    date: true
+                },
+                checkout_date: {
+                    required: true,
+                    date: true
+                },
+                rooms_select: {
+                    required: true
+                },
+            }
+        });
+
+
+
+
+    </script>
+
+    <style>
+        .overlay {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.8) url("images/loader.gif") center no-repeat;
+        }
+        /* Turn off scrollbar when body element has the loading class */
+        body.loading {
+            overflow: hidden;
+        }
+            /* Make spinner image visible when body element has the loading class */
+            body.loading .overlay {
+                display: block;
+            }
+    </style>
 
 </head>
 <body>
 
-	<!-- Top Navigation Menu -->
-	<div class="topnav fixedElement">
-		<div id="desktop-menu">
-			<h1>Aluve</h1>
-			<a href="javascript:void(0)" onclick="updateView('calendar');"
-				class="active menuICons mobileMenuIcon" title="calendar"><img
-				class="menu_icon_image" src="images/menu_calendar.png"></img></a> <a
-				href="javascript:void(0)"
-				onclick="updateView('upcoming-reservations');"
-				class="active menuICons mobileMenuIcon" title="Bookings"><img
-				class="menu_icon_image" src="images/menu_bookings.png"></img></a> <a
-				href="javascript:void(0)" id="mobile_menu_create_invoice"
-				class="create_invoice_menu active menuICons mobileMenuIcon"
-				title="New Invoice"><img class="menu_icon_image"
-				src="images/menu_new_invoice.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('invoices-list');"
-				class="active menuICons mobileMenuIcon" title="Invoices"><img
-				class="menu_icon_image" src="images/menu_invoices.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('check-outs');"
-				class="active menuICons mobileMenuIcon" title="Check-outs"><img
-				class="menu_icon_image" src="images/menu_checkout.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('stay-overs');"
-				class="active menuICons desktopOnlyMenu" title="Stay-overs"><img
-				class="menu_icon_image" src="images/menu_stayover.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('whatapp-chat');"
-				class="active menuICons desktopOnlyMenu" title="Whatapp-chat"><img
-				class="menu_icon_image" src="images/menu_whatapp.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('blocked-rooms');"
-				class="active menuICons desktopOnlyMenu" title="Blocked Rooms"><img
-				class="menu_icon_image" src="images/menu_blocked.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('block-room');"
-				class="active menuICons desktopOnlyMenu" title="Block Room"><img
-				class="menu_icon_image" src="images/menu_block_room.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('occupancy');"
-				class="active menuICons desktopOnlyMenu" title="Occupancy"><img
-				class="menu_icon_image" src="images/menu_stats.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('cleaning');"
-				class="active menuICons desktopOnlyMenu" title="Cleaning"><img
-				class="menu_icon_image" src="images/menu_cleaning.png"></img></a> <a
-				href="javascript:void(0)" onclick="updateView('today-tomorrow');"
-				class="active menuICons desktopOnlyMenu" title="Summary"><img
-				class="menu_icon_image" src="images/menu_summary.png"></img></a>
-
-		</div>
-
-		<!-- Navigation links (hidden by default) -->
-		<div id="myLinks" onclick="toggleMenu()">
-			<a href="javascript:void(0)" onclick="updateView('cleaning');">Cleaning</a>
-			<a href="javascript:void(0)" onclick="updateView('stay-overs');">Stay-overs</a>
-			<a href="javascript:void(0)" onclick="updateView('whatapp-chat');">Whatapp-chat</a>
-			<a href="javascript:void(0)" onclick="updateView('blocked-rooms');">Blocked
-				Rooms</a> <a href="javascript:void(0)"
-				onclick="updateView('block-room');">Block Room</a> <a
-				href="javascript:void(0)" onclick="updateView('occupancy');">Occupancy</a>
-
-
-			<a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
-			<a href="javascript:void(0)" onclick="updateView('information');">Information
-				Hub</a>
-
-
-		</div>
-		<!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-		<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-			<i class="fa fa-bars"></i>
-		</a>
-	</div>
-
-	<div class="main-w3">
-		<h1>Guesthouse Management</h1>
-
-		<form method="post" enctype="multipart/form-data">
-			<input type="file" class="hidden uploadImageInput" accept="image/*"
-				name="image">  <input type="text"
-				class="hidden" name="customer_id" id="customer_image_id">
-		</form>
-		
-		<div class="clearfix"></div>
-		<div class="col-md-4 left-w3l">
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-whatapp-chat">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>
-							New Whatsapp Chat</i>
-						</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-
-				<div class="profile-ser ">
-					<form class="contact-form" action="#" autocomplete="off"
-						method="post" id="formStartChat">
-						<input name="whatapp_chat" type="text" id="whatapp_chat"
-							placeholder="Phone Number" class="textbox">
-
-						<div>
-							<span><input type="submit" value="Start Chat"
-								id="cmdStartChat"> </span>
-
-						</div>
-					</form>
-
-					<div class="clearfix"></div>
-				</div>
-			</div>
-
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-today-tomorrow">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>
-							What's happening <i id="today-tomorrow">TODAY</i>
-						</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="weather-bottom">
-					<div class="weather-bottom-wthree">
-						<a href="javascript:void(0)" onclick="getStatsForToday();">Today</a>
-					</div>
-					<div class="weather-bottom-wthree">
-						<a href="javascript:void(0)" onclick="getStatsForTomorrow();">Tomorrow</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="profile-ser">
-					<div class="profile-ser-grids">
-						<span class="glyphicon glyphicon-log-in clickable"
-							aria-hidden="true"></span>
-						<h4>Check-ins</h4>
-						<h2 id="stats_checkin_count"></h2>
-					</div>
-					<div class="profile-ser-grids agileinfo">
-						<span class="glyphicon glyphicon-log-out clickable"
-							aria-hidden="true"></span>
-						<h4>Checkouts</h4>
-						<h2 id="stats_checkout_count"></h2>
-					</div>
-					<div class="profile-ser-grids no-border">
-						<span class="glyphicon glyphicon-briefcase clickable"
-							aria-hidden="true"></span>
-						<h4>Stay Over</h4>
-
-						<h2 id="stats_overstays_count"></h2>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-
-
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-calendar">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Calendar</h5>
-					</div>
-					<div class="clearfix"></div>
-					<h5 class="booked">Booked</h5>
-					<h5 class="blocked">Blocked</h5>
-					<h5 class="available">Available</h5>
-					<h5 class="pending">Reserved but not blocked</h5>
-
-					<div class="clearfix"></div>
-				</div>
-
-				<div class="profile-ser scrollable">
-					<table id="calendar-table" style="width: 100%">
-					</table>
-
-					<div class="clearfix"></div>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col-md-4 middle-w3l">
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-upcoming-reservations">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Upcoming Reservations</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div id="reservations-list"></div>
-			</div>
-
-
-
-			<div class="profile-w3layouts topMargin  dashboard-div toggleable"
-				id="div-check-outs">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Check-outs</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div id="checkouts-list"></div>
-			</div>
-
-
-			<div class="profile-w3layouts topMargin dashboard-div toggleable"
-				id="div-stay-overs">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Stay Overs</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div id="stayOver-list"></div>
-			</div>
-
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-blocked-rooms">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Blocked Rooms</h5>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div id="block-list"></div>
-			</div>
-
-
-			<div class="profile-w3layouts topMargin dashboard-div toggleable"
-				id="div-occupancy">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>Occupancy</h5>
-
-					</div>
-					<div class="clearfix"></div>
-				</div>
-
-				<div class="profile-ser">
-
-					<div class="profile-ser-grids-50 agileinfo">
-						<a href="javascript:void(0)" onclick="getOccupancyPerRoom('30');"><h5>Last
-								30 Days</h5>
-							<h2 id="overall-30-occupancy"></h2></a>
-					</div>
-					<div class="profile-ser-grids-50 agileinfo">
-						<a href="javascript:void(0)"
-							onclick="getOccupancyPerRoomForMonth();"><h5>This Month</h5>
-							<h2 id="overall-month-occupancy"></h2></a>
-					</div>
-					<div class="clearfix"></div>
-
-					<div class=" bar-grids">
-						<div class="skills-top">
-							<h5>Per Room</h5>
-							<h5>Last 30 Days</h5>
-						</div>
-						<div class="skills-btm" id="occupancy-div"></div>
-					</div>
-
-				</div>
-
-
-
-
-			</div>
-
-		</div>
-
-		<div class="col-md-4 right-w3l">
-
-			<div class="profile-w3layouts invoices-div toggleable"
-				id="div-invoices-list">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h5>
-							Invoices
-							</h4>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div id="invoice-list"></div>
-			</div>
-
-			<div class="clearfix"></div>
-			<div class="profile-w3layouts invoices-div toggleable"
-				id="div-new-invoice">
-				<div class="resp-tabs-container">
-
-					<div class="tab-4">
-						<div class="facts">
-							<div class="contact-form">
-								<form action="#" autocomplete="off" method="post"
-									id="new-res-form">
-
-									<div class="tab-1">
-										<div class="facts">
-											<h5 id="header_create_invoice">Create\Update Invoice</h5>
-										</div>
-									</div>
-
-									<div>
-									<img id="verified-tiny-image" src="images/Not-Verified-tiny.png" class="tiny-image display-none"/>
-									<label id="prev-rooms-label" class="prev-rooms-label"></label>
-										<input name="action" type="text" id="action"
-											class="textbox display-none"> <input
-											name="userNumber" type="text" id="userNumber"
-											placeholder="Phone Number" class="textbox" required>
-											
-									</div>
-
-									<div>
-										<input name="userName" type="text" id="userName"
-											placeholder="Name" class="textbox" required>
-									</div>
-
-									<div>
-
-										<select name="accom_id" id="rooms_select" required>
-										</select>
-
-									</div>
-									<div>
-										<input type="text" autocomplete="off" name="checkin_date"
-											id="checkin_date" placeholder="Check-In" class="datepicker"
-											required>
-									</div>
-									<div>
-										<input type="text" autocomplete="off" name="checkout_date"
-											id="checkout_date" placeholder="Check-Out" class="datepicker"
-											required>
-									</div>
-
-									<div>
-										<input type="text" autocomplete="off" name="paid"
-											id="invoice_paid" placeholder="Paid">
-									</div>
-
-									Notes
-									<div>
-										<textarea name="res_notes" id="res_notes" rows="2"> </textarea>
-									</div>
-
-
-									<div class="profile-ser">
-										<div class="profile-ser-grids">
-											<h4>Price</h4>
-											<h2 id="price_per_night"></h2>
-											<input type="text" name="price_per_night"
-												id="input_price_per_night" class="display-none">
-										</div>
-										<div class="profile-ser-grids agileinfo">
-											<h4>Nights</h4>
-											<h2 id="number_of_night"></h2>
-											<input type="text" name="number_of_night"
-												id="input_number_of_night" class="display-none">
-
-										</div>
-										<div class="profile-ser-grids no-border">
-											<h4>Total</h4>
-											<h2 id="total_due"></h2>
-											<input type="text" name="total_due" id="input_total_due"
-												class="display-none">
-
-										</div>
-										<div class="clearfix"></div>
-										<h5 id="discount_message"></h5>
-									</div>
-
-									<div>
-										<span> <input type="submit" value="Submit"
-											id="submit_create_invoice">
-										</span>
-									</div>
-									<div class="flexible">
-										<div class="flex-bottom">
-											<div id="invoice_success_message_div"
-												class="flex1 display-none">
-												<h5 id="invoice_success_message"></h5>
-											</div>
-											<div id="invoice_error_message_div"
-												class="flex2 display-none">
-												<h5 id="invoice_error_message"></h5>
-											</div>
-										</div>
-									</div>
-
-								</form>
-
-
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="profile-w3layouts invoices-div toggleable"
-				id="div-block-room">
-				<div class="resp-tabs-container">
-
-					<div class="tab-4">
-						<div class="facts">
-							<div class="contact-form">
-								<form action="#" autocomplete="off" method="post"
-									id="block-form">
-
-									<div class="tab-1">
-										<div class="facts">
-											<h5>Block Room</h5>
-										</div>
-									</div>
-
-									<div>
-
-										<select name="accom_id" id="block_rooms_select" required>
-
-										</select>
-
-									</div>
-									<div>
-										<input type="text" autocomplete="off" name="checkin_date"
-											id="block_start_date" placeholder="From Date"
-											class="datepicker" required>
-									</div>
-									<div>
-										<input type="text" autocomplete="off" name="checkout_date"
-											id="block_end_date" placeholder="End Date" class="datepicker"
-											required>
-									</div>
-
-									Notes
-									<div>
-										<textarea name="block_notes" id="block_notes" rows="2"
-											required> </textarea>
-									</div>
-
-									<div>
-										<span><input type="submit" value="Submit"> </span>
-									</div>
-									<div class="flexible">
-										<div class="flex-bottom">
-											<div id="block_success_message_div"
-												class="flex1 display-none">
-												<h5 id="block_success_message"></h5>
-											</div>
-											<div id="block_error_message_div" class="flex2 display-none">
-												<h5 id="block_error_message"></h5>
-											</div>
-										</div>
-									</div>
-
-								</form>
-
-
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="profile-w3layouts invoices-div toggleable"
-				id="div-cleaning">
-				<div class="resp-tabs-container">
-
-					<div class="tab-4">
-						<div class="facts">
-							<div class="contact-form">
-								<form action="#" autocomplete="off" method="post"
-									id="cleaning-checkist-form">
-
-									<div class="tab-1">
-										<div class="facts">
-											<h5>Cleaning Checklist</h5>
-										</div>
-									</div>
-
-
-
-
-									<div id="cleaning_date_div" class="display-none">
-										<input type="text" autocomplete="off" name="cleaning_date"
-											value="no_date" id="cleaning_date"
-											placeholder="Cleaning Date" class="datepicker">
-									</div>
-
-									<div>
-
-										<select name="accom_id" id="cleaning_rooms_select" required>
-
-										</select>
-
-									</div>
-
-
-									<div id="cleaning-checklist-div"></div>
-
-									Notes
-									<div>
-										<textarea name="cleaning_notes" id="cleaning_notes" rows="2"> </textarea>
-									</div>
-
-
-									<div>
-										<span><input type="submit"
-											id="cleaning_checklist_submit" value="Submit"> </span>
-									</div>
-
-									<div id="cleaning-report-div"></div>
-
-									<input type="checkbox" name="checklist_history"
-										value="checklist_history" id="checklist_history"> <label
-										for="history">Advanced - Show Cleaning History</label><br>
-
-									<div class="flexible">
-										<div class="flex-bottom">
-											<div id="cleaning-checkist_success_message_div"
-												class="flex1 display-none">
-												<h5 id="cleaning-checkist_success_message"></h5>
-											</div>
-											<div id="cleaning-checkist_error_message_div"
-												class="flex2 display-none">
-												<h5 id="cleaning-checkist_error_message"></h5>
-											</div>
-										</div>
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="profile-w3layouts dashboard-div toggleable"
-				id="div-information">
-				<div class="profile-top">
-					<div class="col-md-7 profile-top-right">
-						<h3>
-							Information</i>
-						</h3>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-
-				<div class="profile-ser ">
-					<div id="err"></div>
-
-					<form class="contact-form" action="#" autocomplete="off"
-						method="post" id="formInformation">
-						<h3 class="information-h3">Aluve Rooms</h3>
-						<p class="information-p" id="mycopy">
-							<b>Budget</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/budget-bedroom/">
-						<p class="information-p" id="mycopy">
-							<b>Double</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/double-room/">
-						<p class="information-p" id="mycopy">
-							<b>Upstairs</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/beautiful-upstairs-room/">
-						<p class="information-p" id="mycopy">
-							<b>Upstairs Family</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/upstairs/">
-						<p class="information-p" id="mycopy">
-							<b>1 Bedroom</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/1-bedroom-cottage/">
-						<p class="information-p" id="mycopy">
-							<b>2 Bedroom</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/family-cottage/">
-						<p class="information-p" id="mycopy">
-							<b>Bachelor</b> <input type="text" class="info-input-box"
-								value="https://aluvegh.co.za/rooms/bachelor/">
-						<h3 class="information-h3">Airbnb & Booking.com link</h3>
-						<p class="information-p" id="mycopy">
-							<b>Airbnb</b> <input type="text" class="info-input-box"
-								value="www.airbnb.co.za/p/aluve">
-						<p class="information-p" id="mycopy">
-							<b>Booking.com</b> <input type="text" class="info-input-box"
-								value="http://www.booking.com/Share-nhTriA">
-						<h3 class="information-h3">Banking Details</h3>
-						<p class="information-p" id="mycopy">
-							<textarea type="text" class="info-input-box" rows="5">FNB
+    <!-- Top Navigation Menu -->
+    <div class="topnav fixedElement">
+        <div id="desktop-menu">
+            <h1>Aluve</h1>
+            <a href="javascript:void(0)" onclick="updateView('calendar');"
+               class="active menuICons mobileMenuIcon" title="calendar">
+                <img class="menu_icon_image" src="images/menu_calendar.png"></img>
+            </a> <a href="javascript:void(0)"
+                    onclick="updateView('upcoming-reservations');"
+                    class="active menuICons mobileMenuIcon" title="Bookings">
+                <img class="menu_icon_image" src="images/menu_bookings.png"></img>
+            </a> <a href="javascript:void(0)" id="mobile_menu_create_invoice"
+                    class="create_invoice_menu active menuICons mobileMenuIcon"
+                    title="New Invoice">
+                <img class="menu_icon_image"
+                     src="images/menu_new_invoice.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('invoices-list');"
+                    class="active menuICons mobileMenuIcon" title="Invoices">
+                <img class="menu_icon_image" src="images/menu_invoices.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('check-outs');"
+                    class="active menuICons mobileMenuIcon" title="Check-outs">
+                <img class="menu_icon_image" src="images/menu_checkout.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('past-res');"
+                    class="active menuICons desktopOnlyMenu" title="Past Reservations">
+                <img class="menu_icon_image" src="images/history.png"></img>
+            </a>
+                 <a href="javascript:void(0)" onclick="updateView('stay-overs');"
+                    class="active menuICons desktopOnlyMenu" title="Stay-overs">
+                     <img class="menu_icon_image" src="images/menu_stayover.png"></img>
+                 </a>
+            <a href="javascript:void(0)" onclick="updateView('whatapp-chat');"
+                    class="active menuICons desktopOnlyMenu" title="Whatapp-chat">
+                <img class="menu_icon_image" src="images/menu_whatapp.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('blocked-rooms');"
+                    class="active menuICons desktopOnlyMenu" title="Blocked Rooms">
+                <img class="menu_icon_image" src="images/menu_blocked.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('block-room');"
+                    class="active menuICons desktopOnlyMenu" title="Block Room">
+                <img class="menu_icon_image" src="images/menu_block_room.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('occupancy');"
+                    class="active menuICons desktopOnlyMenu" title="Occupancy">
+                <img class="menu_icon_image" src="images/menu_stats.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('cleaning');"
+                    class="active menuICons desktopOnlyMenu" title="Cleaning">
+                <img class="menu_icon_image" src="images/menu_cleaning.png"></img>
+            </a> <a href="javascript:void(0)" onclick="updateView('today-tomorrow');"
+                    class="active menuICons desktopOnlyMenu" title="Summary">
+                <img class="menu_icon_image" src="images/menu_summary.png"></img>
+            </a>
+
+        </div>
+
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks" onclick="toggleMenu()">
+            <a href="javascript:void(0)" onclick="updateView('cleaning');">Cleaning</a>
+            <a href="javascript:void(0)" onclick="updateView('stay-overs');">Stay-overs</a>
+            <a href="javascript:void(0)" onclick="updateView('past-res');">Past Reservations</a>
+            <a href="javascript:void(0)" onclick="updateView('whatapp-chat');">Whatapp-chat</a>
+            <a href="javascript:void(0)" onclick="updateView('blocked-rooms');">
+                Blocked
+                Rooms
+            </a> <a href="javascript:void(0)"
+                    onclick="updateView('block-room');">Block Room</a> <a href="javascript:void(0)" onclick="updateView('occupancy');">Occupancy</a>
+
+
+            <a href="javascript:void(0)" onclick="updateView('today-tomorrow');">Summary</a>
+            <a href="javascript:void(0)" onclick="updateView('information');">
+                Information
+                Hub
+            </a>
+
+
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div class="main-w3">
+        <h1>Guesthouse Management</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" class="hidden uploadImageInput" accept="image/*"
+                   name="image">  <input type="text"
+                                         class="hidden" name="customer_id" id="customer_image_id">
+        </form>
+
+        <div class="clearfix"></div>
+        <div class="col-md-4 left-w3l">
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-whatapp-chat">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>
+                            New Whatsapp Chat</i>
+                        </h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="profile-ser ">
+                    <form class="contact-form" action="#" autocomplete="off"
+                          method="post" id="formStartChat">
+                        <input name="whatapp_chat" type="text" id="whatapp_chat"
+                               placeholder="Phone Number" class="textbox">
+
+                        <div>
+                            <span>
+                                <input type="submit" value="Start Chat"
+                                       id="cmdStartChat">
+                            </span>
+
+                        </div>
+                    </form>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-today-tomorrow">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>
+                            What's happening <i id="today-tomorrow">TODAY</i>
+                        </h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="weather-bottom">
+                    <div class="weather-bottom-wthree">
+                        <a href="javascript:void(0)" onclick="getStatsForToday();">Today</a>
+                    </div>
+                    <div class="weather-bottom-wthree">
+                        <a href="javascript:void(0)" onclick="getStatsForTomorrow();">Tomorrow</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="profile-ser">
+                    <div class="profile-ser-grids">
+                        <span class="glyphicon glyphicon-log-in clickable"
+                              aria-hidden="true"></span>
+                        <h4>Check-ins</h4>
+                        <h2 id="stats_checkin_count"></h2>
+                    </div>
+                    <div class="profile-ser-grids agileinfo">
+                        <span class="glyphicon glyphicon-log-out clickable"
+                              aria-hidden="true"></span>
+                        <h4>Checkouts</h4>
+                        <h2 id="stats_checkout_count"></h2>
+                    </div>
+                    <div class="profile-ser-grids no-border">
+                        <span class="glyphicon glyphicon-briefcase clickable"
+                              aria-hidden="true"></span>
+                        <h4>Stay Over</h4>
+
+                        <h2 id="stats_overstays_count"></h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-calendar">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Calendar</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <h5 class="booked">Booked</h5>
+                    <h5 class="blocked">Blocked</h5>
+                    <h5 class="available">Available</h5>
+                    <h5 class="pending">Reserved but not blocked</h5>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="profile-ser scrollable">
+                    <table id="calendar-table" style="width: 100%">
+                    </table>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 middle-w3l">
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-upcoming-reservations">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Upcoming Reservations</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="reservations-list"></div>
+            </div>
+
+
+
+            <div class="profile-w3layouts topMargin  dashboard-div toggleable"
+                 id="div-check-outs">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Check-outs</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="checkouts-list"></div>
+            </div>
+
+
+            <div class="profile-w3layouts topMargin dashboard-div toggleable"
+                 id="div-stay-overs">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Stay Overs</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="stayOver-list"></div>
+            </div>
+
+            <div class="profile-w3layouts topMargin dashboard-div toggleable"
+                 id="div-past-res">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Past Reservations</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="past-res-list"></div>
+            </div>
+
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-blocked-rooms">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Blocked Rooms</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="block-list"></div>
+            </div>
+
+
+            <div class="profile-w3layouts topMargin dashboard-div toggleable"
+                 id="div-occupancy">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>Occupancy</h5>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="profile-ser">
+
+                    <div class="profile-ser-grids-50 agileinfo">
+                        <a href="javascript:void(0)" onclick="getOccupancyPerRoom('30');">
+                            <h5>
+                                Last
+                                30 Days
+                            </h5>
+                            <h2 id="overall-30-occupancy"></h2>
+                        </a>
+                    </div>
+                    <div class="profile-ser-grids-50 agileinfo">
+                        <a href="javascript:void(0)"
+                           onclick="getOccupancyPerRoomForMonth();">
+                            <h5>This Month</h5>
+                            <h2 id="overall-month-occupancy"></h2>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class=" bar-grids">
+                        <div class="skills-top">
+                            <h5>Per Room</h5>
+                            <h5>Last 30 Days</h5>
+                        </div>
+                        <div class="skills-btm" id="occupancy-div"></div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 right-w3l">
+
+            <div class="profile-w3layouts invoices-div toggleable"
+                 id="div-invoices-list">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h5>
+                            Invoices
+                            </h4>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="invoice-list"></div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="profile-w3layouts invoices-div toggleable"
+                 id="div-new-invoice">
+                <div class="resp-tabs-container">
+
+                    <div class="tab-4">
+                        <div class="facts">
+                            <div class="contact-form">
+                                <form action="#" autocomplete="off" method="post"
+                                      id="new-res-form">
+
+                                    <div class="tab-1">
+                                        <div class="facts">
+                                            <h5 id="header_create_invoice">Create\Update Invoice</h5>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <img id="verified-tiny-image" src="images/Not-Verified-tiny.png" class="tiny-image display-none" />
+                                        <label id="prev-rooms-label" class="prev-rooms-label"></label>
+                                        <input name="action" type="text" id="action"
+                                               class="textbox display-none"> <input name="userNumber" type="text" id="userNumber"
+                                                                                    placeholder="Phone Number" class="textbox" required>
+
+                                    </div>
+
+                                    <div>
+                                        <input name="userName" type="text" id="userName"
+                                               placeholder="Name" class="textbox" required>
+                                    </div>
+
+                                    <div>
+
+                                        <select name="accom_id" id="rooms_select" required>
+                                        </select>
+
+                                    </div>
+                                    <div>
+                                        <input type="text" autocomplete="off" name="checkin_date"
+                                               id="checkin_date" placeholder="Check-In" class="datepicker"
+                                               required>
+                                    </div>
+                                    <div>
+                                        <input type="text" autocomplete="off" name="checkout_date"
+                                               id="checkout_date" placeholder="Check-Out" class="datepicker"
+                                               required>
+                                    </div>
+
+                                    <div>
+                                        <input type="text" autocomplete="off" name="paid"
+                                               id="invoice_paid" placeholder="Paid">
+                                    </div>
+
+                                    Notes
+                                    <div>
+                                        <textarea name="res_notes" id="res_notes" rows="2"> </textarea>
+                                    </div>
+
+
+                                    <div class="profile-ser">
+                                        <div class="profile-ser-grids">
+                                            <h4>Price</h4>
+                                            <h2 id="price_per_night"></h2>
+                                            <input type="text" name="price_per_night"
+                                                   id="input_price_per_night" class="display-none">
+                                        </div>
+                                        <div class="profile-ser-grids agileinfo">
+                                            <h4>Nights</h4>
+                                            <h2 id="number_of_night"></h2>
+                                            <input type="text" name="number_of_night"
+                                                   id="input_number_of_night" class="display-none">
+
+                                        </div>
+                                        <div class="profile-ser-grids no-border">
+                                            <h4>Total</h4>
+                                            <h2 id="total_due"></h2>
+                                            <input type="text" name="total_due" id="input_total_due"
+                                                   class="display-none">
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <h5 id="discount_message"></h5>
+                                    </div>
+
+                                    <div>
+                                        <span>
+                                            <input type="submit" value="Submit"
+                                                   id="submit_create_invoice">
+                                        </span>
+                                    </div>
+                                    <div class="flexible">
+                                        <div class="flex-bottom">
+                                            <div id="invoice_success_message_div"
+                                                 class="flex1 display-none">
+                                                <h5 id="invoice_success_message"></h5>
+                                            </div>
+                                            <div id="invoice_error_message_div"
+                                                 class="flex2 display-none">
+                                                <h5 id="invoice_error_message"></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="profile-w3layouts invoices-div toggleable"
+                 id="div-block-room">
+                <div class="resp-tabs-container">
+
+                    <div class="tab-4">
+                        <div class="facts">
+                            <div class="contact-form">
+                                <form action="#" autocomplete="off" method="post"
+                                      id="block-form">
+
+                                    <div class="tab-1">
+                                        <div class="facts">
+                                            <h5>Block Room</h5>
+                                        </div>
+                                    </div>
+
+                                    <div>
+
+                                        <select name="accom_id" id="block_rooms_select" required>
+                                        </select>
+
+                                    </div>
+                                    <div>
+                                        <input type="text" autocomplete="off" name="checkin_date"
+                                               id="block_start_date" placeholder="From Date"
+                                               class="datepicker" required>
+                                    </div>
+                                    <div>
+                                        <input type="text" autocomplete="off" name="checkout_date"
+                                               id="block_end_date" placeholder="End Date" class="datepicker"
+                                               required>
+                                    </div>
+
+                                    Notes
+                                    <div>
+                                        <textarea name="block_notes" id="block_notes" rows="2"
+                                                  required> </textarea>
+                                    </div>
+
+                                    <div>
+                                        <span><input type="submit" value="Submit"> </span>
+                                    </div>
+                                    <div class="flexible">
+                                        <div class="flex-bottom">
+                                            <div id="block_success_message_div"
+                                                 class="flex1 display-none">
+                                                <h5 id="block_success_message"></h5>
+                                            </div>
+                                            <div id="block_error_message_div" class="flex2 display-none">
+                                                <h5 id="block_error_message"></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="profile-w3layouts invoices-div toggleable"
+                 id="div-cleaning">
+                <div class="resp-tabs-container">
+
+                    <div class="tab-4">
+                        <div class="facts">
+                            <div class="contact-form">
+                                <form action="#" autocomplete="off" method="post"
+                                      id="cleaning-checkist-form">
+
+                                    <div class="tab-1">
+                                        <div class="facts">
+                                            <h5>Cleaning Checklist</h5>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div id="cleaning_date_div" class="display-none">
+                                        <input type="text" autocomplete="off" name="cleaning_date"
+                                               value="no_date" id="cleaning_date"
+                                               placeholder="Cleaning Date" class="datepicker">
+                                    </div>
+
+                                    <div>
+
+                                        <select name="accom_id" id="cleaning_rooms_select" required>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div id="cleaning-checklist-div"></div>
+
+                                    Notes
+                                    <div>
+                                        <textarea name="cleaning_notes" id="cleaning_notes" rows="2"> </textarea>
+                                    </div>
+
+
+                                    <div>
+                                        <span>
+                                            <input type="submit"
+                                                   id="cleaning_checklist_submit" value="Submit">
+                                        </span>
+                                    </div>
+
+                                    <div id="cleaning-report-div"></div>
+
+                                    <input type="checkbox" name="checklist_history"
+                                           value="checklist_history" id="checklist_history"> <label for="history">Advanced - Show Cleaning History</label><br>
+
+                                    <div class="flexible">
+                                        <div class="flex-bottom">
+                                            <div id="cleaning-checkist_success_message_div"
+                                                 class="flex1 display-none">
+                                                <h5 id="cleaning-checkist_success_message"></h5>
+                                            </div>
+                                            <div id="cleaning-checkist_error_message_div"
+                                                 class="flex2 display-none">
+                                                <h5 id="cleaning-checkist_error_message"></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-w3layouts dashboard-div toggleable"
+                 id="div-information">
+                <div class="profile-top">
+                    <div class="col-md-7 profile-top-right">
+                        <h3>
+                            Information</i>
+                        </h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="profile-ser ">
+                    <div id="err"></div>
+
+                    <form class="contact-form" action="#" autocomplete="off"
+                          method="post" id="formInformation">
+                        <h3 class="information-h3">Aluve Rooms</h3>
+                        <p class="information-p" id="mycopy">
+                            <b>Budget</b> <input type="text" class="info-input-box"
+                                                 value="https://aluvegh.co.za/rooms/budget-bedroom/">
+                        <p class="information-p" id="mycopy">
+                            <b>Double</b> <input type="text" class="info-input-box"
+                                                 value="https://aluvegh.co.za/rooms/double-room/">
+                        <p class="information-p" id="mycopy">
+                            <b>Upstairs</b> <input type="text" class="info-input-box"
+                                                   value="https://aluvegh.co.za/rooms/beautiful-upstairs-room/">
+                        <p class="information-p" id="mycopy">
+                            <b>Upstairs Family</b> <input type="text" class="info-input-box"
+                                                          value="https://aluvegh.co.za/rooms/upstairs/">
+                        <p class="information-p" id="mycopy">
+                            <b>1 Bedroom</b> <input type="text" class="info-input-box"
+                                                    value="https://aluvegh.co.za/rooms/1-bedroom-cottage/">
+                        <p class="information-p" id="mycopy">
+                            <b>2 Bedroom</b> <input type="text" class="info-input-box"
+                                                    value="https://aluvegh.co.za/rooms/family-cottage/">
+                        <p class="information-p" id="mycopy">
+                            <b>Bachelor</b> <input type="text" class="info-input-box"
+                                                   value="https://aluvegh.co.za/rooms/bachelor/">
+                            <h3 class="information-h3">Airbnb & Booking.com link</h3>
+                        <p class="information-p" id="mycopy">
+                            <b>Airbnb</b> <input type="text" class="info-input-box"
+                                                 value="www.airbnb.co.za/p/aluve">
+                        <p class="information-p" id="mycopy">
+                            <b>Booking.com</b> <input type="text" class="info-input-box"
+                                                      value="http://www.booking.com/Share-nhTriA">
+                            <h3 class="information-h3">Banking Details</h3>
+                        <p class="information-p" id="mycopy">
+                            <textarea type="text" class="info-input-box" rows="5">FNB
 Name: Sixty-five group
 Account: 62788863241
 branch: 250 655
 Ref: Name or invoice Number</textarea>
-					</form>
+                    </form>
 
-					<div class="clearfix"></div>
-				</div>
-			</div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
 
-		</div>
-
-
-		<div class="clearfix"></div>
-		<div class="footer-agileits-w3layouts">
-			<p class="agileinfo">
-				&copy; 2017 Simple UI kit . All Rights Reserved | Design by <a
-					href="http://w3layouts.com">W3layouts</a>
-			</p>
-		</div>
-	</div>
-	<!--  player js -->
-
-	<div class="overlay"></div>
-
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script>
-            google.load("jquery", "1.7.1");
-            google.load("jqueryui", "1.8.16");
-        </script>
-	<script src="js/script.js"></script>
-	<!--  player js -->
-	<script src="js/Chart.min.js"></script>
-	<script src="js/pretty-doughtnut.js"></script>
-	<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
-	<script src="js/skycons.js"></script>
-	<script src="js/underscore-min.js" type="text/javascript"></script>
-	<script src="js/moment-2.2.1.js" type="text/javascript"></script>
-	<script src="js/clndr.js" type="text/javascript"></script>
-	<script src="js/site.js" type="text/javascript"></script>
+        </div>
 
 
-	<script src="js/operations/stats.js" type="text/javascript"></script>
-	<script src="js/operations/reservations.js" type="text/javascript"></script>
-	<script src="js/operations/invoices.js" type="text/javascript"></script>
-	<script src="js/operations/cleaning_checklist.js"
-		type="text/javascript"></script>
+        <div class="clearfix"></div>
+        <div class="footer-agileits-w3layouts">
+            <p class="agileinfo">
+                &copy; 2017 Simple UI kit . All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a>
+            </p>
+        </div>
+    </div>
+    <!--  player js -->
 
-	<script src="js/operations/calendar.js" type="text/javascript"></script>
-	<script src="js/operations/invoice_form.js" type="text/javascript"></script>
-	<script src="js/operations/blocked_rooms.js" type="text/javascript"></script>
-	<script src="js/operations/block_form.js" type="text/javascript"></script>
-	<script src="js/operations/menu.js" type="text/javascript"></script>
-	<script src="js/operations/whatapp.js" type="text/javascript"></script>
+    <div class="overlay"></div>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        google.load("jquery", "1.7.1");
+        google.load("jqueryui", "1.8.16");
+    </script>
+    <script src="js/script.js"></script>
+    <!--  player js -->
+    <script src="js/Chart.min.js"></script>
+    <script src="js/pretty-doughtnut.js"></script>
+    <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+    <script src="js/skycons.js"></script>
+    <script src="js/underscore-min.js" type="text/javascript"></script>
+    <script src="js/moment-2.2.1.js" type="text/javascript"></script>
+    <script src="js/clndr.js" type="text/javascript"></script>
+    <script src="js/site.js" type="text/javascript"></script>
+
+
+    <script src="js/operations/stats.js" type="text/javascript"></script>
+    <script src="js/operations/reservations.js" type="text/javascript"></script>
+    <script src="js/operations/invoices.js" type="text/javascript"></script>
+    <script src="js/operations/cleaning_checklist.js"
+            type="text/javascript"></script>
+
+    <script src="js/operations/calendar.js" type="text/javascript"></script>
+    <script src="js/operations/invoice_form.js" type="text/javascript"></script>
+    <script src="js/operations/blocked_rooms.js" type="text/javascript"></script>
+    <script src="js/operations/block_form.js" type="text/javascript"></script>
+    <script src="js/operations/menu.js" type="text/javascript"></script>
+    <script src="js/operations/whatapp.js" type="text/javascript"></script>
 
 
 </body>

@@ -3,7 +3,7 @@ $(document).ready(function() {
 	getReservations("future");
 	getStayOvers("stayover");
 	getCheckouts("checkout");
-
+	getPastReservations("past");
 });
 
 
@@ -106,6 +106,52 @@ function getStayOvers(period) {
 	});
 }
 
+function getPastReservations(period) {
+	$("#past-res-list").load("operations/reservations/getreservations.php?period=" + period, function () {
+
+		$(".edit_invoice").click(function (event) {
+			updateInvoice(event);
+		});
+
+		$(".blockGuest").click(function (event) {
+			blockGuest(event);
+		});
+
+		$('.image_verified').off();
+		$('.image_verified').on('click', function (event) {
+			var resID = event.target.id.replace("img_upload_", "");
+			$(".uploadImageInput").click();
+			$("#customer_image_id").val(resID);
+		});
+
+		$('.uploadImageInput').off();
+		$('.uploadImageInput').on('change', function (event) {
+			var myForm = event.target.form;
+			let formData = new FormData(myForm);
+			$("body").addClass("loading");
+			$.ajax({
+				url: "operations/utils/updateCustomerIdImage.php",
+				type: "POST",
+				data: formData,
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function (response) {
+					var jsonObj = jQuery.parseJSON(response);
+					if (jsonObj.result_code == 0) {
+						var customerID = $("#customer_image_id").val();
+						$("#img_upload_" + customerID).attr("src", "images/verified.png");
+					}
+				}
+				,
+				complete: function (response) {
+					$("body").removeClass("loading");
+				}
+			});
+		});
+
+	});
+}
 
 function getCheckouts(period) {
 	$("#checkouts-list").load("operations/reservations/getreservations.php?period=" + period, function() {

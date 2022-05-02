@@ -43,7 +43,6 @@ $(document).ready(function () {
 
 
 function getCustomer() {
-    //test
     localStorage.setItem('customer_state', 'clear');
     $("#userNumber").val($("#userNumber").val().replaceAll(" ", ""));
     $("#userNumber").val($("#userNumber").val().replaceAll("+27", "0"));

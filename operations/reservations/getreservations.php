@@ -100,20 +100,38 @@ and DATE(check_out) = DATE(NOW())
 
 order by `check_in`";
 
+
+$sql_past_reservations = "SELECT wpky_hb_resa.id, wpky_hb_customers.id as customer_id, accom_id, paid, price, post_title, status, admin_comment, origin, check_in, check_out, info, origin_url, received_on,customer_id, id_image 
+
+FROM `wpky_hb_resa`, `wpky_hb_customers`, wpky_posts WHERE
+
+`wpky_hb_resa`.`customer_id` = `wpky_hb_customers`.`id`
+
+and wpky_posts.ID = `wpky_hb_resa`.accom_id
+
+and (`status` = 'confirmed' or (`status` = 'pending' and paid NOT IN ('0.00')) or (`status` = 'pending' and origin NOT IN ('website')))
+
+and DATE(check_in) < DATE(NOW())
+
+and DATE(check_in) => DATE(NOW()) - INTERVAL 90 DAY
+
+and DATE(check_out) < DATE(NOW())
+
+order by `check_in`";
+
+
     $checkInPeriod = $_GET["period"];
 
     $result = null;
 
     if (strcasecmp($checkInPeriod, "future") == 0) {
-
         $result = querydatabase($sql_upcoming_reservations);
-         //echo $sql_upcoming_reservations;
     } else if (strcasecmp($checkInPeriod, "stayover") == 0) {
-
         $result = querydatabase($sql_stayOver_reservations);
     } else if (strcasecmp($checkInPeriod, "checkout") == 0) {
-
         $result = querydatabase($sql_checkOuts_reservations);
+    } else if (strcasecmp($checkInPeriod, "past") == 0) {
+        $result = querydatabase($sql_past_reservations);
     } else {
 
         echo '<div class="res-details">
