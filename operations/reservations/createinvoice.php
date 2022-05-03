@@ -321,7 +321,6 @@ VALUES
 
     if (strcasecmp($rsType, "string") == 0) {
         $resultCreateCustomer = insertrecord($sqlCreateCustomer);
-        echo $resultCreateCustomer;
         if (strcasecmp($resultCreateCustomer, "New record created successfully") == 0) {
             $resultCustomer = querydatabase($sqlCheckCustomerExists);
             $rsType = gettype($resultCustomer);
