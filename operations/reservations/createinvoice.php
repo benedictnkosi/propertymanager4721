@@ -38,7 +38,7 @@ function createInvoice()
     if (strcasecmp($customer_id, "failed to create customer") == 0) {
         $temparray1 = array(
             'result_code' => 1,
-            'result_desciption' => "Failed to create invoice"
+            'result_desciption' => "Failed to create customer"
         );
         echo json_encode($temparray1);
         exit();
@@ -75,7 +75,7 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
             if (strcasecmp($rsType, "string") == 0) {
                 $temparray1 = array(
                     'result_code' => 1,
-                    'result_desciption' => "Failed to create invoice"
+                    'result_desciption' => "Failed to get invoice ID"
                 );
                 echo json_encode($temparray1);
                 exit();
