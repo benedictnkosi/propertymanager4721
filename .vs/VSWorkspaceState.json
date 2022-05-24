@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\js\\operations"
+    "\\operations",
+    "\\operations\\utils"
   ],
-  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }
