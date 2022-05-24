@@ -17,8 +17,17 @@ $(document).ready(function() {
 	});
 });
 
+function isEmptyOrSpaces(str) {
+	return str === null || str.match(/^ *$/) !== null;
+}
 
 function blockRoom() {
+	if (isEmptyOrSpaces($("#block_notes").val())) {
+		$("#block_error_message").text("Please provide notes")
+		$("#block_error_message_div").removeClass("display-none");
+		$("#block_success_message_div").addClass("display-none");
+		return;
+	}
 
 	var checkInDate = new Date($("#block_start_date").val());
 	var checkOutDate = new Date($("#block_end_date").val());
