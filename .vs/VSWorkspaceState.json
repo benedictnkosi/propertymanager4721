@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\operations"
+    "\\operations",
+    "\\operations\\reservations",
+    "\\operations\\utils"
   ],
-  "SelectedNode": "\\operations",
   "PreviewInSolutionExplorer": false
 }

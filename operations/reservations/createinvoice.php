@@ -55,7 +55,6 @@ function createInvoice()
 
         $depositDue = intval($_POST["total_due"]) / 2;
 
-        
         $sqlCreateinvoice = "INSERT INTO `wpky_hb_resa` (`check_in`, `check_out`, `accom_id`, `accom_num`, `adults`, `children`, `price`, `deposit`, `paid`, `payment_gateway`, `currency`, `customer_id`, `status`, `options`, `additional_info`, `payment_type`, `payment_info`, `admin_comment`, `lang`, `coupon`, `payment_token`, `payment_status`, `payment_status_reason`, `amount_to_pay`, `received_on`, `updated_on`, `uid`, `origin`, `synchro_id`, `booking_form_num`, `accom_price`, `discount`, `previous_price`, `fees`, `coupon_value`, `origin_url`)
 VALUES
 ('" . $_POST["checkin_date"] . "', '" . $_POST["checkout_date"] . "', " . $_POST["accom_id"] . ", 1, 1, 0, '" . $_POST["total_due"] . "', '" . $depositDue . "', '" . $paid . "', '', 'ZAR', " . $customer_id . ", '" . $status . "', '[]', '[]', '', '', '', 'en_US', '', '', '', '', '0', '" . $now->format('Y-m-d H:i:s') . "', '" . $now->format('Y-m-d H:i:s') . "', '" . uniqid() . "@http://aluvegh.co.za', 'website', '', 0, '" . $_POST["total_due"] . "', '', '0.00', '', '0.00', '')";
@@ -86,27 +85,26 @@ where  wpky_posts.ID = `wpky_hb_resa`.accom_id
                     $rooName = $results["post_title"];
                 }
             }
-            
+
             $paid = "0";
-            if (isset($_POST["paid"]) && !empty($_POST["paid"]) ) {
+            if (isset($_POST["paid"]) && ! empty($_POST["paid"])) {
                 $paid = $_POST["paid"];
             }
-                
-         
-            if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName,$paid)) {
+
+            if (! sendSMS($_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $paid)) {
                 if (strcasecmp($status, "confirmed") == 0) {
                     $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
                     if (! strcasecmp($accomToBlockId, "none") == 0) {
-                        
+
                         blockRoom($accomToBlockId, $_POST["checkin_date"], $_POST["checkout_date"], "Auto block - connected room booked", $newInvoiceID);
                     }
                 }
-                
+
                 $temparray1 = array(
                     'result_code' => 0,
                     'result_desciption' => "Invoice successfully created, but sms failed"
                 );
-                
+
                 echo json_encode($temparray1);
             } else {
 
@@ -151,24 +149,21 @@ function updateInvoice($checkin_date, $checkout_date, $accom_id, $total_due, $re
 
     $sqlUpdateInvoice = "UPDATE `wpky_hb_resa` SET `check_in` = '" . $_POST["checkin_date"] . "', `check_out` = '" . $_POST["checkout_date"] . "', `accom_id` = " . $_POST["accom_id"] . ", `price` = " . $_POST["total_due"] . ", `admin_comment` = '" . $_POST["res_notes"] . "', `updated_on` = '" . $now->format('Y-m-d H:i:s') . "', `accom_price` = " . $_POST["total_due"] . "  WHERE `id` = " . $_POST["action"] . ";";
 
-    
-    
     $resultCreateRes = insertrecord($sqlUpdateInvoice);
     if (strcasecmp($resultCreateRes, "New record created successfully") == 0) {
-        
-        
+
         $sqlInvoiceID = "select wpky_hb_resa.id , post_title, customer_id from wpky_hb_resa, wpky_posts
 where  wpky_posts.ID = `wpky_hb_resa`.accom_id
-and  wpky_hb_resa.id = ".$resID."
+and  wpky_hb_resa.id = " . $resID . "
  order by updated_on desc limit 1";
 
         $result = querydatabase($sqlInvoiceID);
         $newInvoiceID = "";
         $rooName = "";
         $customer_id = "";
-        
+
         $rsType = gettype($result);
-        
+
         if (strcasecmp($rsType, "string") == 0) {
             $temparray1 = array(
                 'result_code' => 1,
@@ -183,8 +178,8 @@ and  wpky_hb_resa.id = ".$resID."
                 $rooName = $results["post_title"];
                 $customer_id = $results["customer_id"];
             }
-            
-            if(!updateCustomer($customer_id, $_POST["userName"], $_POST["userNumber"])){
+
+            if (! updateCustomer($customer_id, $_POST["userName"], $_POST["userNumber"])) {
                 $temparray1 = array(
                     'result_code' => 1,
                     'result_desciption' => "Failed to update customer details"
@@ -192,33 +187,32 @@ and  wpky_hb_resa.id = ".$resID."
                 echo json_encode($temparray1);
                 exit();
             }
-            
         }
-        
-        if (! sendSMS( $_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
+
+        if (! sendSMS($_POST["userName"], $_POST["userNumber"], $newInvoiceID, $_POST["checkin_date"], $_POST["checkout_date"], $_POST["price_per_night"], $_POST["total_due"], $_POST["number_of_night"], $rooName, $amountPaid)) {
             unBlockRoomByResId($newInvoiceID);
             $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
-            
+
             if (! strcasecmp($accomToBlockId, "none") == 0) {
-                
+
                 blockRoom($accomToBlockId, $_POST["checkin_date"], $_POST["checkout_date"], "Auto block - connected room booked", $newInvoiceID);
             }
-            
+
             $temparray1 = array(
                 'result_code' => 0,
                 'result_desciption' => "Invoice successfully updated, but sms failed"
             );
             echo json_encode($temparray1);
         } else {
-            
+
             unBlockRoomByResId($newInvoiceID);
             $accomToBlockId = getAccomToBlock($_POST["accom_id"]);
 
             if (! strcasecmp($accomToBlockId, "none") == 0) {
-                
+
                 blockRoom($accomToBlockId, $_POST["checkin_date"], $_POST["checkout_date"], "Auto block - connected room booked", $newInvoiceID);
             }
-            
+
             $temparray1 = array(
                 'result_code' => 0,
                 'result_desciption' => "Invoice successfully updated"
@@ -234,16 +228,15 @@ and  wpky_hb_resa.id = ".$resID."
     }
 }
 
-
 function updateCustomer($customerID, $customerName, $phone)
 {
     $sqlUpdateCustomer = "Update  `wpky_hb_customers`
  SET `email` = 'noemail@gmail.com', info =  '{\"first_name\":\"" . $customerName . "\",\"last_name\":\"\",\"email\":\"noemail@gmail.com\",\"phone\":\"" . $phone . "\"}'
 where id = " . $customerID . ";";
-    
-    //echo $sqlUpdateCustomer;
+
+    // echo $sqlUpdateCustomer;
     $resultCustomer = updaterecord($sqlUpdateCustomer);
-    
+
     if (strcasecmp($resultCustomer, "Record updated successfully") == 0) {
         return true;
     } else {
@@ -251,31 +244,29 @@ where id = " . $customerID . ";";
     }
 }
 
-
-function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)
+function sendSMS($guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)
 {
     try {
 
-        
         if (! createInvoicePDF($guestName, $customerPhone, $resID, $checkin, $checkout, $price, $total, $resaNights, $rooName, $paid)) {
             return false;
         }
-        
-         $messagePart = "Your invoice is ready. Please make payment to confirm reservation.";
+
+        $messagePart = "Your invoice is ready. Please make payment to confirm reservation.";
         $header = "invoice";
         if (strcmp($paid, "0") !== 0) {
             $header = "booking";
             $messagePart = "Your booking is confirmed :) Thank you for choosing us.";
         }
-        
+
         $messageBody = "";
-        
+
         if (strcasecmp($_POST["action"], "create") == 0) {
-            $messageBody = "Hi " . $guestName . ", " . $messagePart ." Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
+            $messageBody = "Hi " . $guestName . ", " . $messagePart . " Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
         } else {
             $messageBody = "Hi " . $guestName . ", Your " . $header . " was updated. Click to view http://aluvegh.co.za/invoices/" . $resID . ".pdf";
         }
-        
+
         $formatedCustomerNumber = $customerPhone;
         if (strpos($customerPhone, '+27') == false) {
             $formatedCustomerNumber = '+27' . substr($customerPhone, 1);
@@ -284,17 +275,15 @@ function sendSMS( $guestName, $customerPhone, $resID, $checkin, $checkout, $pric
 
         if (strcasecmp($_SERVER['SERVER_NAME'], "localhost") == 0) {
             return true;
-           
-        }else{
-           
-            $result = send_message( $formatedCustomerNumber, $messageBody);
-            if ($result['http_status'] != 200) {
-                return false;
-            }else{
+        } else {
+
+            $result = send_message($formatedCustomerNumber, $messageBody);
+            if ($result) {
                 return true;
+            } else {
+                return false;
             }
         }
-
     } catch (Exception $e) {
         echo $e;
         return false;

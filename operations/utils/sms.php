@@ -36,37 +36,81 @@ function send_message_bulk_sms ( $post_body) {
 
 function send_message ( $phoneNumber, $message) {
     
+    $apiKey = '9753e8df-5e3c-4f67-9f05-3b900a54bf93';
+    $apiSecret = 'udmhiKoD7rjQdPd4haYpnX6ZRdeNJ473';
+    $accountApiCredentials = $apiKey . ':' .$apiSecret;
+    
+    // Convert to Base64 Encoding
+    $base64Credentials = base64_encode($accountApiCredentials);
+    $authHeader = 'Authorization: Basic ' . $base64Credentials;
+    
+    //3. Generate an AuthToken
+    
+    $authEndpoint = 'https://rest.smsportal.com/Authentication';
+    
+    $authOptions = array(
+        'http' => array(
+            'header'  => $authHeader,
+            'method'  => 'GET',
+            'ignore_errors' => true
+        )
+    );
+    $authContext  = stream_context_create($authOptions);
+    
+    $result = file_get_contents($authEndpoint, false, $authContext);
+    
+    $authResult = json_decode($result);
+    
+    //4. Authentication Request
+    
+    $status_line = $http_response_header[0];
+    preg_match('{HTTP\/\S*\s(\d{3})}', $status_line, $match);
+    $status = $match[1];
+    
+    if ($status === '200') {
+        $authToken = $authResult->{'token'};
+        
+        //var_dump($authResult);
+    }
+    else {
+        return false;
+    }
+    
+    //5. Send Request
+    
+    $sendUrl = 'https://rest.smsportal.com/bulkmessages';
+    
+    $authHeader = 'Authorization: Bearer ' . $authToken;
+    
+    $sendData = '{ "messages" : [ { "content" : "'.$message.'", "destination" : "'.$phoneNumber.'" } ] }';
+    
+    $options = array(
+        'http' => array(
+            'header'  => array("Content-Type: application/json", $authHeader),
+            'method'  => 'POST',
+            'content' => $sendData,
+            'ignore_errors' => true
+        )
+    );
+    $context  = stream_context_create($options);
+    
+    $sendResult = file_get_contents($sendUrl, false, $context);
+    
+    //6. Response Validation
+    
+    $status_line = $http_response_header[0];
+    preg_match('{HTTP\/\S*\s(\d{3})}', $status_line, $match);
+    $status = $match[1];
+    
+    //print_r($sendResult);
+    //echo 'status is ' . $status;
+    if ($status === '200') {
+        return true;
+    }
+    else {
+        return false;
+    }
    
-    $curl = curl_init();
-    
-    curl_setopt_array($curl, [
-        CURLOPT_URL => "https://rest.smsportal.com/v1/BulkMessages",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\"sendOptions\":{\"duplicateCheck\":\"none\",\"campaignName\":\"aluve\",\"testMode\":false},\"messages\":[{\"landingPageVariables\":{\"variables\":{},\"landingPageId\":\"1\"},\"content\":\"".$message."\",\"destination\":\"".$phoneNumber."\"}]}",
-        CURLOPT_HTTPHEADER => [
-            "Accept: application/json",
-            "Authorization: BASIC OTc1M2U4ZGYtNWUzYy00ZjY3LTlmMDUtM2I5MDBhNTRiZjkzOmdmNHdTb3gxMno3V2xVZ3FXZ0FPd3NyNWRHVit6Q3Iv",
-            "Content-Type: text/json"
-        ],
-    ]);
-    
-    $output = array();
-    $output['server_response'] = curl_exec( $curl );
-    $curl_info = curl_getinfo( $curl );
-    $output['http_status'] = $curl_info[ 'http_code' ];
-    $output['error'] = curl_error($curl);
-
-    //print_r($output['server_response']);
-   // echo "status is " .$output['http_status'];
-    
-    curl_close($curl);
-    
-    return $output;
-    
 }
+
 ?>
